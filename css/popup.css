@@ -1,0 +1,10 @@
+.popup { position: fixed; background: rgba(0,0,0,0.80); left: 0px; right: 0px; bottom: 0px; top: 0px; z-index: 999; display: none; }
+.popup-inner { background: #fff; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; width: 640px; position: relative; display: table; margin: auto; top: 90px; box-sizing: border-box; max-width: 100%; }
+.popup .close { cursor: pointer; height: 34px; width: 34px; position: absolute; right: 0px; top: -44px; color: #fff; font-size: 30px; font-family: monospace; font-weight: 300; }
+.popup .close:hover { }
+
+.popup-content {  box-sizing: border-box; }
+
+ @media only screen and (max-width:768px) {
+       .popup-inner  {width: 100% !important}
+   }
