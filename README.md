@@ -10,7 +10,15 @@ For presentation only, this site is subject to approval before putting to the pr
 
 Webpage content is available via the GitHub Page.
 
-To view the content, the address is [https://sam-itdc.github.io/EXT/](https://sam-itdc.github.io/EXT/)
+To access the rendered site, the address is [https://sam-itdc.github.io/EXT/](https://sam-itdc.github.io/EXT/)
+
+To view the content cataolgue, the address is [https://sam-itdc.github.io/EXT/catalogue.html](https://sam-itdc.github.io/EXT/catalogue.html)
+
+### Deployment to web server
+
+An iframe template is provided to allow the entire website be rendered with minimal coding. Hence minimising the deployment effort.
+
+The template is [https://sam-itdc.github.io/EXT/index-render.html](https://sam-itdc.github.io/EXT/index-render.html).
 
 ## Workflow
 GitHub workflow applies to this repository. Modification to the content requires branching and pull requests (approval).
