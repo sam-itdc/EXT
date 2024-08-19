@@ -565,7 +565,7 @@
                             const posts = JSON.parse(response);
 
                             for(var i=0; i<posts.items.length; i++) {
-                                html += '<li><a href="'+ data.items[i].url +' target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                                html += '<li><a href="'+ posts.items[i].url +' target="content-frame"">'+ posts.items[i].title +'</a></li>\n';
                             }
                             html += "</ul>";
 
