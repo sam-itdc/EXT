@@ -560,19 +560,17 @@
 
                 <script type="text/javascript">
                     fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts?q=label:總會通告&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
-                        var html = "<ul>\n";
-                            console.log(response.text());
-                            const posts = response.json();
-                            console.log(posts.kind);
-                            for(var i=0; i<posts.items.length; i++) {
-                                html += '<li><a href="'+ posts.items[i].url +' target="content-frame"">'+ posts.items[i].title +'</a></li>\n';
-                            }
-                            html += "</ul>";
-
-                            document.write(html);
+                        return response.json();
                     }).then(function (data) {
                         // This is the JSON from our response
-                        console.log(data);
+                                console.log(data.kind);
+                                var html = "<ul>\n";
+                                for(var i=0; i<7; i++) {
+                                        html += '<li><a href="'+ data.items[i].url +' target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                                }
+                                html += "</ul>";
+
+                                document.write(html);
                     }).catch(function (err) {
                         // There was an error
                         console.warn('Something went wrong.', err);
