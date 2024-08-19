@@ -648,7 +648,29 @@
 
                 <div class="page-header page-header-text"><h2>童軍月刊</h2></div>
 
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013_Featured"></script>
+                <script type="text/javascript">
+                    fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:月刊&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
+                        return response.json();
+                    }).then(function (data) {
+                        // This is the JSON from our response
+                        console.log(data.kind);
+                        var html = "<ul>\n";
+                        for(var i=0; i<7; i++) {
+                            var url = data.items[i].url;
+                            var newUrl = url.replace('http://', 'https://');
+                            html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                        }
+                        html += "</ul>";
+                        const subject = document.querySelector("#newsletters");
+
+                        subject.insertAdjacentHTML("beforebegin", html);
+                    }).catch(function (err) {
+                        // There was an error
+                        console.warn('Something went wrong.', err);
+                    });
+                </script>
+
+                <a id="newsletters" href="https://sam-external.blogspot.com/search/label/月刊" class="btn-more" target="content-frame">更多</a>
 
             </div>
 
