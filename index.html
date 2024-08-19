@@ -566,7 +566,9 @@
                         console.log(data.kind);
                         var html = "<ul>\n";
                         for(var i=0; i<7; i++) {
-                            html += '<li><a href="'+ data.items[i].url +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                            var url = data.items[i].url;
+                            var newUrl = url.replace('http://', 'https://');
+                            html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
                         }
                         html += "</ul>";
                         const subject = document.querySelector("#hqnotics");
