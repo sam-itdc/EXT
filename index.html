@@ -560,15 +560,13 @@
 
                 <script type="text/javascript">
                     fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts?q=label:總會通告&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
-                        Console.log('Successful call');
                         var html = "<ul>\n";
-                            for(var i=0; i<response.items.length; i++) {
+                            for(var i=0; i<response.json.items.length; i++) {
                                 html += '<li><a href="'+ data.items[i].url +'">'+ data.items[i].title +'</a></li>\n';
                             }
                             html += "</ul>";
 
                             console.log(html);
-                        return response.json();
                     }).then(function (data) {
                         // This is the JSON from our response
                         console.log(data);
