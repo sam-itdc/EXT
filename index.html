@@ -558,11 +558,16 @@
 
                 <div class="page-header page-header-text"><h2>總會通告</h2></div>
 
-                <iframe src="https://warren-blogger.blogspot.com/search/label/%E7%B8%BD%E6%9C%83%E9%80%9A%E5%91%8A?max-results=5" frameBorder="0" width="200" height="200" scrolling="no" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
-
                 <script type="text/javascript">
-                    fetch('https://warren-blogger.blogspot.com/search/label/%E7%B8%BD%E6%9C%83%E9%80%9A%E5%91%8A?max-results=5').then(function (response) {
+                    fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts?q=label:總會通告&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
                         Console.log('Successful call');
+                        var html = "<ul>\n";
+                            for(var i=0; i<response.items.length; i++) {
+                                html += '<li><a href="'+ data.items[i].url +'">'+ data.items[i].title +'</a></li>\n';
+                            }
+                            html += "</ul>";
+
+                            console.log(html);
                         return response.json();
                     }).then(function (data) {
                         // This is the JSON from our response
