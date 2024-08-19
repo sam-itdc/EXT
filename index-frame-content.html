@@ -39,14 +39,14 @@
 
                 <div class="page-header page-header-text"><h2>會內及社會服務</h2></div>
 
-                script type="text/javascript">
+                <script type="text/javascript">
                     fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:會內及社會服務&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
                         return response.json();
                     }).then(function (data) {
                         // This is the JSON from our response
                         console.log(data.kind);
                         var html = "<ul>\n";
-                        for(var i=0; i<7; i++) {
+                        for(var i=0; i<5; i++) {
                             var url = data.items[i].url;
                             var newUrl = url.replace('http://', 'https://');
                             html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
@@ -161,9 +161,29 @@ $('audio,video').mediaelementplayer({
 
                 <div class="page-header page-header-text"><h2>旅團快訊</h2></div>
 
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013_GroupNews"></script>
+                <script type="text/javascript">
+                    fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:旅團快訊&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
+                        return response.json();
+                    }).then(function (data) {
+                        // This is the JSON from our response
+                        console.log(data.kind);
+                        var html = "<ul>\n";
+                        for(var i=0; i<5; i++) {
+                            var url = data.items[i].url;
+                            var newUrl = url.replace('http://', 'https://');
+                            html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                        }
+                        html += "</ul>";
+                        const subject = document.querySelector("#all-services");
 
-                <a href="page-news/groupnews.html" class="btn-more" target="content-frame">更多</a>
+                        subject.insertAdjacentHTML("beforebegin", html);
+                    }).catch(function (err) {
+                        // There was an error
+                        console.warn('Something went wrong.', err);
+                    });
+                </script>
+
+                <a id="all-services" href="https://sam-external.blogspot.com/search/label/旅團快訊" class="btn-more" target="content-frame">更多</a>
 
             </div>
 
