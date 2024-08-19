@@ -571,7 +571,7 @@
                         html += "</ul>";
                         const subject = document.querySelector("#hqnotics");
 
-                        subject.insertAdjacentHTML(html);
+                        subject.insertAdjacentHTML("beforebegin", html);
                     }).catch(function (err) {
                         // There was an error
                         console.warn('Something went wrong.', err);
