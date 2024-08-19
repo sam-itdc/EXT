@@ -561,8 +561,8 @@
                 <script type="text/javascript">
                     fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts?q=label:總會通告&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
                         var html = "<ul>\n";
-                            console.log(response.json);
-                            const posts = JSON.parse(response.json);
+                            console.log(response.json.kind);
+                            const posts = response.json;
 
                             for(var i=0; i<posts.items.length; i++) {
                                 html += '<li><a href="'+ posts.items[i].url +' target="content-frame"">'+ posts.items[i].title +'</a></li>\n';
