@@ -563,21 +563,22 @@
                         return response.json();
                     }).then(function (data) {
                         // This is the JSON from our response
-                                console.log(data.kind);
-                                var html = "<ul>\n";
-                                for(var i=0; i<7; i++) {
-                                        html += '<li><a href="'+ data.items[i].url +' target="content-frame"">'+ data.items[i].title +'</a></li>\n';
-                                }
-                                html += "</ul>";
+                        console.log(data.kind);
+                        var html = "<ul>\n";
+                        for(var i=0; i<7; i++) {
+                            html += '<li><a href="'+ data.items[i].url +' target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                        }
+                        html += "</ul>";
+                        const subject = document.querySelector("#hqnotics");
 
-                                document.write(html);
+                        subject.insertAdjacentHTML(html);
                     }).catch(function (err) {
                         // There was an error
                         console.warn('Something went wrong.', err);
                     });
                 </script>
 
-                <a href="https://warren-blogger.blogspot.com/search/label/%E7%B8%BD%E6%9C%83%E9%80%9A%E5%91%8A" class="btn-more" target="content-frame">更多</a>
+                <a id="hqnotics" href="https://warren-blogger.blogspot.com/search/label/%E7%B8%BD%E6%9C%83%E9%80%9A%E5%91%8A" class="btn-more" target="content-frame">更多</a>
 
             </div>
 
