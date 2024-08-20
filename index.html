@@ -440,10 +440,28 @@
                 <div class="pure-g">
 
                     <div class="pure-u-3-4 feeds">
-
-                        <div class="news-content">
-
-                            <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013_TopNews"></script>
+                        <script type="text/javascript">
+                            fetch('https://content-blogger.googleapis.com/v3/blogs/5803924352725044808/posts?maxResults=3&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
+                                return response.json();
+                            }).then(function (data) {
+                                // This is the JSON from our response
+                                console.log(data.kind);
+                                var html = "<ul>\n";
+                                for(var i=0; i<3; i++) {
+                                    var url = data.items[i].url;
+                                    var newUrl = url.replace('http://', 'https://');
+                                    html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                                }
+                                html += "</ul>";
+                                const subject = document.querySelector("#newsroll");
+        
+                                subject.insertAdjacentHTML("beforeend", html);
+                            }).catch(function (err) {
+                                // There was an error
+                                console.warn('Something went wrong.', err);
+                            });
+                        </script>
+                        <div id="newsroll" class="news-content">
 
                         </div>
 
