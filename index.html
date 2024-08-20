@@ -61,41 +61,37 @@
                         const subject = document.querySelector("#newsroll");
 
                         subject.insertAdjacentHTML("beforeend", html);
-                    }).catch(function (err) {
-                        // There was an error
-                        console.warn('Something went wrong.', err);
-                    });
 
-                    $('#news-ticker .news-content ul').bxSlider({
-                        mode: 'vertical',
-                        minSlides: 1,
-                        maxSlides: 1,
-                        captions: true,
-                        controls: false,
-                        auto: true,
-                        autoHover: true,
-                        pager: false,
-                        pause: 3000
-                    });
+                        $('#news-ticker .news-content ul').bxSlider({
+                            mode: 'vertical',
+                            minSlides: 1,
+                            maxSlides: 1,
+                            captions: true,
+                            controls: false,
+                            auto: true,
+                            autoHover: true,
+                            pager: false,
+                            pause: 3000
+                        });
 
-                    var main_slider = $('#main-slider').bxSlider({
-                        minSlides: 1,
-                        maxSlides: 1,/*
-                        pagerCustom: "#main-slider-pager .icon-menu",*/
-                        pager: false,
-                        auto: true,
-                        /*autoHover: true,*/
-                        controls: false,
-                        mode: 'fade',
-                        pause: 3000,
-                        captions: false,
-                        onSlideBefore: function(el, oldIdx, newIdx){
-                            var icons = $("#main-slider-pager ul.icon-menu li");
-                            //console.log(icons);
-                            $(icons[oldIdx]).children("a").removeClass("active");
-                            $(icons[newIdx]).children("a").addClass("active");
-                        }
-                    });
+                        var main_slider = $('#main-slider').bxSlider({
+                            minSlides: 1,
+                            maxSlides: 1,/*
+                            pagerCustom: "#main-slider-pager .icon-menu",*/
+                            pager: false,
+                            auto: true,
+                            /*autoHover: true,*/
+                            controls: false,
+                            mode: 'fade',
+                            pause: 3000,
+                            captions: false,
+                            onSlideBefore: function(el, oldIdx, newIdx){
+                                var icons = $("#main-slider-pager ul.icon-menu li");
+                                //console.log(icons);
+                                $(icons[oldIdx]).children("a").removeClass("active");
+                                $(icons[newIdx]).children("a").addClass("active");
+                            }
+                        });
 
                     $("#main-slider-pager ul.icon-menu li").each(function(idx, el){
                         $(el).hover(function(e){
@@ -109,6 +105,12 @@
                     var s = skrollr.init({
                         forceHeight: false
                     });
+
+                    }).catch(function (err) {
+                        // There was an error
+                        console.warn('Something went wrong.', err);
+                    });
+
 
 /*                    $(window).scroll(function(e){
                     	//console.log(skrollr.get().getScrollTop(), skrollr.get().getMaxScrollTop());
