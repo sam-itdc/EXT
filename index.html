@@ -74,7 +74,12 @@
                             pause: 3000
                         });
 
-                        var main_slider = $('#main-slider').bxSlider({
+                    }).catch(function (err) {
+                        // There was an error
+                        console.warn('Something went wrong.', err);
+                    });
+
+                    var main_slider = $('#main-slider').bxSlider({
                             minSlides: 1,
                             maxSlides: 1,/*
                             pagerCustom: "#main-slider-pager .icon-menu",*/
@@ -105,13 +110,6 @@
                     var s = skrollr.init({
                         forceHeight: false
                     });
-
-                    }).catch(function (err) {
-                        // There was an error
-                        console.warn('Something went wrong.', err);
-                    });
-
-
 /*                    $(window).scroll(function(e){
                     	//console.log(skrollr.get().getScrollTop(), skrollr.get().getMaxScrollTop());
                     	var scrolltop = skrollr.get().getScrollTop();
