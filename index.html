@@ -38,11 +38,33 @@
             /*_V_.ControlBar.prototype.options.components = {'playToggle':{}};*/
             videojs.options.flash.swf = "javascript/video-js/video-js.swf";
             window._force_refresh = 0;
+            
+            
 
             (function ($, window, undefined) {
                'use strict';
                 
                 $(document).ready(function() {
+                    fetch('https://content-blogger.googleapis.com/v3/blogs/5803924352725044808/posts?maxResults=3&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
+                        return response.json();
+                    }).then(function (data) {
+                        // This is the JSON from our response
+                        console.log(data.kind);
+                        var html = "<ul>\n";
+                        for(var i=0; i<3; i++) {
+                            var url = data.items[i].url;
+                            var newUrl = url.replace('http://', 'https://');
+                            html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title + '(' + d.getFullYear().toString()+"年"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"月"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+"日 "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())  + ')</a></li>\n';
+                        }
+                        html += "</ul>";
+                        const subject = document.querySelector("#newsroll");
+
+                        subject.insertAdjacentHTML("beforeend", html);
+                    }).catch(function (err) {
+                        // There was an error
+                        console.warn('Something went wrong.', err);
+                    });
+                    
                     $('#news-ticker .news-content ul').bxSlider({
                         mode: 'vertical',
                         minSlides: 1,
@@ -440,31 +462,9 @@
                 <div class="pure-g">
 
                     <div class="pure-u-3-4 feeds">
-                        <script type="text/javascript">
-                            fetch('https://content-blogger.googleapis.com/v3/blogs/5803924352725044808/posts?maxResults=3&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
-                                return response.json();
-                            }).then(function (data) {
-                                // This is the JSON from our response
-                                console.log(data.kind);
-                                var html = "<ul>\n";
-                                for(var i=0; i<3; i++) {
-                                    var url = data.items[i].url;
-                                    var newUrl = url.replace('http://', 'https://');
-                                    html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
-                                }
-                                html += "</ul>";
-                                const subject = document.querySelector("#newsroll");
-        
-                                subject.insertAdjacentHTML("beforeend", html);
-                            }).catch(function (err) {
-                                // There was an error
-                                console.warn('Something went wrong.', err);
-                            });
-                        </script>
                         <div id="newsroll" class="news-content">
 
                         </div>
-
                         <a href="page-news/index.html" target="content-frame" class="btn-more">更多消息</a>
 
                     </div>
