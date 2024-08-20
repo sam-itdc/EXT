@@ -54,6 +54,7 @@
                         for(var i=0; i<3; i++) {
                             var url = data.items[i].url;
                             var newUrl = url.replace('http://', 'https://');
+                            var d = new Date(data.items[i].published);
                             html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title + '(' + d.getFullYear().toString()+"年"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"月"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+"日 "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())  + ')</a></li>\n';
                         }
                         html += "</ul>";
@@ -64,7 +65,7 @@
                         // There was an error
                         console.warn('Something went wrong.', err);
                     });
-                    
+
                     $('#news-ticker .news-content ul').bxSlider({
                         mode: 'vertical',
                         minSlides: 1,
