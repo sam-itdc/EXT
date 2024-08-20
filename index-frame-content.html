@@ -251,21 +251,20 @@ $('audio,video').mediaelementplayer({
             <div class="large-block block-newsletter">
 
                 <!--div class="page-header page-header-text page-header-divider"><h2>童軍月刊</h2></div-->
-
                 <script type="text/javascript">
                     fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:月刊&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
                         return response.json();
                     }).then(function (data) {
                         // This is the JSON from our response
-                        console.log(data.kind);
-                        var html = "<h3>\n";
+                        var html = " <div class='news-item'><h3>\n";
                         for(var i=0; i<1; i++) {
                             var url = data.items[i].url;
                             var newUrl = url.replace('http://', 'https://');
-                            html += '<a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a>\n';
-                            html += '<div class="metadata"><div class="date-and-type"><div class="date">24年08月18日 15:50</div><div class="type">&nbsp;</div></div></div>\n';
+                            var d = new Date(data.items[i].title);
+                            html += '<a href="'+ newUrl +'" target="content-frame"">'+ d.getFullYear().toString()+"年"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"月"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+"日 "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00" +'</a>\n';
+                            html += '<div class="metadata"><div class="date-and-type"><div class="date">' + data.items[i].published + '</div><div class="type">&nbsp;</div></div></div>\n';
                         }
-                        html += "</h3>";
+                        html += "</h3></div>";
                         const subject = document.querySelector("#newsletter-display");
 
                         subject.insertAdjacentHTML("beforebegin", html);
