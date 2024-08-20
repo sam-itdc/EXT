@@ -7,6 +7,30 @@
         <link rel="stylesheet" href="../css/960_16_col.css">
         <link rel="stylesheet" href="../css/pure-nr-min.css">
         <link rel="stylesheet" href="../css/styles.css">
+        <script type="text/javascript">
+            function showLinks(label, adjacentId) {
+                fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:'+ label +'&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                // This is the JSON from our response
+                console.log(data.kind);
+                var html = "<ul>\n";
+                for(var i=0; i<5; i++) {
+                    var url = data.items[i].url;
+                    var newUrl = url.replace('http://', 'https://');
+                    html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
+                }
+                html += "</ul>";
+                const subject = document.querySelector("#" + adjacentId);
+
+                subject.insertAdjacentHTML("afterend", html);
+            }).catch(function (err) {
+                // There was an error
+                console.warn('Something went wrong.', err);
+            });
+            }
+            
+        </script>
     </head>
     <body class="inner-page page-news-index">
 <div id="two-col" class="pure-g">
@@ -20,49 +44,63 @@
         <div class="pure-u-1-2 col-left">
             <div class="news-block">
                 <h3>總會通告</h3>
-                <a href="../page-news/hqnotices.html" class="btn-more">更多</a>
-                <div class="clear"></div>
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013NewsPage_HQNotices"></script>
+                <a href="https://sam-external.blogspot.com/search/label/%E7%B8%BD%E6%9C%83%E9%80%9A%E5%91%8A" class="btn-more">更多</a>
+                <div id="index-hqnotics" class="clear"></div>
+                <script>
+                    showLinks('總會通告', 'index-hqnotics');
+                </script>
             </div>
 
             <div class="news-block">
                 <h3>活動消息</h3>
-                <a href="../page-news/activities.html" class="btn-more">更多</a>
-                <div class="clear"></div>
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013NewsPage_Activities"></script>
+                <a href="https://sam-external.blogspot.com/search/label/%E6%B4%BB%E5%8B%95%E6%B6%88%E6%81%AF" class="btn-more">更多</a>
+                <div id="index-activities" class="clear"></div>
+                <script>
+                    showLinks('活動消息', 'index-activities');
+                </script>
             </div>
             <div class="news-block">
                 <h3>會內及社會服務</h3>
-                <a href="../page-news/services.html" class="btn-more">更多</a>
-                <div class="clear"></div>
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013NewsPage_Services"></script>
+                <a href="https://sam-external.blogspot.com/search/label/%E6%9C%83%E5%85%A7%E5%8F%8A%E7%A4%BE%E6%9C%83%E6%9C%8D%E5%8B%99" class="btn-more">更多</a>
+                <div id="index-services" class="clear"></div>
+                <script>
+                    showLinks('會內及社會服務', 'index-services');
+                </script>
             </div>
             <div class="news-block">
                 <h3>旅團快訊</h3>
-                <a href="../page-news/groupnews.html" class="btn-more">更多</a>
-                <div class="clear"></div>
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013NewsPage_GroupNews"></script>
+                <a href="https://sam-external.blogspot.com/search/label/%E6%97%85%E5%9C%98%E5%BF%AB%E8%A8%8A" class="btn-more">更多</a>
+                <div id="index-groupnews" class="clear"></div>
+                <script>
+                    showLinks('旅團快訊', 'index-groupnews');
+                </script>
             </div>
         </div>
         <div class="pure-u-1-2 col-right">
 
             <div class="news-block">
                 <h3>訓練班消息</h3>
-                <a href="../page-news/training.html" class="btn-more">更多</a>
-                <div class="clear"></div>
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013NewsPage_Training"></script>
+                <a href="https://sam-external.blogspot.com/search/label/%E8%A8%93%E7%B7%B4%E7%8F%AD%E6%B6%88%E6%81%AF" class="btn-more">更多</a>
+                <div id="index-training" class="clear"></div>
+                <script>
+                    showLinks('訓練班消息', 'index-training');
+                </script>
             </div>
             <div class="news-block">
                 <h3>國際活動</h3>
-                <a href="../page-news/intactivities.html" class="btn-more">更多</a>
-                <div class="clear"></div>
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013NewsPage_IntActivities"></script>
+                <a href="https://sam-external.blogspot.com/search/label/國際活動" class="btn-more">更多</a>
+                <div id="index-international" class="clear"></div>
+                <script>
+                    showLinks('國際活動', 'index-international');
+                </script>
             </div>
             <div class="news-block">
                 <h3>童軍月刊</h3>
-                <a href="../page-news/newsletter.html" class="btn-more">更多</a>
-                <div class="clear"></div>
-                <script type="text/javascript" src="https://sam-itdc-int.netlify.app/int-api/javascript.php?key=AEM2013NewsPage_Newsletter"></script>
+                <a href="https://sam-external.blogspot.com/search/label/%E6%9C%88%E5%88%8A" class="btn-more">更多</a>
+                <div id="index-newsletters" class="clear"></div>
+                <script>
+                    showLinks('童軍月刊', 'index-newsletters');
+                </script>
             </div>
         </div>
     </div>
