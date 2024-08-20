@@ -266,7 +266,7 @@ $('audio,video').mediaelementplayer({
                             html += '<div class="metadata"><div class="date-and-type"><div class="date">24年08月18日 15:50</div><div class="type">&nbsp;</div></div></div>\n';
                         }
                         html += "</h3>";
-                        const subject = document.querySelector("#newsletters");
+                        const subject = document.querySelector("#newsletter-display");
 
                         subject.insertAdjacentHTML("beforebegin", html);
                     }).catch(function (err) {
@@ -274,7 +274,7 @@ $('audio,video').mediaelementplayer({
                         console.warn('Something went wrong.', err);
                     });
                 </script>
-				<div style="margin-left: 5px; margin-right: 5px;">
+				<div id ="newsletter-display" style="margin-left: 5px; margin-right: 5px;">
 				<iframe src="index-news.html" title="顯示月刊圖像檔" style="width: 100%; height:600px; margin-bottom: 0px; margin-top: -20px; border:none;" scrolling="no" >
 </iframe>
 
