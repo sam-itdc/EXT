@@ -260,9 +260,9 @@ $('audio,video').mediaelementplayer({
                         for(var i=0; i<1; i++) {
                             var url = data.items[i].url;
                             var newUrl = url.replace('http://', 'https://');
-                            var d = new Date(data.items[i].title);
-                            html += '<a href="'+ newUrl +'" target="content-frame"">'+ d.getFullYear().toString()+"年"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"月"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+"日 "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00" +'</a>\n';
-                            html += '<div class="metadata"><div class="date-and-type"><div class="date">' + data.items[i].published + '</div><div class="type">&nbsp;</div></div></div>\n';
+                            var d = new Date(data.items[i].published);
+                            html += '<a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a>\n';
+                            html += '<div class="metadata"><div class="date-and-type"><div class="date">' + d.getFullYear().toString()+"年"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"月"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+"日 "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00" + '</div><div class="type">&nbsp;</div></div></div>\n';
                         }
                         html += "</h3></div>";
                         const subject = document.querySelector("#newsletter-display");
