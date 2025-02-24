@@ -45,6 +45,18 @@
                'use strict';
                 
                 $(document).ready(function() {
+                    $('#news-ticker .news-content ul').bxSlider({
+                        mode: 'vertical',
+                        minSlides: 1,
+                        maxSlides: 1,
+                        captions: true,
+                        controls: false,
+                        auto: true,
+                        autoHover: true,
+                        pager: false,
+                        pause: 3000
+                    });
+                    
                     var main_slider = $('#main-slider').bxSlider({
                             minSlides: 1,
                             maxSlides: 1,/*
