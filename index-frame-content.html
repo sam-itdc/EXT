@@ -39,29 +39,9 @@
 
                 <div class="page-header page-header-text"><h2>會內及社會服務</h2></div>
 
-                <script type="text/javascript">
-                    fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:會內及社會服務&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
-                        return response.json();
-                    }).then(function (data) {
-                        // This is the JSON from our response
-                        console.log(data.kind);
-                        var html = "<ul>\n";
-                        for(var i=0; i<5; i++) {
-                            var url = data.items[i].url;
-                            var newUrl = url.replace('http://', 'https://');
-                            html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
-                        }
-                        html += "</ul>";
-                        const subject = document.querySelector("#all-services");
+                <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_GroupNews"></script>
 
-                        subject.insertAdjacentHTML("beforebegin", html);
-                    }).catch(function (err) {
-                        // There was an error
-                        console.warn('Something went wrong.', err);
-                    });
-                </script>
-
-                <a id="all-services" href="https://sam-external.blogspot.com/search/label/會內及社會服務" class="btn-more" target="content-frame">更多</a>
+                <a id="all-services" href="page-news/services.html" class="btn-more" target="content-frame">更多</a>
 
             </div>
 
@@ -161,29 +141,9 @@ $('audio,video').mediaelementplayer({
 
                 <div class="page-header page-header-text"><h2>旅團快訊</h2></div>
 
-                <script type="text/javascript">
-                    fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:旅團快訊&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
-                        return response.json();
-                    }).then(function (data) {
-                        // This is the JSON from our response
-                        console.log(data.kind);
-                        var html = "<ul>\n";
-                        for(var i=0; i<5; i++) {
-                            var url = data.items[i].url;
-                            var newUrl = url.replace('http://', 'https://');
-                            html += '<li><a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a></li>\n';
-                        }
-                        html += "</ul>";
-                        const subject = document.querySelector("#group-news");
+                <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_GroupNews"></script>
 
-                        subject.insertAdjacentHTML("beforebegin", html);
-                    }).catch(function (err) {
-                        // There was an error
-                        console.warn('Something went wrong.', err);
-                    });
-                </script>
-
-                <a id="group-news" href="https://sam-external.blogspot.com/search/label/旅團快訊" class="btn-more" target="content-frame">更多</a>
+                <a id="group-news" href="page-news/groupnews.html" class="btn-more" target="content-frame">更多</a>
 
             </div>
 
@@ -199,7 +159,7 @@ $('audio,video').mediaelementplayer({
 
                     <a href="http://www.scout.org.mo/CSD" target="_blank"><img src="images/ad/CSD.png" width="149" height="49" /></a><br></br>
 
-                    <a href="http://www.scout.org.mo/INT/viewthread.php?tid=2390" target="content-frame"><img src="images/ad/201807ALR.jpg" width="149"  /></a></br></br>
+                    <!--<a href="http://www.scout.org.mo/INT/viewthread.php?tid=2390" target="content-frame"><img src="images/ad/201807ALR.jpg" width="149"  /></a></br></br>-->
 
 
 
@@ -251,28 +211,7 @@ $('audio,video').mediaelementplayer({
             <div class="large-block block-newsletter">
 
                 <!--div class="page-header page-header-text page-header-divider"><h2>童軍月刊</h2></div-->
-                <script type="text/javascript">
-                    fetch('https://www.googleapis.com/blogger/v3/blogs/5803924352725044808/posts/search?q=label:月刊&key=AIzaSyAEj6bgBOy2_AiTI4CuaIYj_l7zXTvgQtc').then(function (response) {
-                        return response.json();
-                    }).then(function (data) {
-                        // This is the JSON from our response
-                        var html = " <div class='news-item'><h3>\n";
-                        for(var i=0; i<1; i++) {
-                            var url = data.items[i].url;
-                            var newUrl = url.replace('http://', 'https://');
-                            var d = new Date(data.items[i].published);
-                            html += '<a href="'+ newUrl +'" target="content-frame"">'+ data.items[i].title +'</a>\n';
-                            html += '</h3><div class="metadata"><div class="date-and-type"><div class="date">' + d.getFullYear().toString()+"年"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"月"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+"日 "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString()) + '</div><div class="type">&nbsp;</div></div></div>\n';
-                        }
-                        html += "</div>";
-                        const subject = document.querySelector("#newsletter-display");
-
-                        subject.insertAdjacentHTML("beforebegin", html);
-                    }).catch(function (err) {
-                        // There was an error
-                        console.warn('Something went wrong.', err);
-                    });
-                </script>
+                <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_Newsletter"></script>
 				<div id ="newsletter-display" style="margin-left: 5px; margin-right: 5px;">
 				<iframe src="index-news.html" title="顯示月刊圖像檔" style="width: 100%; height:600px; margin-bottom: 0px; margin-top: -20px; border:none;" scrolling="no" >
 </iframe>
