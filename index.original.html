@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>首頁 - 澳門童軍總會</title>
+
+        <meta name="viewport" content="width=1024">
+
+
+        <link rel="stylesheet" href="css/960_16_col.css" />
+
+        <link rel="stylesheet" href="css/pure-nr-min.css" />
+
+        <link rel="stylesheet" href="css/styles.css" />
+
+        <link rel="stylesheet" href="css/popup.css" />
+
+        <script src="javascript/jquery.min.js"></script>
+
+        <script src="javascript/bxslider/jquery.bxslider.min.js"></script>
+
+        <link href="javascript/bxslider/jquery.bxslider.css" rel="stylesheet" />
+
+        <link href="javascript/video-js/video-js.css" rel="stylesheet" />
+
+        <script src="javascript/video-js/video.js"></script>
+
+        <script type="text/javascript" src="javascript/skrollr.min.js"></script>
+
+        <script language="javascript">
+            /*_V_.ControlBar.prototype.options.components = {'playToggle':{}};*/
+            videojs.options.flash.swf = "javascript/video-js/video-js.swf";
+            window._force_refresh = 0;
+            
+            
+
+            (function ($, window, undefined) {
+               'use strict';
+                
+                $(document).ready(function() {
+                    $('#news-ticker .news-content ul').bxSlider({
+                        mode: 'vertical',
+                        minSlides: 1,
+                        maxSlides: 1,
+                        captions: true,
+                        controls: false,
+                        auto: true,
+                        autoHover: true,
+                        pager: false,
+                        pause: 3000
+                    });
+                    
+                    var main_slider = $('#main-slider').bxSlider({
+                            minSlides: 1,
+                            maxSlides: 1,/*
+                            pagerCustom: "#main-slider-pager .icon-menu",*/
+                            pager: false,
+                            auto: true,
+                            /*autoHover: true,*/
+                            controls: false,
+                            mode: 'fade',
+                            pause: 3000,
+                            captions: false,
+                            onSlideBefore: function(el, oldIdx, newIdx){
+                                var icons = $("#main-slider-pager ul.icon-menu li");
+                                //console.log(icons);
+                                $(icons[oldIdx]).children("a").removeClass("active");
+                                $(icons[newIdx]).children("a").addClass("active");
+                            }
+                        });
+
+                    $("#main-slider-pager ul.icon-menu li").each(function(idx, el){
+                        $(el).hover(function(e){
+                            main_slider.stopAuto();
+                            main_slider.goToSlide(idx);
+                        }, function(e){
+                            main_slider.startAuto();
+                        });
+                    });
+
+                    var s = skrollr.init({
+                        forceHeight: false
+                    });
+/*                    $(window).scroll(function(e){
+                    	//console.log(skrollr.get().getScrollTop(), skrollr.get().getMaxScrollTop());
+                    	var scrolltop = skrollr.get().getScrollTop();
+                    	if((window._force_refresh == 0 && scrolltop <= 500) || (window._force_refresh == 1 && scrolltop > 500)){
+                    		skrollr.get().refresh();
+                    		window._force_refresh = !window._force_refresh;
+                    		console.log(scrolltop);
+                    	}
+                    });*/
+                });
+
+            })(jQuery, this);
+        </script>
+
+    </head>
+
+    <body class="page-index">
+
+        <div class="wrapper">
+
+            <div id="main-header">
+
+                <div class="container">
+
+                    <div class="logo">
+
+                      <a href="/"><img src="images/layout/scout-logo.jpg" width="510" height="114" /></a>
+
+                    </div>
+
+                    <div class="nav">
+
+                         <!--<a href="http://www.scout.org.mo/INT/" class="btn-internal">登入內聯網</a>
+
+                         <a href="../mobile/ext/mobileindex.html" class="btn-mobile" target="content-frame">手機版</a>-->
+
+                         <ul class="mainmenu">
+
+                            <li class="btn-activities">
+
+                                <a href="javascript:void(0);" class="no-pointer">活動及訓練</a>
+
+                                <div class="submenu">
+
+                                    <div class="arrow"></div>
+
+                                    <div class="pure-g">
+
+                                        <div class="pure-u-1">
+
+                                            <ul class="icon-menu">
+
+                                                <li><a href="page-scoutinfo/cub.html" target="content-frame" class="icon-cub">幼童軍</a></li>
+
+                                                <li><a href="page-scoutinfo/scout.html" target="content-frame" class="icon-scout">童軍</a></li>
+                                                <li><a href="page-scoutinfo/venture.html" target="content-frame" class="icon-venture">深資童軍</a></li>
+
+                                                <li class="last"><a href="dept/NT.htm" target="content-frame" class="icon-leader">成年領袖</a></li>
+
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="pure-u-1">
+
+                                        	<div class="pure-g">
+
+                                        		<div class="pure-u-1-2">
+
+                                                <ul class="menu-col menu-col-last">
+                                                  <li><a href="http://www.scout.org.mo/INT/viewthread.php?tid=2841" target="content-frame">MOP 和平使者計劃</a></li> <!--todo static page-->
+                                                  <li><a href="http://www.scout.org.mo/INT/viewthread.php?tid=2390" target="content-frame">領袖招募計劃</a></li>
+                                                  <li><a href="page-activities/calendar.html" target="content-frame">活動行事曆</a></li>
+                                                  <!--<li><a href="page-activities/album.html" target="content-frame">活動相冊</a></li>-->
+
+                                                  <!--  <li><a href="#">訓練班消息</a></li> -->
+                                                  <!--<li><a href="page-activities/scoutshop.html" target="content-frame">物品供應社</a></li>-->
+
+                                                </ul>
+
+                                            	</div>
+
+                                            	<div class="pure-u-1-2">
+
+                                                <ul class="menu-col menu-col-last">
+                                                  <li><a href="https://sam-external.blogspot.com/search/label/%E8%A8%93%E7%B7%B4%E7%8F%AD%E6%B6%88%E6%81%AF" target="content-frame">訓練班消息</a></li>
+                                                  <li><a href="https://sam-external.blogspot.com/search/label/%E6%B4%BB%E5%8B%95%E6%B6%88%E6%81%AF" target="content-frame">活動消息</a></li>
+                                                  <li><a href="https://sam-external.blogspot.com/search/label/%E5%9C%8B%E9%9A%9B%E6%B4%BB%E5%8B%95" target="content-frame">國際活動</a></li>
+                                                </ul>
+
+                                            	</div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                            <li class="btn-intro">
+
+                                <a href="javascript:void(0);" class="no-pointer">童軍運動簡介</a>
+
+                                <div class="submenu">
+
+                                    <div class="arrow"></div>
+
+                                    <div class="pure-g">
+
+                                        <div class="pure-u-1-2">
+
+                                            <ul class="menu-col">
+
+                                                <li class="title">加入童軍行列</li>
+
+                                                <li><a href="page-scoutinfo/apply-adult.html" target="content-frame">成年領袖招募</a></li>
+
+                                                <li><a href="page-scoutinfo/apply-scout.html" target="content-frame">童軍招募方式</a></li>
+
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="pure-u-1-2">
+
+                                            <ul class="menu-col menu-col-last">
+
+                                                <li class="title">童軍運動介紹</li>
+
+                                                <li><a href="page-scoutinfo/scout-history.html" target="content-frame">澳門童軍發展史</a></li>
+
+                                                <li><a href="page-scoutinfo/promise.html" target="content-frame">誓詞銘言</a></li>
+
+                                                <li><a href="page-scoutinfo/cub.html" target="content-frame">幼童軍</a></li>
+
+                                                <li><a href="page-scoutinfo/scout.html" target="content-frame">童軍</a></li>
+
+                                                <li><a href="page-scoutinfo/venture.html" target="content-frame">深資童軍</a></li>
+
+                                                <li><a href="page-scoutinfo/award.html" target="content-frame">獎勵制度</a></li>
+
+                                                <li><a href="page-scoutinfo/badges.html" target="content-frame">徽章介紹</a></li>
+
+                                                <li><a href="page-scoutinfo/ranking.html" target="content-frame">軍職徽章</a></li>
+
+                                                <li><a href="page-scoutinfo/uniform.html" target="content-frame">制服介紹</a></li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                            <li class="btn-about">
+
+                                <a href="javascript:void(0);" class="no-pointer">關於我們</a>
+
+                                <div class="submenu">
+
+                                    <div class="arrow"></div>
+
+                                    <div class="pure-g">
+
+                                        <div class="pure-u-1-2">
+
+                                            <ul class="menu-col">
+
+                                                <li class="title">本會簡介</li>
+
+                                                <li><a href="page-about/hq-history.html" target="content-frame">總會簡史</a></li>
+
+                                                <li><a href="page-about/identity.html" target="content-frame">會章會徽</a></li>
+
+                                                <li><a href="page-about/namelist.html" target="content-frame">會內人員</a></li>
+
+                                                <li><a href="page-about/structure.html" target="content-frame">組織架構</a></li>
+
+                                                <li><a href="page-about/department.html" target="content-frame">部門簡介</a></li>
+
+                                                <li><a href="page-about/group.html" target="content-frame">旅部簡介</a></li>
+
+                                            </ul>
+
+                                            <ul class="menu-col">
+
+                                                <li class="title">表格下載</li>
+
+                                                <li><a href="page-about/forms/application.html" target="content-frame">入會辦法</a></li>
+
+                                                <li><a href="page-about/forms/renewal.html" target="content-frame">更新會員證</a></li>
+
+                                                <li><a href="page-about/forms/internal-forms.html" target="content-frame">內部表格</a></li>
+
+                                                <li><a href="page-about/forms/online-forms.html" target="content-frame">線上報名表</a></li>
+
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="pure-u-1-2">
+
+                                            <ul class="menu-col menu-col-last">
+
+                                                <li class="title">參考資料</li>
+
+                                                <li>
+
+                                                    <a href="page-about/references/training.html" target="content-frame">訓練綱要</a>
+
+                                                    <ul class="submenu-col">
+
+                                                        <li><a href="page-about/references/training/CubScout.pdf" target="content-frame">幼童軍</a></li>
+                                                        					<li><a href="page-about/references/training/Scout.pdf" target="content-frame">童軍</a></li>
+
+                                                        <li><a href="page-about/references/training/Venture.pdf" target="content-frame">深資童軍</a></li>
+                                                    				    </ul>
+
+                                                </li>
+
+                                                <li><a href="page-about/references/marching.html" target="content-frame">標準步操及禮儀</a></li>
+
+                                                <li><a href="page-about/references/baden-powell.html" target="content-frame">貝登堡略傳</a></li>
+
+                                                <li><a href="page-about/references/signal.html" target="content-frame">三指記號</a></li>
+
+                                                <li><a href="page-about/references/courtesy.html" target="content-frame">生活禮節</a></li>
+
+                                                <!--li><a href="/EXT/page-about/references/beret.html" target="content-frame">貝雷帽</a></li-->
+
+                                                <li><a href="page-about/references/enews.html" target="content-frame">出版刊物</a></li>
+
+                                                <li><a href="page-about/references/statistics.html" target="content-frame">統計數字</a></li>
+
+                                            </ul>
+
+                                            <ul class="menu-col menu-col-last">
+
+                                                <li class="title">相關網站</li>
+
+                                                <li><a href="page-about/links/internal-sites.html" target="content-frame">本會內部連結</a></li>
+
+                                                <li><a href="page-about/links/other-sites.html" target="content-frame">其他網站連結</a></li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                            <li class="btn-events">
+
+                                <a href="page-news/index.html" target="content-frame">活動及通告</a>
+
+                                <div class="submenu">
+
+                                    <div class="arrow"></div>
+
+                                    <div class="pure-g">
+
+                                    	<div class="pure-u-1-2">
+
+                                            <ul class="menu-col menu-col-last">
+
+                                                <li><a href="dept/NT.htm" target="content-frame">訓練部</a></li>
+
+                                                <li><a href="dept/PD.htm" target="content-frame">支部計劃部</a></li>
+
+                                                <li><a href="dept/INTL.htm" target="content-frame">國際事務部</a></li>
+
+                                                <li><a href="dept/IT.htm" target="content-frame">資訊科技部</a></li>
+
+                                                <!--<li><a href="" target="content-frame">拓展及策劃部</a></li>
+
+                                                <li><a href="" target="content-frame">社會服務部</a></li>
+
+                                                <li><a href="" target="content-frame">樂團</a></li></ul>-->
+
+                                    	</div>
+
+                                        <div class="pure-u-1-2">
+
+                                            <ul class="menu-col menu-col-last">
+
+                                                <li><a href="page-news/hqnotices.html" target="content-frame">總會通告</a></li>
+
+                                                <li><a href="page-news/services.html" target="content-frame">會內及社會服務</a></li>
+
+                                                <li><a href="page-news/newsletter.html" target="content-frame">童軍月刊</a></li>
+
+                                                <li><a href="page-news/groupnews.html" target="content-frame">旅團快訊</a></li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                            <li class="btn-contact">
+
+                                <a href="contact.html" target="content-frame">聯絡我們</a>
+
+                                <!--div class="submenu">
+
+                                    <div class="arrow"></div>
+
+                                    <div class="pure-g">
+
+                                        <div class="pure-u-1">
+
+                                            <ul class="menu-col menu-col-last">
+
+                                                <li><a href="#">地圖</a></li>
+
+                                                <li><a href="#">意見欄</a></li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+
+                                </div-->
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="news-ticker">
+
+                <div class="pure-g">
+
+                    <div class="pure-u-3-4 feeds">
+                        <div id="newsroll" class="news-content">
+                            <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_TopNews"></script>
+
+                        </div>
+                        <a href="page-news/index.html" target="content-frame" class="btn-more">更多消息</a>
+
+                    </div>
+
+                    <div class="pure-u-1-4">
+
+                        <div class="search-box">
+
+                            <!--input type="text" class="input-keywords" />
+
+                            <button type="submit" class="btn-search"><span>搜尋</span></button-->
+
+                            <script>
+
+                              (function() {
+                                var cx = 'e702c5f9494c843ae';
+                                var gcse = document.createElement('script');
+                                gcse.type = 'text/javascript';
+                                gcse.async = true;
+                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                    '//cse.google.com/cse.js?cx=' + cx;
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(gcse, s);
+                              })();
+                            
+</script>
+
+<gcse:search></gcse:search>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="main-content">
+
+                <div class="slider" data-0="margin-bottom: -250px;" data-500="margin-bottom: -450px;">
+
+                    <ul id="main-slider">
+
+                        <li><img src="images/index/content-bg.jpg" /></li>
+
+                        <li><img src="images/index/content-bg-1.jpg" /></li>
+
+                        <li><img src="images/index/content-bg-2.jpg" /></li>
+
+                        <li><img src="images/index/content-bg-3.jpg" /></li>
+
+                    </ul>
+
+                    <div id="main-slider-pager">
+
+                        <div class="nav-menu">
+
+                            <ul class="icon-menu">
+
+                                <li><a href="page-scoutinfo/cub.html" target="content-frame" class="icon-cub active" title="幼童軍">幼童軍</a></li>
+
+                                <li><a href="page-scoutinfo/scout.html" target="content-frame" class="icon-scout" title="童軍">童軍</a></li>
+
+                                <li><a href="page-scoutinfo/venture.html" target="content-frame" class="icon-venture" title="資深童軍">深資童軍</a></li>
+
+                                <li><a href="dept/NT.htm" target="content-frame" class="icon-leader" title="成年領袖">成年領袖</a></li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Content Start -->
+<div class="content-wrapper">
+<div class="content pure-g">
+
+    <div class="pure-u-3-4">
+
+        <div class="pure-g">
+
+            <div class="pure-u-1-3">
+
+                <a href="#" class="ad-container"><img src="images/ad/right.png" style="height: 1px; width: 1px;" /></a>
+
+            </div>
+
+            <div class="pure-u-2-3">
+
+                <a href="#" class="ad-container"><img src="images/ad/right.png" style="height: 1px; width: 1px;" /></a>
+
+            </div>
+
+        </div>
+
+        <iframe name="content-frame" class="content-frame" src="index-frame-content.html?1" ALLOWTRANSPARENCY="true" frameborder="0"></iframe>
+
+    </div>
+
+    <div class="pure-u-1-4">
+
+        <a href="#" class="ad-container"><img src="images/ad/right.png" style="height: 1px; width: 1px;" /></a>
+
+        <div class="block-col">
+
+                        <div class="small-block block-hqnews">
+
+                <div class="page-header page-header-text"><h2>總會通告</h2></div>
+
+                <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_HQNotice"></script>
+
+                <a id="hqnotics" href="page-news/hqnotices.html" class="btn-more" target="content-frame">更多</a>
+
+            </div>
+
+            <div class="small-block block-training">
+
+                <div class="page-header page-header-text"><h2>訓練班消息</h2></div>
+
+                <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_Training"></script>
+
+                <a id="training-notics" href="page-news/training.html" class="btn-more" target="content-frame">更多</a>
+
+            </div>
+
+            <div class="small-block block-activities">
+
+                <div class="page-header page-header-text"><h2>活動消息</h2></div>
+
+                <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_Activities"></script>
+
+                <a id="activities" href="page-news/activities.html" class="btn-more" target="content-frame">更多</a>
+
+            </div>
+
+            <div class="small-block block-feature">
+
+                <div class="page-header page-header-text"><h2>童軍月刊</h2></div>
+
+                <script type="text/javascript" src="http://www.scout.org.mo/INT/api/javascript.php?key=AEM2013_Featured"></script>
+
+                <a id="newsletters" href="page-news/newsletter.html" class="btn-more" target="content-frame">更多</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+            <!-- Content End -->
+
+            </div> <!-- #main-content -->
+
+        </div> <!-- .wrapper -->
+
+
+<!-- popup 主頁彈出影片 --><!---
+<div class="popup" id="login">
+  <div class="popup-inner">
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/IBCleEykzR0?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="close">x</div>
+  </div>
+</div>
+--><!-- popup -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./javascript/popup.js"></script>
+
+
+
+        <div id="main-footer">
+
+            <div class="pure-g">
+
+                <div class="pure-u-5-8 col-logo">
+
+                    <img src="images/layout/footer-scout-logo.jpg" class="logo" />
+
+                    <div class="intro">
+
+                        澳門童軍總會成立於1983年12月12日。秉持的宗旨是：以貝登堡精神為本，根據其所創造的積極教育方式，不分種族、語言，協助發展本澳青少年德、智、體、群、美五育，以作為學校及家庭教育的輔助。
+
+                    </div>
+
+                </div>
+
+                <div class="pure-u-1-8 col-nav">
+
+                    <div class="inner-col">
+
+                        <div class="row">
+
+                            <a href="contact.html" target="content-frame">聯絡我們</a>
+
+                            <!--<a href="http://www.scout.org.mo/INT/" target="_blank">登入內聯網站</a>-->
+
+                            <a href="page-news/index.html" target="content-frame">最新消息</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="pure-u-1-4 col-meta">
+
+                    <div class="inner-col">
+
+                        <div class="row-contact">
+
+                            <a href="mailto:scoutmac@macau.ctm.net">scoutmac@macau.ctm.net</a><br />
+
+                            澳門氹仔盧伯德圓形地氹仔炮臺<br />
+
+                            tel: +853 28780411<br />
+
+                            fax: +853 28780412<br />
+
+                        </div>
+
+                        <div class="row-copy">
+
+                            本網站版權為澳門童軍總會所有<br />
+
+                            ALL RIGHTS RESERVED &copy; THE SCOUT<br> ASSOCIATION OF MACAU, 1998-2014
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
