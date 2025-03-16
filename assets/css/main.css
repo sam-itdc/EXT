@@ -152,6 +152,10 @@ input, select, textarea {
 		margin: 0 0 1em 0;
 	}
 
+	#sidebar h3 {
+		display: inline;
+	}
+
 	b, strong {
 		font-weight: 600;
 		color: #444;
@@ -190,6 +194,10 @@ input, select, textarea {
 
 	p, ul, ol, dl, table {
 		margin-bottom: 2em;
+	}
+	
+	#sidebar ul {
+		margin-bottom: 0.5em;
 	}
 
 /* Container */
@@ -1461,6 +1469,10 @@ input, select, textarea {
 		margin-bottom: 5em;
 	}
 
+	#sidebar > section {
+		margin-bottom: 0.1em;
+	}
+
 	section > :last-child,
 	article > :last-child,
 	section:last-child,
@@ -1482,6 +1494,10 @@ input, select, textarea {
 
 	footer {
 		margin: 2.5em 0 0 0;
+	}
+
+	#sidebar > section > footer {
+		margin: 1em 0 0 0;
 	}
 
 /* Forms */
@@ -1644,6 +1660,14 @@ input, select, textarea {
 		cursor: pointer;
 		font-size: 1.35em;
 		padding: 0.6em 1.5em;
+	}
+
+	#sidebar .button {
+		float: right;
+		margin-top: -3.5em;
+		font-size: 1em;
+		padding: 0.1em 0.5em;
+		background: #31b404;
 	}
 
 		input[type="button"].icon:before,
@@ -2179,6 +2203,7 @@ input, select, textarea {
 
 			section, article {
 				clear: both;
+				position: relative;
 				margin-bottom: 3em !important;
 			}
 
