@@ -6,172 +6,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>圖片輪播</title>
     <style>
-    	/*設定內外填充0畫素*/
-       *{margin: 0px;padding: 0px;}
-       body{
-           user-select: none;
-       }
-       .out{
-       		/*設定相對位置*/
-           position: relative;
-           width: 430px;
-           height: 600px;
-           margin: 20px auto;
+    	body, html {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+        user-select: none;
+        }
 
-       }
-       .out.did{
-       		/*設定絕對位置*/
-           position: absolute;
-           width: 100%;
-           height: 100%;
-       }
-        img{
-           position: absolute;
-           /*透明度*/
-           opacity: 0;
-       }
-        img.on{
-           opacity: 1;
-       }
+        .sr-only {
+        position: absolute;
+        pointer-events: none;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        color: transparent;
+        }
 
-       .left,.right{
-           position: absolute;
-           top: 50%;
-           width: 30px;
-           margin-top: -30px;
-           font-size: 24px;
-           text-align: center;
-           line-height: 30px;
-           background-color: rgba(0, 0,0, 0.5);
-           color: rgb(248, 243, 242);
-           /*滑鼠變化*/
-           cursor: pointer;
-           
-       }
-       /*設定button佈局和美化曲率，100px效果等同於50%*/
-       .left{
-           left: 0;
-           border-top-right-radius: 100px;
-           border-bottom-right-radius: 100px;
-       }
-       .right{
-           right: 0;
-           border-top-left-radius: 100px;
-           border-bottom-left-radius: 100px;
-       }
-       /*圓點佈局*/
-       .tab{
-           position: absolute;
-           bottom: 10px;
-           left: 50%;
-           transform: translateX(-50%);
-       }
-       .tab li{
-           float: left;
-           list-style: none;
-           width: 14px;
-           height: 14px;
-           margin-right: 8px;
-           border-radius: 50%;
-           background-color: #ccc;
-           cursor: pointer;
-       }
-       .tab li.on{
-           background-color: salmon;
-       }
+        input {
+        position: absolute;  
+        opacity: 0;
+        margin-top: 95vh;
+        cursor: pointer;
+        }
+
+        label {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border: solid 2px white;
+        border-radius: 999px;
+        background-color: transparent;
+        margin: 95vh 6px 0 6px;
+        z-index: 2;
+        cursor: pointer;
+        transition-duration: .4s;
+        box-shadow: 0 0 20px 0 #000;
+        }
+
+        input:checked + label{
+        background-color: white;
+        }
+
+        input + label::after{
+        content: '';
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' width='100' style='fill:white'%3E%3Cpath d='M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z' /%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center 55%;
+        background-size: 80px 80px;
+        line-height: 100vh;
+        transition: background-size 200ms;
+        position: absolute;
+        color: white;
+        height: calc(95vh - 12px);
+        width: 80px;
+        top: 0;
+        left: 0;
+        z-index: 20;
+        }
+
+        input + label:hover::after {
+        background-size: 90px 90px;
+        }
+
+        input:checked + label::after {
+        background-image: none;
+        width: 100vw;
+        left: 0;
+        z-index: 10;
+        }
+
+        input:checked + label + .slide ~ input + label::after {
+        display: none;
+        }
+
+        input:checked + label + .slide + input + label::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' width='100' fill='white'%3E%3Cpath d='M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z' /%3E%3C/svg%3E");
+        display: block;
+        width: 80px;
+        right: 0;
+        left: auto;
+        }
+
+        input:focus + label{
+        box-shadow: 0 0 0 2px teal, 0 0 18px white;
+        }
+
+        .slide {
+        position: absolute;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: translateX(-100%);
+        transition-duration: .4s;
+        opacity: 1;
+        }
+
+        input:checked ~ .slide {
+        transform: translateX(100%);
+        }
+
+        input:checked + label + .slide {
+        transform: translateX(0);
+        opacity: 1;
+        }
+
+        .bg1{
+        background-image: url(https://drive.google.com/thumbnail?&id=156bIWbVvXs1-nWUqILBChcmdEGBVgSis&sz=w1000);
+        }
+        .bg2{
+        background-image: url(https://drive.google.com/thumbnail?&id=189xhV3sp1H2hbs4AqfjMS9YtHowwPDTu&sz=w1000);
+        }
+        .bg3{
+        background-image: url(https://drive.google.com/thumbnail?&id=125-w7xK9Q7N-hCMYuIQ8kCYloBpciFEr&sz=w1000);
+        }
+        .bg4{
+        background-image: url(https://drive.google.com/thumbnail?&id=1egGVx5LTUep7cIpc8CCzb-jfZQdgWXqL&sz=w1000);
+        }
     </style>
 </head>
-<body>
-    <div class="out">
-        <div id="did">
-            <img class="on" src="https://drive.google.com/thumbnail?&id=156bIWbVvXs1-nWUqILBChcmdEGBVgSis&sz=w1000" alt="圖片01" width="450px" height="600px">
-            <img src="https://drive.google.com/thumbnail?&id=189xhV3sp1H2hbs4AqfjMS9YtHowwPDTu&sz=w1000" alt="圖片02" width="450px" height="600px">
-            <img src="https://drive.google.com/thumbnail?&id=125-w7xK9Q7N-hCMYuIQ8kCYloBpciFEr&sz=w1000" alt="圖片03" width="450px" height="600px">
-            <img src="https://drive.google.com/thumbnail?&id=1egGVx5LTUep7cIpc8CCzb-jfZQdgWXqL&sz=w1000" alt="圖片04" width="450px" height="600px">
+<body> 
+    <input type="radio" id="trigger1" name="slider">
+    <label for="trigger1"><span class="sr-only">Slide 1 of 5. A photo of a mountain pass with a winding path along the river and a view of distant mountains hiding in the mist.</span></label>
+    <div class="slide bg1"></div>
 
-        </div>
-        <div class="button">
-            <div class="left">&lt</div>
-            <div class="right">&gt</div>
-        </div>
-        <div class="tab">
-            <ul>
-                <li class="on"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
-    
-    
+    <input type="radio" id="trigger2" name="slider" checked autofocus>
+    <label for="trigger2"><span class="sr-only">Slide 2 of 5. A photo of a bird eating sunflower seeds from an open hand.</span></label>
+    <div class="slide bg2"></div>
+
+    <input type="radio" id="trigger3" name="slider">
+    <label for="trigger3"><span class="sr-only">Slide 3 of 5. A photo of a concrete bridge over the river with high voltage power lines on both banks.</span></label>
+    <div class="slide bg3"></div>
+
+    <input type="radio" id="trigger4" name="slider">
+    <label for="trigger4"><span class="sr-only">Slide 4 of 5. A photo of a lake surrounded by the forest with mountains in the background.</span></label>
+    <div class="slide bg4"></div>
 
 </body>
-<script>
-    	//獲取左右button
-        var oLeft = document.querySelector('.left'),
-        oRight = document.querySelector('.right'),
-        //獲取全部圖片的集合
-        aImages = document.querySelectorAll('img'),
-        //獲取全部li的集合
-        aTab = document.querySelectorAll('li'),
-        aDid = document.getElementById('did'),
-        index = 0,//當前索引下標
-        lastIndex = 0;//上一次圖片的下標
-                
-        //點選小圓點
-        for(var i = 0;i<aTab.length;i++){
-            aTab[i].index = i;
-            aTab[i].onclick = function(){
-                var This = this.index;//this作用域
-                change(function(){
-                    index = This;
-                });
-            }
-        }
-        //自動播放
-        //3秒的定時器，滑鼠移入停止
-        //var auto1 = setInterval(rightButton,6000);
-        //aDid.onmouseenter = function(){
-        //    clearInterval(auto1);
-        //}
-        //滑鼠移出開始
-        //aDid.onmouseout = function(){
-        //    auto1 = setInterval(rightButton,3000);
-        //}
-
-
-        //左單擊事件
-        oLeft.onclick = function(){
-            change(function(){
-                index--;
-                if(index < 0){
-                    index = aImages.length-1;
-                }
-            });
-        }
-        //右單擊事件
-        oRight.onclick = rightButton;
-        function rightButton(){
-            change(function(){
-                index++;
-                index %= aImages.length;//迴圈
-            });
-        }
-        //變換函式
-        function change(callback){
-           aImages[lastIndex].className = '';//清除上一次
-           aTab[lastIndex].className = '';
-           callback();//回撥函式
-           aImages[index].className = 'on';
-           aTab[index].className = 'on';
-           lastIndex = index;
-        }
-
-//function myrefresh(){
-//window.location.reload();
-//}
-//setTimeout('myrefresh()',60000); //指定60秒刷新一次
-
-</script>
 </html>
