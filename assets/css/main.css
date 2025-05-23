@@ -715,7 +715,7 @@ input, select, textarea {
 				}
 
 					.row.gtr-200 > * {
-						padding: 80px 0 0 80px;
+						padding: 70px 0 0 70px;
 					}
 
 					.row.gtr-200.gtr-uniform {
@@ -2710,3 +2710,43 @@ input, select, textarea {
 			}
 
 	}
+
+	/* Grid bar */
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		gap: 10px;
+		max-width: 840px;
+		margin-inline: auto;
+		margin-bottom: 2em;
+	}
+	
+	.grid div {
+		aspect-ratio: 1/1;
+		overflow: auto;
+		background-color: #d8d8d8;
+		font-size: 3em;
+	}
+	
+	.grid div:hover {
+		background-color: #31b404;
+		color: #f0f0f0;
+	}
+
+	
+	.browser-message {
+		background-color: rgb(230, 60, 60);
+		color: white;
+		padding: 16px;
+		font-family: system-ui;
+		font-weight: 600;
+		position: fixed;
+		top: 0;
+	}
+	
+	 @supports(aspect-ratio: 1 / 1) {
+		 .browser-message {
+				display: none;
+		 }
+		}
+	
