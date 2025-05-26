@@ -2726,6 +2726,16 @@ input, select, textarea {
 		overflow: auto;
 		background-color: #d8d8d8;
 		font-size: 3em;
+		/* 新增：文本居中 */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center; /* 备用居中方式 */
+		line-height: 1.3;
+	}
+
+	.grid a {
+		text-decoration: none;
 	}
 	
 	.grid div:hover {
