@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
 	</head>
 	<body class="is-preload homepage">
 		<div id="page-wrapper">
@@ -153,8 +154,25 @@
 										<h2>
 											澳門童軍月刊2025年2月刊第155期
 										</h2>
-										<iframe src="index-news.html" title="顯示月刊圖像檔" style="width: 100%; height:80em; margin-bottom: 0px; margin-top: -20px; border:none;" scrolling="no">
-										</iframe>
+										<!-- 直接嵌入輪播內容，替換iframe -->
+										<div class="newsletter-carousel" style="width: 100%; height: 80em; margin-bottom: 0px; margin-top: -20px; position: relative; overflow: hidden;">
+										
+											<input type="radio" id="trigger1" name="slider">
+											<label for="trigger1"><span class="sr-only">Slide 1 of 4. 澳門童軍月刊第一頁</span></label>
+											<div class="slide bg1"></div>
+
+											<input type="radio" id="trigger2" name="slider" checked>
+											<label for="trigger2"><span class="sr-only">Slide 2 of 4. 澳門童軍月刊第二頁</span></label>
+											<div class="slide bg2"></div>
+
+											<input type="radio" id="trigger3" name="slider">
+											<label for="trigger3"><span class="sr-only">Slide 3 of 4. 澳門童軍月刊第三頁</span></label>
+											<div class="slide bg3"></div>
+
+											<input type="radio" id="trigger4" name="slider">
+											<label for="trigger4"><span class="sr-only">Slide 4 of 4. 澳門童軍月刊第四頁</span></label>
+											<div class="slide bg4"></div>
+										</div>
 									</article>
 
 							</div>
@@ -279,5 +297,19 @@
 			<script src="assets/js/main.js"></script>
 			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v22.0"></script>
 			<div id="fb-root"></div>
+			
+			<!-- 防止頁面載入時跳轉的腳本 -->
+			<script>
+			// 確保頁面載入時停留在頂部
+			window.addEventListener('load', function() {
+				window.scrollTo(0, 0);
+			});
+			
+			// 防止autofocus導致的跳轉
+			document.addEventListener('DOMContentLoaded', function() {
+				window.scrollTo(0, 0);
+			});
+			</script>
 	</body>
 </html>
+
