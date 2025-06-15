@@ -2732,7 +2732,7 @@ input, select, textarea {
 		align-items: center;
 		text-align: center; /* 备用居中方式 */
 		line-height: 1.3;
-		transition: background-color 0.5s ease, color 0.5s ease; /* 添加基礎漸變效果 */
+		transition: background-color 0.5s ease, color 0.5s ease; /* 修改為0.5秒漸變效果 */
 	}
 
 	.grid a {
@@ -2743,7 +2743,7 @@ input, select, textarea {
 	.grid div:hover {
 		background-color: #31b404;
 		color: #f0f0f0;
-		transition: background-color 0.5s ease, color 0.5s ease; /* 添加2秒漸變效果 */
+		transition: background-color 0.5s ease, color 0.5s ease; /* 修改為0.5秒漸變效果 */
 	}
 
 	

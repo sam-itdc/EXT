@@ -10,7 +10,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		
 	</head>
 	<body class="is-preload homepage">
 		<div id="page-wrapper">
@@ -119,44 +118,158 @@
 										<li>
 											<a href="#">相關網站</a>
 											<ul>
-												<li><a href="#">本會內部連結</a></li>
-												<li><a href="#">其他網站連結</a></li>
-											</ul>
-										</li>
-										<li><a href="#">聯絡我們</a></li>
-									</ul>
+												<li><a href="#">本												</ul>
+											</li>
+											<li><a href="#">聯絡我們</a></li>
+										</ul>
 								</li>
 							</ul>
 						</nav>
 
-				</header>
-			</div>
+					</header>
+				</div>
 
-			<!-- Main -->
-			<div id="main-wrapper">
-				<div class="container">
-					<div class="row gtr-200">
-						<div class="col-8 col-12-medium">
-							<div id="content">
-								<!-- Grid bar-->
-								<div class="grid">
-									<a href="apply.html"><div>入會辦法</div></a>
-									<a href="introduction.html"><div>簡介</div></a>
-									<a href="history.html"><div>歷史</div></a>
-									<a href="patrons.html"><div>會員架構</div></a>
-									<a href="mop.html"><div>MOP</div></a>
-									<a href="groups.html"><div>旅部簡介</div></a>
-									<a href="departments.html"><div>部門簡介</div></a>
-									<a href="wood-badge.html"><div>木章</div></a>
-								</div>
-								<!-- Content -->
+				<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-8 col-12-medium">
+								<div id="content">
+									<!-- Grid bar-->
+									<div class="grid">
+										<a href="page-grid/apply.html"><div>入會辦法</div></a>
+										<a href="page-grid/introduction.html"><div>簡介</div></a>
+										<a href="page-grid/history.html"><div>歷史</div></a>
+										<a href="page-grid/patrons.html"><div>會員架構</div></a>
+										<a href="page-grid/mop.html"><div>MOP</div></a>
+										<a href="page-grid/groups.html"><div>旅部簡介</div></a>
+										<a href="page-grid/departments.html"><div>部門簡介</div></a>
+										<a href="page-grid/wood-badge.html"><div>木章</div></a>
+									</div>
+
+									<!-- Content -->
 									<article>
 										<h2>
 											澳門童軍月刊2025年2月刊第155期
 										</h2>
 										<!-- 直接嵌入輪播內容，替換iframe -->
 										<div class="newsletter-carousel" style="width: 100%; height: 80em; margin-bottom: 0px; margin-top: -20px; position: relative; overflow: hidden;">
-										
+											<style>
+											.newsletter-carousel .sr-only {		position: absolute;
+												pointer-events: none;
+												width: 1px;
+												height: 1px;
+												overflow: hidden;
+												color: transparent;
+											}
+
+											.newsletter-carousel input {
+												position: absolute;  
+												opacity: 0;
+												margin-top: 95%;
+												cursor: pointer;
+											}
+
+											.newsletter-carousel label {
+												display: inline-block;
+												width: 12px;
+												height: 12px;
+												border: solid 2px white;
+												border-radius: 999px;
+												background-color: transparent;
+												margin: 95% 6px 0 6px;
+												z-index: 2;
+												cursor: pointer;
+												transition-duration: .4s;
+												box-shadow: 0 0 20px 0 #000;
+											}
+
+											.newsletter-carousel input:checked + label{
+												background-color: white;
+											}
+
+											.newsletter-carousel input + label::after{
+												content: '';
+												background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' width='100' style='fill:white'%3E%3Cpath d='M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z' /%3E%3C/svg%3E");
+												background-repeat: no-repeat;
+												background-position: center 55%;
+												background-size: 80px 80px;
+												line-height: 100%;
+												transition: background-size 200ms;
+												position: absolute;
+												color: white;
+												height: calc(95% - 12px);
+												width: 80px;
+												top: 0;
+												left: 0;
+												z-index: 20;
+											}
+
+											.newsletter-carousel input + label:hover::after {
+												background-size: 90px 90px;
+											}
+
+											.newsletter-carousel input:checked + label::after {
+												background-image: none;
+												width: 100%;
+												left: 0;
+												z-index: 10;
+											}
+
+											.newsletter-carousel input:checked + label + .slide ~ input + label::after {
+												display: none;
+											}
+
+											.newsletter-carousel input:checked + label + .slide + input + label::after {
+												background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' width='100' fill='white'%3E%3Cpath d='M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z' /%3E%3C/svg%3E");
+												display: block;
+												width: 80px;
+												right: 0;
+												left: auto;
+											}
+
+											.newsletter-carousel input:focus + label{
+												box-shadow: 0 0 0 2px teal, 0 0 18px white;
+											}
+
+											.newsletter-carousel .slide {
+												position: absolute;
+												background-position: center;
+												background-size: cover;
+												background-repeat: no-repeat;
+												width: 100%;
+												height: 100%;
+												top: 0;
+												left: 0;
+												z-index: -1;
+												transform: translateX(-100%);
+												transition-duration: .4s;
+												opacity: 1;
+											}
+
+											.newsletter-carousel input:checked ~ .slide {
+												transform: translateX(100%);
+											}
+
+											.newsletter-carousel input:checked + label + .slide {
+												transform: translateX(0);
+												opacity: 1;
+											}
+
+											.newsletter-carousel .bg1{
+												background-image: url('./images/newsletter/newsletter1.jpg');
+											}
+											.newsletter-carousel .bg2{
+												background-image: url('./images/newsletter/newsletter2.jpg');
+											}
+											.newsletter-carousel .bg3{
+												background-image: url('./images/newsletter/newsletter3.jpg');
+											}
+											.newsletter-carousel .bg4{
+												background-image: url('./images/newsletter/newsletter4.jpg');
+											}
+											</style>
+											
 											<input type="radio" id="trigger1" name="slider">
 											<label for="trigger1"><span class="sr-only">Slide 1 of 4. 澳門童軍月刊第一頁</span></label>
 											<div class="slide bg1"></div>
