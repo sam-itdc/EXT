@@ -10,6 +10,95 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Hero Carousel Styles */
+			.hero-carousel {
+				margin-bottom: 2em;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			}
+			
+			.carousel-container {
+				position: relative;
+				width: 100%;
+				height: 300px;
+				overflow: hidden;
+			}
+			
+			.carousel-slides {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.slide {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				transition: opacity 0.6s ease-in-out;
+			}
+			
+			.slide img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			
+			/* Show first slide by default */
+			#hero-slide1:checked ~ .carousel-slides .slide1,
+			#hero-slide2:checked ~ .carousel-slides .slide2,
+			#hero-slide3:checked ~ .carousel-slides .slide3 {
+				opacity: 1;
+			}
+			
+			/* Hide radio buttons */
+			input[type="radio"][name="hero-slide"] {
+				display: none;
+			}
+			
+			/* Carousel Controls */
+			.carousel-controls {
+				position: absolute;
+				bottom: 20px;
+				left: 50%;
+				transform: translateX(-50%);
+				display: flex;
+				gap: 10px;
+			}
+			
+			.control-dot {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background-color: rgba(255, 255, 255, 0.5);
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+				border: 2px solid rgba(255, 255, 255, 0.8);
+			}
+			
+			.control-dot:hover {
+				background-color: rgba(255, 255, 255, 0.8);
+			}
+			
+			#hero-slide1:checked ~ .carousel-controls label[for="hero-slide1"],
+			#hero-slide2:checked ~ .carousel-controls label[for="hero-slide2"],
+			#hero-slide3:checked ~ .carousel-controls label[for="hero-slide3"] {
+				background-color: #31b404;
+				border-color: #31b404;
+			}
+			
+			/* Responsive design */
+			@media screen and (max-width: 768px) {
+				.carousel-container {
+					height: 200px;
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload homepage">
 		<div id="page-wrapper">
@@ -109,6 +198,33 @@
 						<div class="row gtr-200">
 							<div class="col-8 col-12-medium">
 								<div id="content">
+									<!-- Hero Carousel -->
+									<div class="hero-carousel">
+										<div class="carousel-container">
+											<input type="radio" name="hero-slide" id="hero-slide1" checked>
+											<input type="radio" name="hero-slide" id="hero-slide2">
+											<input type="radio" name="hero-slide" id="hero-slide3">
+											
+											<div class="carousel-slides">
+												<div class="slide slide1">
+													<img src="images/content-bg-1.jpg" alt="童軍活動 - 支持童軍運動，培育良好公民">
+												</div>
+												<div class="slide slide2">
+													<img src="images/content-bg-2.jpg" alt="童軍水上活動 - 支持童軍運動，培育良好公民">
+												</div>
+												<div class="slide slide3">
+													<img src="images/content-bg-3.jpg" alt="童軍團體活動 - 支持童軍運動，培育良好公民">
+												</div>
+											</div>
+											
+											<div class="carousel-controls">
+												<label for="hero-slide1" class="control-dot"></label>
+												<label for="hero-slide2" class="control-dot"></label>
+												<label for="hero-slide3" class="control-dot"></label>
+											</div>
+										</div>
+									</div>
+									
 									<!-- Grid bar-->
 									<div class="grid">
 										<a href="page-scoutinfo/apply.html"><div>加入童軍</div></a>
@@ -248,6 +364,23 @@
 			<script src="assets/js/main.js"></script>
 			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v22.0"></script>
 			<div id="fb-root"></div>
+			
+			<!-- Hero Carousel Auto-play Script -->
+			<script>
+			// Auto-play functionality for hero carousel
+			document.addEventListener('DOMContentLoaded', function() {
+				let currentSlide = 1;
+				const totalSlides = 3;
+				
+				function nextSlide() {
+					currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
+					document.getElementById('hero-slide' + currentSlide).checked = true;
+				}
+				
+				// Auto-advance every 5 seconds
+				setInterval(nextSlide, 5000);
+			});
+			</script>
 			
 			<!-- 防止頁面載入時跳轉的腳本 -->
 			<script>
