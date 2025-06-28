@@ -13,11 +13,24 @@
 		<style>
 			/* 年齡選擇器樣式 */
 			.age-selector {
-				display: flex;
-				flex-wrap: wrap;
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
 				gap: 15px;
 				margin: 20px 0;
-				justify-content: center;
+			}
+			
+			/* 響應式設計 - 平板端 */
+			@media (max-width: 1024px) {
+				.age-selector {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			
+			/* 響應式設計 - 手機端 */
+			@media (max-width: 768px) {
+				.age-selector {
+					grid-template-columns: 1fr;
+				}
 			}
 			
 			.age-option {
@@ -28,8 +41,6 @@
 				text-align: center;
 				cursor: pointer;
 				transition: all 0.3s ease;
-				min-width: 200px;
-				flex: 1;
 			}
 			
 			.age-option:hover {
