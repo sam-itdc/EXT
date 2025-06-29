@@ -6,10 +6,140 @@
 -->
 <html>
 	<head>
-		<title>澳門童軍總會</title>
+		<title>旅部簡介 - 澳門童軍總會</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
+		<style>
+			/* 旅部簡介專用樣式 */
+			.group-navigation {
+				background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+				padding: 20px;
+				border-radius: 10px;
+				margin-bottom: 30px;
+				text-align: center;
+			}
+			.group-navigation h3 {
+				color: #2c3e50;
+				margin-bottom: 15px;
+			}
+			.group-links {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 10px;
+			}
+			.group-links a {
+				background: #3498db;
+				color: white;
+				padding: 8px 15px;
+				border-radius: 20px;
+				text-decoration: none;
+				font-size: 14px;
+				transition: background 0.3s ease;
+			}
+			.group-links a:hover {
+				background: #2980b9;
+			}
+			.group-card {
+				background: white;
+				border-radius: 15px;
+				padding: 25px;
+				margin-bottom: 30px;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+				border-left: 5px solid #3498db;
+			}
+			.group-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 20px;
+				flex-wrap: wrap;
+			}
+			.group-logo {
+				width: 120px;
+				height: 120px;
+				margin-right: 25px;
+				border-radius: 10px;
+				object-fit: contain;
+				background: #f8f9fa;
+				padding: 10px;
+			}
+			.group-title {
+				flex: 1;
+				min-width: 300px;
+			}
+			.group-title h3 {
+				color: #2c3e50;
+				margin-bottom: 10px;
+				font-size: 24px;
+			}
+			.group-info {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 15px;
+			}
+			.info-item {
+				display: flex;
+				align-items: center;
+				padding: 10px;
+				background: #f8f9fa;
+				border-radius: 8px;
+			}
+			.info-label {
+				font-weight: bold;
+				color: #34495e;
+				min-width: 80px;
+				margin-right: 10px;
+			}
+			.info-value {
+				color: #2c3e50;
+				flex: 1;
+			}
+			.group-sections {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+				margin-top: 10px;
+			}
+			.section-badge {
+				padding: 5px 12px;
+				border-radius: 15px;
+				font-size: 12px;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			.cub-badge { background: #ffebee; color: #c62828; }
+			.scout-badge { background: #e8f5e8; color: #2e7d32; }
+			.venture-badge { background: #e3f2fd; color: #1565c0; }
+			.neckerchief {
+				width: 60px;
+				height: 40px;
+				border-radius: 5px;
+				margin-top: 10px;
+			}
+			.back-to-top {
+				text-align: right;
+				margin-top: 15px;
+			}
+			.back-to-top a {
+				color: #3498db;
+				text-decoration: none;
+				font-size: 14px;
+			}
+			@media (max-width: 768px) {
+				.group-header {
+					flex-direction: column;
+					text-align: center;
+				}
+				.group-logo {
+					margin-right: 0;
+					margin-bottom: 15px;
+				}
+				.group-info {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload no-sidebar">
 		<div id="page-wrapper">
@@ -24,17 +154,16 @@
 						</div>
 
 					<!-- Nav -->
-											<!-- Nav -->
 						<nav id="nav">
 							<ul>
 								<li><!--關於我們-->
 									<a href="#">關於我們</a>
 									<ul>
-										<li><a href="page-about/introduction.html">總會簡史</a></li>
-										<li><a href="page-about/patrons.html">會內人員</a></li>
+										<li><a href="introduction.html">總會簡史</a></li>
+										<li><a href="patrons.html">會內人員</a></li>
 										<li><a href="#">組織架構</a></li>
-										<li><a href="page-about/departments.html">部門簡介</a></li>
-										<li><a href="page-about/groups.html">旅部簡介</a></li>
+										<li><a href="departments.html">部門簡介</a></li>
+										<li><a href="groups.html">旅部簡介</a></li>
 										<li><a href="#">會章會徽</a></li>
 										<li>
 											<a href="#">表格下載</a>
@@ -44,14 +173,14 @@
 												<li><a href="#">內部表格</a></li>
 											</ul>
 										</li>
-										</ul>
+									</ul>
 								</li>
 								<li><!--童軍運動簡介-->
 									<a href="#">童軍運動簡介</a>
 									<ul>
-										<li><a href="history.html">澳門童軍發展史</a></li>
-										<li><a href="introduction.html">本會簡介</a></li>
-										<li><a href="promise.html">誓詞銘言</a></li>
+										<li><a href="../history.html">澳門童軍發展史</a></li>
+										<li><a href="../introduction.html">本會簡介</a></li>
+										<li><a href="../promise.html">誓詞銘言</a></li>
 										<li><a href="#">會章會徽</a></li>
 										<li><a href="#">徽章介紹</a></li>
 										<li><a href="#">制服介紹</a></li>
@@ -62,10 +191,10 @@
 								<li><!--支部簡介-->
 									<a href="#">支部簡介</a>
 									<ul>
-										<li><a href="#">幼童軍</a></li>
-										<li><a href="#">童軍</a></li>
-										<li><a href="#">深資童軍</a></li>
-										<li><a href="#">成年領袖</a></li>
+										<li><a href="../page-scoutinfo/cub.html">幼童軍</a></li>
+										<li><a href="../page-scoutinfo/scout.html">童軍</a></li>
+										<li><a href="../page-scoutinfo/venture.html">深資童軍</a></li>
+										<li><a href="../page-scoutinfo/apply-adult.html">成年領袖</a></li>
 										<li>
 											<a href="#">參考資料</a>
 											<ul>
@@ -85,7 +214,7 @@
 										<li><a href="#">訓練班消息</a></li>
 										<li><a href="#">活動消息</a></li>
 										<li><a href="#">國際活動</a></li>
-										<li><a href="page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
+										<li><a href="../page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
 										<li><a href="#">活動行事曆</a></li>
 										<li><a href="#">總會通告</a></li>
 										<li><a href="#">服務通告</a></li>
@@ -94,143 +223,308 @@
 								<li><!--加入童軍行列-->
 									<a href="#">加入童軍</a>
 									<ul>
-										<li><a href="page-scoutinfo/apply.html">童軍招募方式</a></li>
-										<li><a href="page-scoutinfo/wood-badge.html">成年領袖招募</a></li>
+										<li><a href="../page-scoutinfo/apply.html">童軍招募方式</a></li>
+										<li><a href="../page-scoutinfo/wood-badge.html">成年領袖招募</a></li>
 									</ul>
 								</li>
 							</ul>
 						</nav>
 
-
-
 				</header>
 			</div>
 
 			<!-- Main -->
-				<div id="main-wrapper">
-					<div class="container">
-						<div id="content">
+			<div id="main-wrapper">
+				<div class="container">
+					<div id="content">
 
-							<!-- Content -->
-								<article>
-                  <h2>童軍誓詞</h2>
-                  <p>我謹以至誠宣誓：<br>
-                    　對國家，對澳門，對信仰要負責；<br>
-                    　對別人，要幫助；<br>
-                    　對規律，要遵行。
-                  </p>
-          
-                  <h2>幼童軍誓詞</h2>
-                  <p>我願盡所能：<br>
-                    對國家，對澳門，對信仰盡責任；<br>
-                    對父母，要關懷；<br>
-                    對別人，要幫助；<br>
-                    對規律，要遵行。
-                  </p>
-
-                  <h2>童軍銘言</h2>
-                    <p style="font-weight: bold;">隨時準備</p>
-                  <h2>幼童軍銘言</h2>
-                    <p style="font-weight: bold;">願盡所能</p>
-                  
-                  <h2>童軍規律</h2>
-                    <u>童軍規律</u>　　<u>解　釋</u><br>
-                    誠　實　　　為人之道，首在誠實。無論做事、說話、居心，均須真實不欺。<br>
-                    忠　孝　　　對國家和本地區要盡忠，對父母應盡孝。<br>
-                    助　人　　　竭已之能，幫助別人。每日至少行一善事，不受酬，不居功，不望報。<br>
-                    仁　愛　　　對親朋須親愛，對別人要和善。<br>
-                    禮　節　　　對人要有禮貌。凡應對進退，均應合乎規矩，切記戒驕和戒噪。<br>
-                    服　從　　　對於團體紀律，須確實遵守，對於國家和本地區法令須確實服從。<br>
-                    快　樂　　　心境常愉快和樂觀，時露笑容。無論遇到何困難，應處之泰然。<br>
-                    勇　敢　　　義所當為，毅然為之。不為利誘，不為威屈，成敗在所不計。<br>
-                    公　德　　　愛護公共財物，保護公共利益。勿因貪圖一己之便，妨害公眾。<br>
-                    勤　儉　　　好學力行，刻苦耐勞。不浪費時間，不妄用金錢。<br>
-                    清　潔　　　身體、服裝、住所、用具須清潔。言語須謹慎，心地須光明。<br>
-                    愛護生物　　對無害於人類之生物須加愛護。保護環景，珍惜資源。<br>
-                    <br>
-                    <h2>森林規則</h2>
-                    <p>
-                      幼童軍先顧別人，才顧自己。<br>幼童軍睜開雙眼，豎起耳朵細心聆聽。<br>幼童軍要保持清潔。<br>幼童軍要誠實。<br>幼童軍要快樂。
-                  </p>
-              </div>
-            </article>
-
-						</div>
-					</div>
-				</div>
-			
-									
-						
-			<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							<div class="col-6 col-6-medium col-12-small">
-								
-								<!-- Links -->
-								<section class="widget links d-none">
-									<h3>近期活動</h3>
-									<div class="d-none d-lg-block">
-										<iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=rks8lssh5vrqagv4cu6vr444fs%40group.calendar.google.com&amp;color=%235229A3&amp;src=e63o9v6i6hq7ms03kjtr2mt7t4%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=Asia%2FMacau" style=" border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe>									<ul class="style2">
-									</div>
-									</ul>
-								</section>
-								
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-								
-								<!-- Links -->
-								<section class="widget links">
-									<h3>相關網站</h3>
-									<ul class="style2">
-										<li><a target="_blank" href="https://www.scout.org">世界童軍總會</a></li>
-										<li><a target="_blank" href="https://www.scout.org/where-we-work/regions/asia-pacific/region">亞太童軍總會</a></li>
-										<li><a target="_blank" href="https://www.scout.org.hk/tc/">香港童軍總會</a></li>
-									</ul>
-									<h3>資訊系統</h3>
-									<ul class="style2">
-										<li><a href="#">社會服務申報系統</a></li>
-										<li><a href="#">專章報名系統</a></li>
-									</ul>
-								</section>
-
-							</div>
-
-								<!-- Contact -->
-									<section class="widget contact last">
-										<h3>聯絡我們</h3>
-										<ul>
-											<li><a href="mailto:scoutmac@macau.ctm.net" class="icon far fa-envelope"><span class="label">Email</span></a></li>
-										</ul>
-										<p>澳門氹仔盧伯德圓形地氹仔炮臺<br />
-											tel: +853 28780411<br />
-											fax: +853 28780412</p>
-									</section>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; 2025 THE SCOUT ASSOCIATION OF MACAU. All rights reserved 本網站版權為澳門童軍總會所有</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-									</ul>
+						<!-- Content -->
+						<article>
+							<h2>旅部簡介</h2>
+							
+							<div class="group-navigation">
+								<h3>🏕️ 旅部編號快速導航</h3>
+								<div class="group-links">
+									<a href="#group-01">第一旅</a>
+									<a href="#group-02">第二旅</a>
+									<a href="#group-03">第三旅</a>
+									<a href="#group-04">第四旅</a>
+									<a href="#group-05">第五旅</a>
+									<a href="#group-06">第六旅</a>
+									<a href="#group-08">第八旅</a>
+									<a href="#group-12">第十二旅</a>
+									<a href="#group-14">第十四旅</a>
+									<a href="#group-15">第十五旅</a>
+									<a href="#group-16">第十六旅</a>
+									<a href="#group-17">第十七旅</a>
+									<a href="#group-18">第十八旅</a>
+									<a href="#group-22">第二十二旅</a>
+									<a href="#group-23">第二十三旅</a>
+									<a href="#group-24">第二十四旅</a>
+									<a href="#group-25">第二十五旅</a>
+									<a href="#group-28">第二十八旅</a>
+									<a href="#group-29">第二十九旅</a>
+									<a href="#group-30">第三十旅</a>
+									<a href="#group-31">第三十一旅</a>
 								</div>
 							</div>
-						</div>
-					</footer>
-				</div>
 
+							<!-- 第一旅 -->
+							<div class="group-card" id="group-01">
+								<div class="group-header">
+									<img src="../images/groups/01.gif" alt="第一旅徽章" class="group-logo">
+									<div class="group-title">
+										<h3>第一旅 (Group No. 1)</h3>
+										<div class="group-sections">
+											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
+											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
+											<a href="../page-scoutinfo/venture.html" class="section-badge venture-badge">深資童軍</a>
+										</div>
+									</div>
+								</div>
+								<div class="group-info">
+									<div class="info-item">
+										<span class="info-label">👤 旅長：</span>
+										<span class="info-value">李佩盈</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">👥 副旅長：</span>
+										<span class="info-value">莫美娟、李佩珊、關芷婷</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🏛️ 性質：</span>
+										<span class="info-value">公開旅</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">📍 集會地點：</span>
+										<span class="info-value">培正中學</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🌐 旅部網址：</span>
+										<span class="info-value"><a href="http://www.scoutg1.com" target="_blank">www.scoutg1.com</a></span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🎗️ 旅巾式樣：</span>
+										<span class="info-value"><img src="../images/groups/01_neckerchief.gif" alt="第一旅旅巾" class="neckerchief"></span>
+									</div>
+								</div>
+								<div class="back-to-top">
+									<a href="#top">回到頂部 ↑</a>
+								</div>
+							</div>
+
+							<!-- 第二旅 -->
+							<div class="group-card" id="group-02">
+								<div class="group-header">
+									<img src="../images/groups/02.gif" alt="第二旅徽章" class="group-logo">
+									<div class="group-title">
+										<h3>第二旅 (Group No. 2)</h3>
+										<div class="group-sections">
+											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
+											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
+											<a href="../page-scoutinfo/venture.html" class="section-badge venture-badge">深資童軍</a>
+										</div>
+									</div>
+								</div>
+								<div class="group-info">
+									<div class="info-item">
+										<span class="info-label">👤 旅長：</span>
+										<span class="info-value">待更新</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">👥 副旅長：</span>
+										<span class="info-value">待更新</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🏛️ 性質：</span>
+										<span class="info-value">公開旅</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">📍 集會地點：</span>
+										<span class="info-value">氹仔培華中學</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🌐 社交媒體：</span>
+										<span class="info-value"><a href="https://www.facebook.com/澳門童軍第二旅及第二十二旅-190203257980950/" target="_blank">Facebook專頁</a></span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🎗️ 旅巾式樣：</span>
+										<span class="info-value"><img src="../images/groups/02_neckerchief.gif" alt="第二旅旅巾" class="neckerchief"></span>
+									</div>
+								</div>
+								<div class="back-to-top">
+									<a href="#top">回到頂部 ↑</a>
+								</div>
+							</div>
+
+							<!-- 第三旅 -->
+							<div class="group-card" id="group-03">
+								<div class="group-header">
+									<img src="../images/groups/03.gif" alt="第三旅徽章" class="group-logo">
+									<div class="group-title">
+										<h3>第三旅 (Group No. 3)</h3>
+										<div class="group-sections">
+											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
+											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
+											<a href="../page-scoutinfo/venture.html" class="section-badge venture-badge">深資童軍</a>
+										</div>
+									</div>
+								</div>
+								<div class="group-info">
+									<div class="info-item">
+										<span class="info-label">👤 旅長：</span>
+										<span class="info-value">李志恆</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">👥 副旅長：</span>
+										<span class="info-value">鄧子健、高寶琪</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🏛️ 性質：</span>
+										<span class="info-value">公開旅</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">📍 集會地點：</span>
+										<span class="info-value">中葡職業技術學校運動場</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🌐 旅部網址：</span>
+										<span class="info-value"><a href="http://www.scoutmg3.org" target="_blank">www.scoutmg3.org</a></span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🎗️ 旅巾式樣：</span>
+										<span class="info-value"><img src="../images/groups/03_neckerchief.gif" alt="第三旅旅巾" class="neckerchief"></span>
+									</div>
+								</div>
+								<div class="back-to-top">
+									<a href="#top">回到頂部 ↑</a>
+								</div>
+							</div>
+
+							<!-- 第四旅 -->
+							<div class="group-card" id="group-04">
+								<div class="group-header">
+									<img src="../images/groups/04.gif" alt="第四旅徽章" class="group-logo">
+									<div class="group-title">
+										<h3>第四旅 (Group No. 4)</h3>
+										<div class="group-sections">
+											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
+											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
+											<a href="../page-scoutinfo/venture.html" class="section-badge venture-badge">深資童軍</a>
+										</div>
+									</div>
+								</div>
+								<div class="group-info">
+									<div class="info-item">
+										<span class="info-label">👤 旅長：</span>
+										<span class="info-value">連漪汶</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">👥 副旅長：</span>
+										<span class="info-value">梁嘉賀、趙啟源</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🏛️ 性質：</span>
+										<span class="info-value">公開旅</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">📍 集會地點：</span>
+										<span class="info-value">中葡職業技術學校</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">🎗️ 旅巾式樣：</span>
+										<span class="info-value"><img src="../images/groups/04_neckerchief.gif" alt="第四旅旅巾" class="neckerchief"></span>
+									</div>
+								</div>
+								<div class="back-to-top">
+									<a href="#top">回到頂部 ↑</a>
+								</div>
+							</div>
+
+							<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 10px; margin: 30px 0; text-align: center;">
+								<h3 style="margin-bottom: 15px;">📞 聯絡資訊</h3>
+								<p style="line-height: 1.6; opacity: 0.9;">
+									如欲了解更多旅部詳情或加入童軍，請聯絡澳門童軍總會：<br>
+									<strong>電話：</strong>+853 2878 0411<br>
+									<strong>電郵：</strong>scoutmac@macau.ctm.net<br>
+									<strong>地址：</strong>澳門氹仔盧伯德圓形地氹仔炮臺
+								</p>
+							</div>
+
+						</article>
+
+					</div>
+				</div>
+			</div>
+			
+			<!-- Footer -->
+			<div id="footer-wrapper">
+				<footer id="footer" class="container">
+					<div class="row">
+						<div class="col-6 col-6-medium col-12-small">
+							
+							<!-- Links -->
+							<section class="widget links d-none">
+								<h3>近期活動</h3>
+								<div class="d-none d-lg-block">
+									<iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=rks8lssh5vrqagv4cu6vr444fs%40group.calendar.google.com&amp;color=%235229A3&amp;src=e63o9v6i6hq7ms03kjtr2mt7t4%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=Asia%2FMacau" style=" border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe>
+								</div>
+							</section>
+							
+						</div>
+						<div class="col-3 col-6-medium col-12-small">
+							
+							<!-- Links -->
+							<section class="widget links">
+								<h3>相關網站</h3>
+								<ul class="style2">
+									<li><a target="_blank" href="https://www.scout.org">世界童軍總會</a></li>
+									<li><a target="_blank" href="https://www.scout.org/where-we-work/regions/asia-pacific/region">亞太童軍總會</a></li>
+									<li><a target="_blank" href="https://www.scout.org.hk/tc/">香港童軍總會</a></li>
+								</ul>
+								<h3>資訊系統</h3>
+								<ul class="style2">
+									<li><a href="#">社會服務申報系統</a></li>
+									<li><a href="#">專章報名系統</a></li>
+								</ul>
+							</section>
+
+						</div>
+
+						<!-- Contact -->
+						<section class="widget contact last">
+							<h3>聯絡我們</h3>
+							<ul>
+								<li><a href="mailto:scoutmac@macau.ctm.net" class="icon far fa-envelope"><span class="label">Email</span></a></li>
+							</ul>
+							<p>澳門氹仔盧伯德圓形地氹仔炮臺<br />
+								tel: +853 28780411<br />
+								fax: +853 28780412</p>
+						</section>
+
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; 2025 THE SCOUT ASSOCIATION OF MACAU. All rights reserved 本網站版權為澳門童軍總會所有</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</footer>
 			</div>
 
-		<!-- Scripts -->
+		</div>
 
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+		<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.dropotron.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>
+
