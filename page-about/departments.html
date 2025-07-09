@@ -113,47 +113,376 @@
 
 							<!-- Content -->
 								<article>
-                  <h2>童軍誓詞</h2>
-                  <p>我謹以至誠宣誓：<br>
-                    　對國家，對澳門，對信仰要負責；<br>
-                    　對別人，要幫助；<br>
-                    　對規律，要遵行。
-                  </p>
-          
-                  <h2>幼童軍誓詞</h2>
-                  <p>我願盡所能：<br>
-                    對國家，對澳門，對信仰盡責任；<br>
-                    對父母，要關懷；<br>
-                    對別人，要幫助；<br>
-                    對規律，要遵行。
-                  </p>
+									<h2>部門簡介</h2>
+									
+									<style>
+										.dept-navigation {
+											background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+											padding: 20px;
+											border-radius: 10px;
+											margin-bottom: 30px;
+											text-align: center;
+										}
+										.dept-navigation h3 {
+											color: #2c3e50;
+											margin-bottom: 15px;
+										}
+										.dept-nav-grid {
+											display: grid;
+											grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+											gap: 10px;
+											margin-top: 15px;
+										}
+										.dept-nav-item {
+											background: #3498db;
+											color: white;
+											padding: 8px 12px;
+											border-radius: 20px;
+											text-decoration: none;
+											font-size: 14px;
+											transition: all 0.3s ease;
+										}
+										.dept-nav-item:hover {
+											background: #2980b9;
+											transform: translateY(-2px);
+										}
+										.dept-card {
+											background: white;
+											border: 1px solid #e0e0e0;
+											border-radius: 10px;
+											margin-bottom: 30px;
+											box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+											overflow: hidden;
+										}
+										.dept-header {
+											background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+											color: white;
+											padding: 20px;
+										}
+										.dept-title {
+											font-size: 24px;
+											font-weight: bold;
+											margin: 0;
+										}
+										.dept-info {
+											padding: 20px;
+										}
+										.info-item {
+											display: flex;
+											margin-bottom: 10px;
+											align-items: flex-start;
+										}
+										.info-label {
+											font-weight: bold;
+											color: #2c3e50;
+											min-width: 120px;
+											margin-right: 10px;
+										}
+										.info-value {
+											color: #34495e;
+											flex: 1;
+										}
+										.dept-description {
+											background: #f8f9fa;
+											padding: 15px;
+											border-radius: 5px;
+											margin-top: 15px;
+											line-height: 1.6;
+										}
+										.dept-description h4 {
+											color: #2c3e50;
+											margin-bottom: 10px;
+										}
+										.dept-description ul {
+											margin: 0;
+											padding-left: 20px;
+										}
+										.dept-description li {
+											margin-bottom: 5px;
+										}
+										@media (max-width: 768px) {
+											.dept-nav-grid {
+												grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+											}
+											.info-item {
+												flex-direction: column;
+											}
+											.info-label {
+												min-width: auto;
+												margin-bottom: 5px;
+											}
+										}
+									</style>
 
-                  <h2>童軍銘言</h2>
-                    <p style="font-weight: bold;">隨時準備</p>
-                  <h2>幼童軍銘言</h2>
-                    <p style="font-weight: bold;">願盡所能</p>
-                  
-                  <h2>童軍規律</h2>
-                    <u>童軍規律</u>　　<u>解　釋</u><br>
-                    誠　實　　　為人之道，首在誠實。無論做事、說話、居心，均須真實不欺。<br>
-                    忠　孝　　　對國家和本地區要盡忠，對父母應盡孝。<br>
-                    助　人　　　竭已之能，幫助別人。每日至少行一善事，不受酬，不居功，不望報。<br>
-                    仁　愛　　　對親朋須親愛，對別人要和善。<br>
-                    禮　節　　　對人要有禮貌。凡應對進退，均應合乎規矩，切記戒驕和戒噪。<br>
-                    服　從　　　對於團體紀律，須確實遵守，對於國家和本地區法令須確實服從。<br>
-                    快　樂　　　心境常愉快和樂觀，時露笑容。無論遇到何困難，應處之泰然。<br>
-                    勇　敢　　　義所當為，毅然為之。不為利誘，不為威屈，成敗在所不計。<br>
-                    公　德　　　愛護公共財物，保護公共利益。勿因貪圖一己之便，妨害公眾。<br>
-                    勤　儉　　　好學力行，刻苦耐勞。不浪費時間，不妄用金錢。<br>
-                    清　潔　　　身體、服裝、住所、用具須清潔。言語須謹慎，心地須光明。<br>
-                    愛護生物　　對無害於人類之生物須加愛護。保護環景，珍惜資源。<br>
-                    <br>
-                    <h2>森林規則</h2>
-                    <p>
-                      幼童軍先顧別人，才顧自己。<br>幼童軍睜開雙眼，豎起耳朵細心聆聽。<br>幼童軍要保持清潔。<br>幼童軍要誠實。<br>幼童軍要快樂。
-                  </p>
-              </div>
-            </article>
+									<!-- 部門快速導航 -->
+									<div class="dept-navigation" id="top">
+										<h3>🏛️ 部門快速導航</h3>
+										<div class="dept-nav-grid">
+											<a href="#supervisor" class="dept-nav-item">總監</a>
+											<a href="#international" class="dept-nav-item">國際事務委員會</a>
+											<a href="#it" class="dept-nav-item">資訊科技發展委員會</a>
+											<a href="#catholic" class="dept-nav-item">澳門天主教童軍委員會</a>
+											<a href="#internal" class="dept-nav-item">內政部</a>
+											<a href="#international-dept" class="dept-nav-item">國際事務部</a>
+											<a href="#leader-resources" class="dept-nav-item">領袖資源部</a>
+											<a href="#training" class="dept-nav-item">訓練部</a>
+											<a href="#youth-activities" class="dept-nav-item">青少年活動部</a>
+											<a href="#development" class="dept-nav-item">拓展及策劃部</a>
+											<a href="#public-affairs" class="dept-nav-item">公共事務部</a>
+											<a href="#social-service" class="dept-nav-item">社會服務部</a>
+											<a href="#religious" class="dept-nav-item">宗教事務部</a>
+											<a href="#youth-affairs" class="dept-nav-item">青年事務部</a>
+											<a href="#mainland" class="dept-nav-item">內地活動聯絡部</a>
+											<a href="#headquarters" class="dept-nav-item">總部</a>
+											<a href="#band" class="dept-nav-item">總會樂團</a>
+										</div>
+									</div>
+
+									<!-- 總監 -->
+									<div class="dept-card" id="supervisor">
+										<div class="dept-header">
+											<h3 class="dept-title">總監</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">👤 澳門總監：</span>
+												<span class="info-value">周成俊</span>
+											</div>
+											<div class="info-item">
+												<span class="info-label">👥 助理澳門總監：</span>
+												<span class="info-value">梁洋俊、陳康亮、何宜華、胡俊華、連漪汶</span>
+											</div>
+										</div>
+									</div>
+
+									<!-- 國際事務委員會 -->
+									<div class="dept-card" id="international">
+										<div class="dept-header">
+											<h3 class="dept-title">國際事務委員會</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">👤 主席：</span>
+												<span class="info-value">吳美娟</span>
+											</div>
+										</div>
+									</div>
+
+									<!-- 資訊科技發展委員會 -->
+									<div class="dept-card" id="it">
+										<div class="dept-header">
+											<h3 class="dept-title">資訊科技發展委員會</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">👤 主席：</span>
+												<span class="info-value">凌世峰</span>
+											</div>
+											<div class="info-item">
+												<span class="info-label">👥 副主席：</span>
+												<span class="info-value">鍾燊宇、何詠恩</span>
+											</div>
+										</div>
+									</div>
+
+									<!-- 澳門天主教童軍委員會 -->
+									<div class="dept-card" id="catholic">
+										<div class="dept-header">
+											<h3 class="dept-title">澳門天主教童軍委員會</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">👤 主席：</span>
+												<span class="info-value">黃健清</span>
+											</div>
+											<div class="info-item">
+												<span class="info-label">👥 副主席：</span>
+												<span class="info-value">陳曉凱</span>
+											</div>
+										</div>
+									</div>
+
+									<!-- 內政部 -->
+									<div class="dept-card" id="internal">
+										<div class="dept-header">
+											<h3 class="dept-title">內政部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">👤 內政總監：</span>
+												<span class="info-value">林華傑</span>
+											</div>
+											<div class="info-item">
+												<span class="info-label">👥 助理內政總監：</span>
+												<span class="info-value">待更新</span>
+											</div>
+											<div class="dept-description">
+												<h4>📋 工作範圍</h4>
+												<ul>
+													<li>制訂、修訂及健全總會各項內政章則</li>
+													<li>監督各部門、旅部、童軍對內政章則之遵行</li>
+													<li>協助處理本會制服成員違規事宜</li>
+													<li>專責向童軍基層組織宣傳、推廣及解釋總會各項內政章則</li>
+													<li>協助總會查核和監管各旅部之財政狀況是否合理和健全</li>
+													<li>協助總會監管屬下各旅部之"旅務委員會"、"旅執行委員會"之行政運作</li>
+													<li>協助總會對各童軍單位於每年所呈交總會申報各項社會服務／會內服務各級優異獎勵人士的資格和條件進行審議</li>
+													<li>協助總會調查和處理有關童軍成員的投訴</li>
+													<li>協助新旅團籌備註冊和成立的各項行政工作</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<!-- 其他部門（待完善） -->
+									<div class="dept-card" id="international-dept">
+										<div class="dept-header">
+											<h3 class="dept-title">國際事務部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="leader-resources">
+										<div class="dept-header">
+											<h3 class="dept-title">領袖資源部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="training">
+										<div class="dept-header">
+											<h3 class="dept-title">訓練部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="youth-activities">
+										<div class="dept-header">
+											<h3 class="dept-title">青少年活動部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="development">
+										<div class="dept-header">
+											<h3 class="dept-title">拓展及策劃部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="public-affairs">
+										<div class="dept-header">
+											<h3 class="dept-title">公共事務部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="social-service">
+										<div class="dept-header">
+											<h3 class="dept-title">社會服務部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="religious">
+										<div class="dept-header">
+											<h3 class="dept-title">宗教事務部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="youth-affairs">
+										<div class="dept-header">
+											<h3 class="dept-title">青年事務部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="mainland">
+										<div class="dept-header">
+											<h3 class="dept-title">內地活動聯絡部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="headquarters">
+										<div class="dept-header">
+											<h3 class="dept-title">總部</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="dept-card" id="band">
+										<div class="dept-header">
+											<h3 class="dept-title">總會樂團</h3>
+										</div>
+										<div class="dept-info">
+											<div class="info-item">
+												<span class="info-label">📝 狀態：</span>
+												<span class="info-value">詳細信息待更新</span>
+											</div>
+										</div>
+									</div>
+
+									<div style="text-align: center; margin-top: 30px;">
+										<a href="#top" style="color: #3498db; text-decoration: none; font-size: 16px;">回到頂部 ↑</a>
+									</div>
+
+								</article>
 
 						</div>
 					</div>
