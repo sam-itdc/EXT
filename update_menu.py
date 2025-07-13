@@ -10,12 +10,12 @@ def get_new_menu_for_page_about():
 								<li><!--關於我們-->
 									<a href="#">關於我們</a>
 									<ul>
-										<li><a href="introduction.html">總會簡史及本會簡介</a></li>
+										<li><a href="introduction.html">總會簡介</a></li>
 										<li><a href="patrons.html">會內人員</a></li>
-										<li><a href="#">組織架構</a></li>
+										<li><a href="structure.html">組織架構</a></li>
 										<li><a href="departments.html">部門簡介</a></li>
 										<li><a href="groups.html">旅部簡介</a></li>
-										<li><a href="#">入會辦法</a></li>
+										<li><a href="../page-scoutinfo/apply.html">加入童軍</a></li>
 										<li><a href="#">更新會員證</a></li>
 										<li><a href="#">內部表格</a></li>
 									</ul>
@@ -81,12 +81,12 @@ def get_new_menu_for_page_scoutinfo():
 								<li><!--關於我們-->
 									<a href="#">關於我們</a>
 									<ul>
-										<li><a href="../page-about/introduction.html">總會簡史及本會簡介</a></li>
+										<li><a href="../page-about/introduction.html">總會簡介</a></li>
 										<li><a href="../page-about/patrons.html">會內人員</a></li>
-										<li><a href="#">組織架構</a></li>
+										<li><a href="../page-about/structure.html">組織架構</a></li>
 										<li><a href="../page-about/departments.html">部門簡介</a></li>
 										<li><a href="../page-about/groups.html">旅部簡介</a></li>
-										<li><a href="#">入會辦法</a></li>
+										<li><a href="apply.html">加入童軍</a></li>
 										<li><a href="#">更新會員證</a></li>
 										<li><a href="#">內部表格</a></li>
 									</ul>
@@ -152,12 +152,12 @@ def get_new_menu_for_root():
 								<li><!--關於我們-->
 									<a href="#">關於我們</a>
 									<ul>
-										<li><a href="page-about/introduction.html">總會簡史及本會簡介</a></li>
+										<li><a href="page-about/introduction.html">總會簡介</a></li>
 										<li><a href="page-about/patrons.html">會內人員</a></li>
-										<li><a href="#">組織架構</a></li>
+										<li><a href="page-about/structure.html">組織架構</a></li>
 										<li><a href="page-about/departments.html">部門簡介</a></li>
 										<li><a href="page-about/groups.html">旅部簡介</a></li>
-										<li><a href="#">入會辦法</a></li>
+										<li><a href="page-scoutinfo/apply.html">加入童軍</a></li>
 										<li><a href="#">更新會員證</a></li>
 										<li><a href="#">內部表格</a></li>
 									</ul>
@@ -243,7 +243,7 @@ def update_menu_in_file(file_path, new_menu):
 
 def main():
     """主函數"""
-    print("開始更新菜單結構...")
+    print("開始更新菜單結構（修正版：使用「總會簡介」）...")
     
     updated_files = []
     
@@ -269,7 +269,7 @@ def main():
     for file_path in updated_files:
         print(f"  - {file_path}")
     
-    print("\n菜單更新完成！")
+    print("\n菜單更新完成！（標題已修正為「總會簡介」）")
 
 if __name__ == "__main__":
     main()

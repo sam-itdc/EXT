@@ -1,54 +1,261 @@
-﻿<!DOCTYPE html>
-
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
+	<head>
+		<title>組織架構 - 澳門童軍總會</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<style>
+			/* 組織架構圖片樣式 */
+			.structure-image {
+				width: 100%;
+				max-width: 1200px;
+				height: auto;
+				margin: 2em auto;
+				display: block;
+				border: 1px solid #ddd;
+				border-radius: 8px;
+				box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+				cursor: pointer;
+				transition: transform 0.3s ease;
+			}
+			
+			.structure-image:hover {
+				transform: scale(1.02);
+			}
+			
+			.structure-container {
+				text-align: center;
+				margin: 2em 0;
+			}
+			
+			.structure-description {
+				margin: 1em 0;
+				font-style: italic;
+				color: #666;
+			}
+			
+			/* 響應式設計 */
+			@media screen and (max-width: 768px) {
+				.structure-image {
+					max-width: 100%;
+					margin: 1em auto;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload no-sidebar">
+		<div id="page-wrapper">
 
-    <head>
+			<!-- Header -->
+			<div id="header-wrapper">
+				<header id="header" class="container">
 
-        <meta charset="utf-8">
+					<!-- Logo -->
+						<div id="logo">
+							<h1><a href="../index.html"><img src="../images/layout/scout-logo-removebg-preview.png" width="505" height="108"></a></h1>							
+						</div>
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><!--關於我們-->
+									<a href="#">關於我們</a>
+									<ul>
+										<li><a href="introduction.html">總會簡介</a></li>
+										<li><a href="patrons.html">會內人員</a></li>
+										<li><a href="structure.html">組織架構</a></li>
+										<li><a href="departments.html">部門簡介</a></li>
+										<li><a href="groups.html">旅部簡介</a></li>
+										<li><a href="#">入會辦法</a></li>
+										<li><a href="#">更新會員證</a></li>
+										<li><a href="#">內部表格</a></li>
+									</ul>
+								</li>
+								<li><!--童軍運動簡介-->
+									<a href="#">童軍運動簡介</a>
+									<ul>
+										<li><a href="../history.html">澳門童軍發展史</a></li>
+										<li><a href="../promise.html">誓詞銘言</a></li>
+										<li><a href="#">會章會徽</a></li>
+										<li><a href="#">徽章介紹</a></li>
+										<li><a href="#">制服介紹</a></li>
+										<li><a href="#">軍職徽章</a></li>
+										<li><a href="#">獎勵制度</a></li>
+									</ul>
+								</li>
+								<li><!--支部簡介-->
+									<a href="#">支部簡介</a>
+									<ul>
+										<li><a href="#">幼童軍</a></li>
+										<li><a href="#">童軍</a></li>
+										<li><a href="#">深資童軍</a></li>
+										<li><a href="#">成年領袖</a></li>
+										<li>
+											<a href="#">參考資料</a>
+											<ul>
+												<li><a href="#">標準步操及禮儀</a></li>
+												<li><a href="#">貝登堡略傳</a></li>
+												<li><a href="#">三指記號</a></li>
+												<li><a href="#">生活禮節</a></li>
+												<li><a href="#">出版刊物</a></li>
+												<li><a href="#">童軍月刊</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li><!--活動-->
+									<a href="#">活動</a>
+									<ul>
+										<li><a href="#">訓練班消息</a></li>
+										<li><a href="#">活動消息</a></li>
+										<li><a href="#">國際活動</a></li>
+										<li><a href="../page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
+										<li><a href="#">活動行事曆</a></li>
+										<li><a href="#">總會通告</a></li>
+										<li><a href="#">服務通告</a></li>
+									</ul>
+								</li>
+								<li><!--加入童軍行列-->
+									<a href="#">加入童軍</a>
+									<ul>
+										<li><a href="../page-scoutinfo/apply.html">童軍招募方式</a></li>
+										<li><a href="../page-scoutinfo/wood-badge.html">成年領袖招募</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
 
-        <title>組織架構 - 澳門童軍總會</title>
+				</header>
+			</div>
 
-        <link rel="stylesheet" href="../css/960_16_col.css">
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div id="content">
 
-        <link rel="stylesheet" href="../css/pure-nr-min.css">
+							<!-- Content -->
+								<article>
+									<h1>組織架構</h1>
+									<br>
+									
+									<div class="structure-container">
+										<p class="structure-description">澳門童軍總會組織架構圖</p>
+										<img src="../images/about/structure.jpg" alt="澳門童軍總會組織架構圖" class="structure-image" onclick="openImageModal(this)">
+										<p class="structure-description">點擊圖片可放大查看</p>
+									</div>
+								</article>
 
-        <link rel="stylesheet" href="../css/styles.css">
+						</div>
+					</div>
+				</div>
+			
+			<!-- 圖片放大模態框 -->
+			<div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); cursor: pointer;" onclick="closeImageModal()">
+				<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 95%; max-height: 95%;">
+					<img id="modalImage" style="width: 100%; height: auto; border-radius: 8px;">
+					<div style="text-align: center; color: white; margin-top: 10px; font-size: 14px;">點擊任意處關閉</div>
+				</div>
+			</div>
+			
+			<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-6 col-6-medium col-12-small">
+								
+								<!-- Links -->
+								<section class="widget links d-none">
+									<h3>近期活動</h3>
+									<div class="d-none d-lg-block">
+										<iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=rks8lssh5vrqagv4cu6vr444fs%40group.calendar.google.com&amp;color=%235229A3&amp;src=e63o9v6i6hq7ms03kjtr2mt7t4%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=Asia%2FMacau" style=" border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe>									<ul class="style2">
+									</div>
+									</ul>
+								</section>
+								
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+								
+								<!-- Links -->
+								<section class="widget links">
+									<h3>相關網站</h3>
+									<ul class="style2">
+										<li><a target="_blank" href="https://www.scout.org">世界童軍總會</a></li>
+										<li><a target="_blank" href="https://www.scout.org/where-we-work/regions/asia-pacific/region">亞太童軍總會</a></li>
+										<li><a target="_blank" href="https://www.scout.org.hk/tc/">香港童軍總會</a></li>
+									</ul>
+									<h3>資訊系統</h3>
+									<ul class="style2">
+										<li><a href="#">社會服務申報系統</a></li>
+										<li><a href="#">專章報名系統</a></li>
+									</ul>
+								</section>
 
-    </head>
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
 
-    <body class="inner-page page-about-structure">
-<div id="two-col" class="pure-g">
+								<!-- Contact -->
+									<section class="widget contact last">
+										<h3>聯絡我們</h3>
+										<ul>
+											<li><a href="mailto:scoutmac@macau.ctm.net" class="icon far fa-envelope"><span class="label">Email</span></a></li>
+										</ul>
+										<p>澳門氹仔盧伯德圓形地氹仔炮臺<br />
+											tel: +853 28780411<br />
+											fax: +853 28780412</p>
+									</section>
 
-    <div class="pure-u-1">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; 2025 THE SCOUT ASSOCIATION OF MACAU. All rights reserved 本網站版權為澳門童軍總會所有</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
 
-        <div class="block-col">
+			</div>
 
-            <div class="xlarge-block">
+		<!-- Scripts -->
 
-                <div class="content">
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+			
+			<!-- 圖片放大功能 -->
+			<script>
+				function openImageModal(img) {
+					var modal = document.getElementById('imageModal');
+					var modalImg = document.getElementById('modalImage');
+					modal.style.display = 'block';
+					modalImg.src = img.src;
+				}
+				
+				function closeImageModal() {
+					document.getElementById('imageModal').style.display = 'none';
+				}
+				
+				// ESC 鍵關閉模態框
+				document.addEventListener('keydown', function(event) {
+					if (event.key === 'Escape') {
+						closeImageModal();
+					}
+				});
+			</script>
 
-                    <div class="page-header page-header-divider page-header-text">
-<h2>組織架構</h2>
-</div>
-
-<div class="inner-content">
-
-    <p><img src="../images/about/structure.jpg" width="660" height="466"/></p>
-
-</div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-    </body>
-
+	</body>
 </html>
+
