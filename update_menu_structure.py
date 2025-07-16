@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Menu structure synchronization script
-This script updates the navigation menu across all HTML files to match the main index.html
+Menu structure synchronization script with absolute path support
+This script updates the navigation menu and logo across all HTML files to match the main index.html
 """
 
 import os
@@ -31,24 +31,35 @@ def get_main_menu_content():
         return None
 
 def update_file_menu(file_path, main_menu_content):
-    """Update the menu in a specific HTML file"""
+    """Update the menu and logo in a specific HTML file"""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Find and replace the nav menu content
+        original_content = content
+        
+        # 1. Update navigation menu
         nav_pattern = r'(<nav id="nav">\s*<ul>)(.*?)(</ul>\s*</nav>)'
         
         def replace_menu(match):
             return match.group(1) + '\n\t\t\t\t\t\t' + main_menu_content + '\n\t\t\t\t\t' + match.group(3)
         
-        updated_content = re.sub(nav_pattern, replace_menu, content, flags=re.DOTALL)
+        content = re.sub(nav_pattern, replace_menu, content, flags=re.DOTALL)
         
-        if updated_content == content:
+        # 2. Update logo links to use absolute paths
+        # Update logo href
+        logo_href_pattern = r'(<div id="logo">\s*<h1><a href=")[^"]*(")'
+        content = re.sub(logo_href_pattern, r'\1/index.html\2', content)
+        
+        # Update logo img src
+        logo_img_pattern = r'(<img src=")[^"]*scout-logo-removebg-preview\.png"'
+        content = re.sub(logo_img_pattern, r'\1/images/layout/scout-logo-removebg-preview.png"', content)
+        
+        if content == original_content:
             return False  # No changes made
         
         with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(updated_content)
+            f.write(content)
         
         return True
         
@@ -60,8 +71,8 @@ def main():
     """Main function to synchronize menu across all HTML files"""
     base_dir = Path('/home/ubuntu/EXT')
     
-    print("🔄 Synchronizing menu structure across all HTML files...")
-    print("=" * 60)
+    print("🔄 Synchronizing menu structure and absolute paths across all HTML files...")
+    print("=" * 70)
     
     # Get the main menu content from index.html
     print("📖 Reading main menu structure from index.html...")
@@ -110,7 +121,7 @@ def main():
                 print("❌ Error")
                 error_count += 1
     
-    print("=" * 60)
+    print("=" * 70)
     print("🎉 Menu synchronization completed!")
     print(f"📊 Results:")
     print(f"   - Files updated: {updated_count}")
@@ -120,12 +131,14 @@ def main():
     
     if updated_count > 0:
         print(f"\n✅ Successfully synchronized menu structure across {updated_count} files")
-        print("🔗 Menu changes:")
-        print("   - 澳門童軍發展史: history.html → page-about/history.html")
-        print("   - 加入童軍 → 參考資料 (top-level menu)")
-        print("   - 童軍月刊: 移至參考資料首位，連結到 newsletters.html")
+        print("🔗 Absolute path updates:")
+        print("   - All menu links now use absolute paths (starting with /)")
+        print("   - Logo links updated to /index.html")
+        print("   - Logo images updated to /images/layout/scout-logo-removebg-preview.png")
+        print("   - Consistent navigation behavior across all pages")
     
-    print(f"\n💡 All HTML files now have consistent menu structure matching index.html")
+    print(f"\n💡 All HTML files now have consistent menu structure and absolute paths")
+    print("🌐 Navigation will work correctly from any page depth")
 
 if __name__ == "__main__":
     main()
