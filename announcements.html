@@ -1,0 +1,508 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>通告 - 澳門童軍總會</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- DataTables CSS -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+		<style>
+			/* Custom styles for announcements page */
+			.announcements-header {
+				background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%);
+				color: white;
+				padding: 2rem 0;
+				margin-bottom: 2rem;
+				border-radius: 8px;
+			}
+			
+			.category-nav {
+				background: #f8f9fa;
+				padding: 1rem;
+				border-radius: 8px;
+				margin-bottom: 2rem;
+				border: 1px solid #e9ecef;
+			}
+			
+			.category-nav h3 {
+				margin: 0 0 1rem 0;
+				color: #2c5aa0;
+				font-size: 1.2rem;
+			}
+			
+			.category-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+			
+			.category-btn {
+				padding: 0.5rem 1rem;
+				background: #fff;
+				border: 2px solid #2c5aa0;
+				color: #2c5aa0;
+				text-decoration: none;
+				border-radius: 5px;
+				transition: all 0.3s ease;
+				font-weight: 500;
+			}
+			
+			.category-btn:hover,
+			.category-btn.active {
+				background: #2c5aa0;
+				color: white;
+			}
+			
+			.dataTables_wrapper {
+				margin-top: 1rem;
+			}
+			
+			.dataTables_filter {
+				margin-bottom: 1rem;
+			}
+			
+			.dataTables_filter input {
+				padding: 0.5rem;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				margin-left: 0.5rem;
+			}
+			
+			#announcementsTable {
+				width: 100% !important;
+			}
+			
+			#announcementsTable th {
+				background: #2c5aa0;
+				color: white;
+				padding: 12px;
+				text-align: left;
+			}
+			
+			#announcementsTable td {
+				padding: 10px;
+				border-bottom: 1px solid #eee;
+			}
+			
+			.category-badge {
+				display: inline-block;
+				padding: 0.25rem 0.5rem;
+				background: #e9ecef;
+				color: #495057;
+				border-radius: 3px;
+				font-size: 0.875rem;
+				font-weight: 500;
+			}
+			
+			.category-badge.training { background: #d4edda; color: #155724; }
+			.category-badge.activity { background: #d1ecf1; color: #0c5460; }
+			.category-badge.international { background: #f8d7da; color: #721c24; }
+			.category-badge.general { background: #fff3cd; color: #856404; }
+			.category-badge.service { background: #e2e3e5; color: #383d41; }
+			
+			.news-link {
+				color: #2c5aa0;
+				text-decoration: none;
+				font-weight: 500;
+			}
+			
+			.news-link:hover {
+				text-decoration: underline;
+			}
+			
+			.date-cell {
+				white-space: nowrap;
+				font-family: monospace;
+				font-size: 0.9rem;
+			}
+			
+			@media (max-width: 768px) {
+				.category-buttons {
+					flex-direction: column;
+				}
+				
+				.category-btn {
+					text-align: center;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload homepage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<div id="header-wrapper">
+				<header id="header" class="container">
+
+					<!-- Logo -->
+					<div id="logo">
+						<h1><a href="index.html"><img src="images/layout/scout-logo-removebg-preview.png" width="505" height="108"></a></h1>
+					</div>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li class="current">
+								<a href="index.html">首頁</a>
+							</li>
+							<li><!--關於我們-->
+								<a href="#">關於我們</a>
+								<ul>
+									<li><a href="page-about/introduction.html">總會簡介</a></li>
+									<li><a href="page-about/patrons.html">贊助人及榮譽會長</a></li>
+									<li><a href="page-about/structure.html">組織架構</a></li>
+									<li><a href="page-about/departments.html">部門介紹</a></li>
+									<li><a href="page-about/groups.html">旅團資料</a></li>
+									<li><a href="page-about/history.html">總會歷史</a></li>
+									<li><a href="page-about/forms.html">表格</a></li>
+									<li><a href="page-about/emblem.html">會徽</a></li>
+								</ul>
+							</li>
+							<li><!--童軍運動簡介-->
+								<a href="#">童軍運動簡介</a>
+								<ul>
+									<li><a href="#">童軍訓練綱要</a></li>
+									<li><a href="#">誓詞規律</a></li>
+									<li><a href="page-scoutinfo/award.html">獎勵制度</a></li>
+									<li><a href="page-scoutinfo/badge.html">徽章介紹</a></li>
+									<li><a href="page-scoutinfo/ranking.html">軍職徽章</a></li>
+									<li><a href="page-scoutinfo/uniform.html">制服介紹</a></li>
+								</ul>
+							</li>
+							<li><!--支部簡介-->
+								<a href="#">支部簡介</a>
+								<ul>
+									<li><a href="page-scoutinfo/cub.html">幼童軍</a></li>
+									<li><a href="page-scoutinfo/scout.html">童軍</a></li>
+									<li><a href="page-scoutinfo/venture.html">深資童軍</a></li>
+									<li><a href="page-scoutinfo/wood-badge.html">成年領袖</a></li>
+								</ul>
+							</li>
+							<li><!--通告-->
+								<a href="#">通告</a>
+								<ul>
+									<li><a href="announcements.html?category=training">訓練班消息</a></li>
+									<li><a href="announcements.html?category=activity">活動消息</a></li>
+									<li><a href="announcements.html?category=international">國際活動</a></li>
+									<li><a href="announcements.html?category=general">總會通告</a></li>
+									<li><a href="announcements.html?category=service">服務通告</a></li>
+								</ul>
+							</li>
+							<li><!--加入童軍行列-->
+								<a href="#">加入童軍</a>
+								<ul>
+									<li><a href="page-scoutinfo/apply.html">童軍招募方式</a></li>
+									<li><a href="page-scoutinfo/wood-badge.html">成年領袖招募</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				</header>
+			</div>
+
+			<!-- Main -->
+			<div id="main-wrapper">
+				<div class="container">
+					
+					<!-- Announcements Header -->
+					<div class="announcements-header">
+						<div style="text-align: center;">
+							<h1 style="margin: 0; font-size: 2.5rem;">📢 通告中心</h1>
+							<p style="margin: 0.5rem 0 0 0; font-size: 1.2rem; opacity: 0.9;">澳門童軍總會最新消息與通告</p>
+						</div>
+					</div>
+					
+					<!-- Category Navigation -->
+					<div class="category-nav">
+						<h3>📂 通告分類</h3>
+						<div class="category-buttons">
+							<a href="announcements.html" class="category-btn" id="btn-all">全部通告</a>
+							<a href="announcements.html?category=training" class="category-btn" id="btn-training">訓練班消息</a>
+							<a href="announcements.html?category=activity" class="category-btn" id="btn-activity">活動消息</a>
+							<a href="announcements.html?category=international" class="category-btn" id="btn-international">國際活動</a>
+							<a href="announcements.html?category=general" class="category-btn" id="btn-general">總會通告</a>
+							<a href="announcements.html?category=service" class="category-btn" id="btn-service">服務通告</a>
+						</div>
+					</div>
+					
+					<!-- Announcements Table -->
+					<div class="row gtr-200">
+						<div class="col-12">
+							<div id="content">
+								<table id="announcementsTable" class="display" style="width:100%">
+									<thead>
+										<tr>
+											<th>標題</th>
+											<th>類別</th>
+											<th>發佈時間</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- Data will be populated by JavaScript -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer-wrapper">
+				<footer id="footer" class="container">
+					<div class="row">
+						<div class="col-3 col-6-medium col-12-small">
+							<section class="widget links">
+								<h3>快速連結</h3>
+								<ul class="style2">
+									<li><a href="page-about/introduction.html">總會簡介</a></li>
+									<li><a href="page-about/structure.html">組織架構</a></li>
+									<li><a href="page-about/groups.html">旅團資料</a></li>
+									<li><a href="page-scoutinfo/apply.html">加入童軍</a></li>
+								</ul>
+							</section>
+						</div>
+						<div class="col-3 col-6-medium col-12-small">
+							<section class="widget links">
+								<h3>童軍資訊</h3>
+								<ul class="style2">
+									<li><a href="page-scoutinfo/award.html">獎勵制度</a></li>
+									<li><a href="page-scoutinfo/badge.html">徽章介紹</a></li>
+									<li><a href="page-scoutinfo/uniform.html">制服介紹</a></li>
+									<li><a href="page-scoutinfo/wood-badge.html">成年領袖</a></li>
+								</ul>
+							</section>
+						</div>
+						<div class="col-3 col-6-medium col-12-small">
+							<section class="widget links">
+								<h3>支部介紹</h3>
+								<ul class="style2">
+									<li><a href="page-scoutinfo/cub.html">幼童軍</a></li>
+									<li><a href="page-scoutinfo/scout.html">童軍</a></li>
+									<li><a href="page-scoutinfo/venture.html">深資童軍</a></li>
+									<li><a href="announcements.html">通告中心</a></li>
+								</ul>
+							</section>
+						</div>
+						<div class="col-3 col-6-medium col-12-small">
+							<section class="widget contact last">
+								<h3>聯絡我們</h3>
+								<ul>
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
+								</ul>
+								<p>澳門童軍總會<br />
+								地址：澳門...<br />
+								電話：(853) ...</p>
+							</section>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; 澳門童軍總會. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+		<!-- DataTables JavaScript -->
+		<script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+		
+		<script>
+									// News data - This will be automatically generated from news.md
+			const newsData = [
+				{
+					title: "澳門童軍總會會員優惠計劃 通告",
+					category: "總會通告",
+					categoryKey: "general",
+					link: "https://drive.google.com/file/d/1k31RW-iBAoQwgk8dh5afBW6OOrNn_QKi/view",
+					date: "2025年07月09日 21:42",
+					keywords: "關鍵字"
+				},
+				{
+					title: "幼童軍團團集會帶領技巧訓練班取消公告",
+					category: "訓練班消息",
+					categoryKey: "training",
+					link: "https://drive.google.com/file/d/1NBkarTgHsf0Z_pRB6HXWWMU--FDhKfyM/view",
+					date: "2025年07月15日 00:44",
+					keywords: ""
+				},
+				{
+					title: "第33屆亞太區童軍大露營(菲律賓) 章程",
+					category: "國際活動",
+					categoryKey: "international",
+					link: "https://drive.google.com/file/d/1tfIoxzs_PVs01P7zBPdX0XhBkQG9mHPL/view",
+					date: "2025年07月09日 21:00",
+					keywords: ""
+				},
+				{
+					title: "整理總會相片資料-會內服務",
+					category: "服務通告",
+					categoryKey: "service",
+					link: "https://drive.google.com/file/d/1d0FOKUEJ15QP_hOVCp5OC4KVpiMTId1v/view",
+					date: "2025年07月15日 00:47",
+					keywords: ""
+				}
+			];
+			
+			
+			
+			// Category mapping
+			const categoryMapping = {
+				'training': '訓練班消息',
+				'activity': '活動消息',
+				'international': '國際活動',
+				'general': '總會通告',
+				'service': '服務通告'
+			};
+			
+			// Get category badge class
+			function getCategoryBadgeClass(categoryKey) {
+				const classMap = {
+					'training': 'training',
+					'activity': 'activity',
+					'international': 'international',
+					'general': 'general',
+					'service': 'service'
+				};
+				return classMap[categoryKey] || 'general';
+			}
+			
+			// Get URL parameter
+			function getUrlParameter(name) {
+				name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+				var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+				var results = regex.exec(location.search);
+				return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+			}
+			
+			// Initialize DataTable
+			let table;
+			
+			$(document).ready(function() {
+				// Get current category from URL
+				const currentCategory = getUrlParameter('category');
+				
+				// Set active button
+				if (currentCategory) {
+					$('#btn-' + currentCategory).addClass('active');
+				} else {
+					$('#btn-all').addClass('active');
+				}
+				
+				// Initialize DataTable
+				table = $('#announcementsTable').DataTable({
+					data: newsData,
+					columns: [
+						{
+							data: 'title',
+							render: function(data, type, row) {
+								return '<a href="' + row.link + '" target="_blank" class="news-link">' + data + '</a>';
+							}
+						},
+						{
+							data: 'category',
+							render: function(data, type, row) {
+								return '<span class="category-badge ' + getCategoryBadgeClass(row.categoryKey) + '">' + data + '</span>';
+							}
+						},
+						{
+							data: 'date',
+							className: 'date-cell'
+						},
+						{
+							data: null,
+							render: function(data, type, row) {
+								return '<a href="' + row.link + '" target="_blank" class="button small">查看詳情</a>';
+							},
+							orderable: false
+						}
+					],
+					order: [[2, 'desc']], // Sort by date descending
+					pageLength: 25,
+					language: {
+						"sProcessing": "處理中...",
+						"sLengthMenu": "顯示 _MENU_ 項結果",
+						"sZeroRecords": "沒有匹配結果",
+						"sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+						"sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+						"sInfoFiltered": "(由 _MAX_ 項結果過濾)",
+						"sInfoPostFix": "",
+						"sSearch": "搜索:",
+						"sUrl": "",
+						"sEmptyTable": "表中數據為空",
+						"sLoadingRecords": "載入中...",
+						"sInfoThousands": ",",
+						"oPaginate": {
+							"sFirst": "首頁",
+							"sPrevious": "上頁",
+							"sNext": "下頁",
+							"sLast": "末頁"
+						},
+						"oAria": {
+							"sSortAscending": ": 以升序排列此列",
+							"sSortDescending": ": 以降序排列此列"
+						}
+					},
+					responsive: true,
+					dom: 'frtip'
+				});
+				
+				// Apply category filter if specified
+				if (currentCategory && categoryMapping[currentCategory]) {
+					table.column(1).search(categoryMapping[currentCategory]).draw();
+				}
+				
+				// Add custom search functionality for keywords
+				$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+					if (settings.nTable.id !== 'announcementsTable') {
+						return true;
+					}
+					
+					const searchTerm = table.search().toLowerCase();
+					if (!searchTerm) {
+						return true;
+					}
+					
+					const rowData = newsData[dataIndex];
+					const searchableText = (
+						rowData.title + ' ' + 
+						rowData.category + ' ' + 
+						rowData.keywords
+					).toLowerCase();
+					
+					return searchableText.includes(searchTerm);
+				});
+			});
+		</script>
+	</body>
+</html>
+

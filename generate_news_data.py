@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""
+Automation script to generate news data from news.md file
+This script parses news.md and updates the announcements.html file with the latest data
+"""
+
+import re
+import json
+from datetime import datetime
+from pathlib import Path
+
+def parse_news_md(file_path):
+    """Parse news.md file and extract news items"""
+    news_items = []
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Split content by news items (each starts with "- ")
+        items = re.split(r'\n(?=- )', content.strip())
+        
+        for item in items:
+            if not item.strip():
+                continue
+                
+            lines = item.strip().split('\n')
+            if len(lines) < 4:
+                continue
+                
+            # Parse each line
+            title = lines[0].replace('- ', '').strip()
+            category = lines[1].replace('  - ', '').strip()
+            link = lines[2].replace('  - ', '').strip()
+            date_time = lines[3].replace('  - ', '').strip()
+            
+            # Keywords are optional (5th line)
+            keywords = ""
+            if len(lines) >= 5:
+                keywords = lines[4].replace('  - ', '').strip()
+            
+            # Map category to category key
+            category_key_map = {
+                '訓練班消息': 'training',
+                '活動消息': 'activity',
+                '國際活動': 'international',
+                '總會通告': 'general',
+                '服務通告': 'service'
+            }
+            
+            category_key = category_key_map.get(category, 'general')
+            
+            news_item = {
+                'title': title,
+                'category': category,
+                'categoryKey': category_key,
+                'link': link,
+                'date': date_time,
+                'keywords': keywords
+            }
+            
+            news_items.append(news_item)
+    
+    except Exception as e:
+        print(f"Error parsing news.md: {e}")
+        return []
+    
+    return news_items
+
+def generate_javascript_data(news_items):
+    """Generate JavaScript data array from news items"""
+    js_items = []
+    
+    for item in news_items:
+        js_item = f"""				{{
+					title: "{item['title']}",
+					category: "{item['category']}",
+					categoryKey: "{item['categoryKey']}",
+					link: "{item['link']}",
+					date: "{item['date']}",
+					keywords: "{item['keywords']}"
+				}}"""
+        js_items.append(js_item)
+    
+    newline = '\\n'
+    js_data = f"""			// News data - This will be automatically generated from news.md
+			const newsData = [
+{(','+newline).join(js_items)}
+			];"""
+    
+    return js_data
+
+def update_announcements_html(html_file_path, news_data_js):
+    """Update announcements.html with new news data"""
+    try:
+        with open(html_file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Find and replace the newsData section
+        pattern = r'(// News data - This will be automatically generated from news\.md\s*const newsData = \[)[^;]+(;)'
+        replacement = news_data_js + '\\n\\t\\t\\t'
+        
+        updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+        
+        if updated_content == content:
+            print("Warning: Could not find newsData section to update")
+            return False
+        
+        with open(html_file_path, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+        
+        return True
+        
+    except Exception as e:
+        print(f"Error updating announcements.html: {e}")
+        return False
+
+def main():
+    """Main function to process news.md and update announcements.html"""
+    base_dir = Path('/home/ubuntu/EXT')
+    news_md_path = base_dir / 'news.md'
+    announcements_html_path = base_dir / 'announcements.html'
+    
+    print("📰 Generating news data from news.md...")
+    print("=" * 50)
+    
+    # Check if files exist
+    if not news_md_path.exists():
+        print(f"❌ Error: {news_md_path} not found")
+        return
+    
+    if not announcements_html_path.exists():
+        print(f"❌ Error: {announcements_html_path} not found")
+        return
+    
+    # Parse news.md
+    print(f"📖 Reading news data from: {news_md_path}")
+    news_items = parse_news_md(news_md_path)
+    
+    if not news_items:
+        print("❌ No news items found or error parsing news.md")
+        return
+    
+    print(f"✅ Found {len(news_items)} news items:")
+    for i, item in enumerate(news_items, 1):
+        print(f"   {i}. {item['title']} ({item['category']})")
+    
+    # Generate JavaScript data
+    print(f"\\n🔧 Generating JavaScript data...")
+    js_data = generate_javascript_data(news_items)
+    
+    # Update announcements.html
+    print(f"📝 Updating {announcements_html_path}...")
+    if update_announcements_html(announcements_html_path, js_data):
+        print("✅ Successfully updated announcements.html")
+    else:
+        print("❌ Failed to update announcements.html")
+        return
+    
+    print("=" * 50)
+    print("🎉 News data generation completed successfully!")
+    print(f"📊 Statistics:")
+    print(f"   - Total news items: {len(news_items)}")
+    
+    # Count by category
+    category_counts = {}
+    for item in news_items:
+        category = item['category']
+        category_counts[category] = category_counts.get(category, 0) + 1
+    
+    for category, count in category_counts.items():
+        print(f"   - {category}: {count} items")
+    
+    print(f"\\n💡 To update news:")
+    print(f"   1. Edit {news_md_path}")
+    print(f"   2. Run this script: python3 generate_news_data.py")
+    print(f"   3. The announcements.html will be automatically updated")
+
+if __name__ == "__main__":
+    main()
+

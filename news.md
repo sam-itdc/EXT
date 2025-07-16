@@ -1,0 +1,17 @@
+- 澳門童軍總會會員優惠計劃 通告
+  - 總會通告
+  - https://drive.google.com/file/d/1k31RW-iBAoQwgk8dh5afBW6OOrNn_QKi/view
+  - 2025年07月09日 21:42
+  - 關鍵字
+- 幼童軍團團集會帶領技巧訓練班取消公告
+  - 訓練班消息
+  - https://drive.google.com/file/d/1NBkarTgHsf0Z_pRB6HXWWMU--FDhKfyM/view
+  - 2025年07月15日 00:44
+- 第33屆亞太區童軍大露營(菲律賓) 章程
+  - 國際活動
+  - https://drive.google.com/file/d/1tfIoxzs_PVs01P7zBPdX0XhBkQG9mHPL/view
+  - 2025年07月09日 21:00
+- 整理總會相片資料-會內服務
+  - 服務通告
+  - https://drive.google.com/file/d/1d0FOKUEJ15QP_hOVCp5OC4KVpiMTId1v/view
+  - 2025年07月15日 00:47
