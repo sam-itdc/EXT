@@ -57,28 +57,10 @@
 			}
 			
 			.dataTables_filter {
-				margin-bottom: 1rem;
-				text-align: left;
+				display: none; /* 隱藏DataTables默認搜索欄 */
 			}
 			
-			.dataTables_filter label {
-				display: block;
-				width: 100%;
-			}
-			
-			.dataTables_filter input {
-				width: 25% !important;
-				min-width: 300px;
-				padding: 0.75rem;
-				border: 2px solid #ddd;
-				border-radius: 6px;
-				font-size: 1rem;
-				margin-left: 0;
-				box-sizing: border-box;
-				transition: border-color 0.3s ease;
-			}
-			
-			.dataTables_filter input:focus {
+			.search-container input:focus {
 				outline: none;
 				border-color: #2c5aa0;
 				box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
@@ -149,17 +131,26 @@
 			}
 			
 			@media (max-width: 768px) {
+				.category-nav > div {
+					flex-direction: column !important;
+				}
+				
+				.category-nav > div > div:last-child {
+					margin-left: 0 !important;
+					margin-top: 1rem !important;
+					width: 100%;
+				}
+				
+				.search-container input {
+					width: 100% !important;
+				}
+				
 				.category-buttons {
 					flex-direction: column;
 				}
 				
 				.category-btn {
 					text-align: center;
-				}
-				
-				.dataTables_filter input {
-					width: 100% !important;
-					min-width: auto;
 				}
 			}
 		</style>
@@ -179,60 +170,63 @@
 					<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li class="current">
-								<a href="index.html">首頁</a>
-							</li>
-							<li><!--關於我們-->
-								<a href="#">關於我們</a>
+						<li><!--關於我們-->
+									<a href="#">關於我們</a>
+									<ul>
+										<li><a href="page-about/introduction.html">總會簡介</a></li>
+										<li><a href="page-about/patrons.html">會內人員</a></li>
+										<li><a href="page-about/structure.html">組織架構</a></li>
+										<li><a href="page-about/departments.html">部門簡介</a></li>
+										<li><a href="page-about/groups.html">旅部簡介</a></li>
+										<li><a href="page-scoutinfo/apply.html">加入童軍</a></li>
+										<li><a href="#">更新會員證</a></li>
+										<li><a href="page-about/forms.html">表格</a></li>
+									</ul>
+								</li>
+								<li><!--童軍運動簡介-->
+									<a href="#">童軍運動簡介</a>
+									<ul>
+										<li><a href="page-about/history.html">澳門童軍發展史</a></li>
+										<li><a href="promise.html">誓詞銘言</a></li>
+										<li><a href="page-about/emblem.html">會徽</a></li>
+										<li><a href="page-scoutinfo/badge.html">徽章介紹</a></li>
+										<li><a href="page-scoutinfo/uniform.html">制服介紹</a></li>
+										<li><a href="page-scoutinfo/ranking.html">軍職徽章</a></li>
+										<li><a href="page-scoutinfo/award.html">獎勵制度</a></li>
+									</ul>
+								</li>
+								<li><!--支部簡介-->
+									<a href="#">支部簡介</a>
+									<ul>
+										<li><a href="page-scoutinfo/cub.html">幼童軍</a></li>
+										<li><a href="page-scoutinfo/scout.html">童軍</a></li>
+										<li><a href="page-scoutinfo/venture.html">深資童軍</a></li>
+										<li><a href="page-scoutinfo/wood-badge.html">成年領袖</a></li>
+									</ul>
+								</li>
+								<li><!--通告-->
+									<a href="#">通告</a>
+									<ul>
+										<li><a href="announcements.html?category=training">訓練班消息</a></li>
+										<li><a href="announcements.html?category=activity">活動消息</a></li>
+										<li><a href="announcements.html?category=international">國際活動</a></li>
+										<li><a href="page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
+										<li><a href="announcements.html?category=general">總會通告</a></li>
+										<li><a href="announcements.html?category=service">服務通告</a></li>
+									</ul>
+								</li>
+							<li><!--參考資料-->
+								<a href="#">參考資料</a>
 								<ul>
-									<li><a href="page-about/introduction.html">總會簡介</a></li>
-									<li><a href="page-about/patrons.html">贊助人及榮譽會長</a></li>
-									<li><a href="page-about/structure.html">組織架構</a></li>
-									<li><a href="page-about/departments.html">部門介紹</a></li>
-									<li><a href="page-about/groups.html">旅團資料</a></li>
-									<li><a href="page-about/history.html">總會歷史</a></li>
-									<li><a href="page-about/forms.html">表格</a></li>
-									<li><a href="page-about/emblem.html">會徽</a></li>
+									<li><a href="newsletters.html">童軍月刊</a></li>
+									<li><a href="#">標準步操及禮儀</a></li>
+									<li><a href="#">貝登堡略傳</a></li>
+									<li><a href="#">三指記號</a></li>
+									<li><a href="#">生活禮節</a></li>
+									<li><a href="#">出版刊物</a></li>
 								</ul>
 							</li>
-							<li><!--童軍運動簡介-->
-								<a href="#">童軍運動簡介</a>
-								<ul>
-									<li><a href="#">童軍訓練綱要</a></li>
-									<li><a href="#">誓詞規律</a></li>
-									<li><a href="page-scoutinfo/award.html">獎勵制度</a></li>
-									<li><a href="page-scoutinfo/badge.html">徽章介紹</a></li>
-									<li><a href="page-scoutinfo/ranking.html">軍職徽章</a></li>
-									<li><a href="page-scoutinfo/uniform.html">制服介紹</a></li>
-								</ul>
-							</li>
-							<li><!--支部簡介-->
-								<a href="#">支部簡介</a>
-								<ul>
-									<li><a href="page-scoutinfo/cub.html">幼童軍</a></li>
-									<li><a href="page-scoutinfo/scout.html">童軍</a></li>
-									<li><a href="page-scoutinfo/venture.html">深資童軍</a></li>
-									<li><a href="page-scoutinfo/wood-badge.html">成年領袖</a></li>
-								</ul>
-							</li>
-							<li><!--通告-->
-								<a href="#">通告</a>
-								<ul>
-									<li><a href="announcements.html?category=training">訓練班消息</a></li>
-									<li><a href="announcements.html?category=activity">活動消息</a></li>
-									<li><a href="announcements.html?category=international">國際活動</a></li>
-									<li><a href="announcements.html?category=general">總會通告</a></li>
-									<li><a href="announcements.html?category=service">服務通告</a></li>
-								</ul>
-							</li>
-							<li><!--加入童軍行列-->
-								<a href="#">加入童軍</a>
-								<ul>
-									<li><a href="page-scoutinfo/apply.html">童軍招募方式</a></li>
-									<li><a href="page-scoutinfo/wood-badge.html">成年領袖招募</a></li>
-								</ul>
-							</li>
-						</ul>
+					</ul>
 					</nav>
 
 				</header>
@@ -244,18 +238,27 @@
 					
 
 					
-					<!-- Category Navigation -->
-					<div class="category-nav">
-						<h3>📂 通告分類</h3>
-						<div class="category-buttons">
-							<a href="announcements.html" class="category-btn" id="btn-all">全部通告</a>
-							<a href="announcements.html?category=training" class="category-btn" id="btn-training">訓練班消息</a>
-							<a href="announcements.html?category=activity" class="category-btn" id="btn-activity">活動消息</a>
-							<a href="announcements.html?category=international" class="category-btn" id="btn-international">國際活動</a>
-							<a href="announcements.html?category=general" class="category-btn" id="btn-general">總會通告</a>
-							<a href="announcements.html?category=service" class="category-btn" id="btn-service">服務通告</a>
+				<!-- Category Navigation -->
+				<div class="category-nav">
+					<div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+						<div style="flex: 1; min-width: 300px;">
+							<h3>📂 通告分類</h3>
+							<div class="category-buttons">
+								<a href="announcements.html" class="category-btn" id="btn-all">全部通告</a>
+								<a href="announcements.html?category=training" class="category-btn" id="btn-training">訓練班消息</a>
+								<a href="announcements.html?category=activity" class="category-btn" id="btn-activity">活動消息</a>
+								<a href="announcements.html?category=international" class="category-btn" id="btn-international">國際活動</a>
+								<a href="announcements.html?category=general" class="category-btn" id="btn-general">總會通告</a>
+								<a href="announcements.html?category=service" class="category-btn" id="btn-service">服務通告</a>
+							</div>
+						</div>
+						<div style="flex: 0 0 auto; margin-left: 2rem; margin-top: 2rem;">
+							<div class="search-container">
+								<input type="text" id="custom-search" placeholder="搜索通告標題、類別或關鍵字..." style="width: 300px; padding: 0.75rem; border: 2px solid #ddd; border-radius: 6px; font-size: 1rem; box-sizing: border-box; transition: border-color 0.3s ease;">
+							</div>
 						</div>
 					</div>
+				</div>
 					
 					<!-- Announcements Table -->
 					<div class="row gtr-200">
@@ -284,60 +287,56 @@
 			<div id="footer-wrapper">
 				<footer id="footer" class="container">
 					<div class="row">
-						<div class="col-3 col-6-medium col-12-small">
-							<section class="widget links">
-								<h3>快速連結</h3>
-								<ul class="style2">
-									<li><a href="page-about/introduction.html">總會簡介</a></li>
-									<li><a href="page-about/structure.html">組織架構</a></li>
-									<li><a href="page-about/groups.html">旅團資料</a></li>
-									<li><a href="page-scoutinfo/apply.html">加入童軍</a></li>
-								</ul>
-							</section>
-						</div>
-						<div class="col-3 col-6-medium col-12-small">
-							<section class="widget links">
-								<h3>童軍資訊</h3>
-								<ul class="style2">
-									<li><a href="page-scoutinfo/award.html">獎勵制度</a></li>
-									<li><a href="page-scoutinfo/badge.html">徽章介紹</a></li>
-									<li><a href="page-scoutinfo/uniform.html">制服介紹</a></li>
-									<li><a href="page-scoutinfo/wood-badge.html">成年領袖</a></li>
-								</ul>
-							</section>
-						</div>
-						<div class="col-3 col-6-medium col-12-small">
-							<section class="widget links">
-								<h3>支部介紹</h3>
-								<ul class="style2">
-									<li><a href="page-scoutinfo/cub.html">幼童軍</a></li>
-									<li><a href="page-scoutinfo/scout.html">童軍</a></li>
-									<li><a href="page-scoutinfo/venture.html">深資童軍</a></li>
-									<li><a href="announcements.html">通告中心</a></li>
-								</ul>
-							</section>
-						</div>
-						<div class="col-3 col-6-medium col-12-small">
+					<div class="col-6 col-6-medium col-12-small">
+						
+						<!-- Links -->
+						<section class="widget links d-none">
+							<h3>近期活動</h3>
+							<div class="d-none d-lg-block">
+								<iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=rks8lssh5vrqagv4cu6vr444fs%40group.calendar.google.com&amp;color=%235229A3&amp;src=e63o9v6i6hq7ms03kjtr2mt7t4%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=Asia%2FMacau" style=" border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe>									<ul class="style2">
+							</div>
+							</ul>
+						</section>
+						
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+						
+						<!-- Links -->
+						<section class="widget links">
+							<h3>相關網站</h3>
+							<ul class="style2">
+								<li><a target="_blank" href="https://www.scout.org">世界童軍總會</a></li>
+								<li><a target="_blank" href="https://www.scout.org/where-we-work/regions/asia-pacific/region">亞太童軍總會</a></li>
+								<li><a target="_blank" href="https://www.scout.org.hk/tc/">香港童軍總會</a></li>
+							</ul>
+							<h3>資訊系統</h3>
+							<ul class="style2">
+								<li><a href="#">社會服務申報系統</a></li>
+								<li><a href="#">專章報名系統</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Contact -->
 							<section class="widget contact last">
 								<h3>聯絡我們</h3>
 								<ul>
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
+									<li><a href="mailto:scoutmac@macau.ctm.net" class="icon far fa-envelope"><span class="label">Email</span></a></li>
 								</ul>
-								<p>澳門童軍總會<br />
-								地址：澳門...<br />
-								電話：(853) ...</p>
+								<p>澳門氹仔盧伯德圓形地氹仔炮臺<br />
+									tel: +853 28780411<br />
+									fax: +853 28780412</p>
 							</section>
-						</div>
+
+					</div>
 					</div>
 					<div class="row">
 						<div class="col-12">
 							<div id="copyright">
 								<ul class="menu">
-									<li>&copy; 澳門童軍總會. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									<li>&copy; 2025 THE SCOUT ASSOCIATION OF MACAU. All rights reserved 本網站版權為澳門童軍總會所有</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 								</ul>
 							</div>
 						</div>
@@ -360,7 +359,7 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 		
 		<script>
-												// News data - This will be automatically generated from news.md
+															// News data - This will be automatically generated from news.md
 			const newsData = [
 				{
 					title: "澳門童軍總會會員優惠計劃 通告",
@@ -395,6 +394,7 @@
 					keywords: ""
 				}
 			];
+			
 			
 			
 			
@@ -490,10 +490,12 @@
 						}
 					},
 					responsive: true,
-					dom: 'frtip',
+					dom: 'rtip', // 移除搜索欄，只保留表格、信息和分頁
 					initComplete: function() {
-						// 設置搜索欄的 placeholder
-						$('.dataTables_filter input').attr('placeholder', '搜索通告標題、類別或關鍵字...');
+						// 連接自定義搜索欄
+						$('#custom-search').on('keyup', function() {
+							table.search(this.value).draw();
+						});
 					}
 				});
 				

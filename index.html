@@ -131,7 +131,7 @@
 								<li><!--童軍運動簡介-->
 									<a href="#">童軍運動簡介</a>
 									<ul>
-										<li><a href="history.html">澳門童軍發展史</a></li>
+										<li><a href="page-about/history.html">澳門童軍發展史</a></li>
 										<li><a href="promise.html">誓詞銘言</a></li>
 										<li><a href="page-about/emblem.html">會徽</a></li>
 										<li><a href="page-scoutinfo/badge.html">徽章介紹</a></li>
@@ -147,17 +147,6 @@
 										<li><a href="page-scoutinfo/scout.html">童軍</a></li>
 										<li><a href="page-scoutinfo/venture.html">深資童軍</a></li>
 										<li><a href="page-scoutinfo/wood-badge.html">成年領袖</a></li>
-										<li>
-											<a href="#">參考資料</a>
-											<ul>
-												<li><a href="#">標準步操及禮儀</a></li>
-												<li><a href="#">貝登堡略傳</a></li>
-												<li><a href="#">三指記號</a></li>
-												<li><a href="#">生活禮節</a></li>
-												<li><a href="#">出版刊物</a></li>
-												<li><a href="#">童軍月刊</a></li>
-											</ul>
-										</li>
 									</ul>
 								</li>
 								<li><!--通告-->
@@ -171,13 +160,17 @@
 										<li><a href="announcements.html?category=service">服務通告</a></li>
 									</ul>
 								</li>
-								<li><!--加入童軍行列-->
-									<a href="#">加入童軍</a>
-									<ul>
-										<li><a href="page-scoutinfo/apply.html">童軍招募方式</a></li>
-										<li><a href="page-scoutinfo/wood-badge.html">成年領袖招募</a></li>
-									</ul>
-								</li>
+							<li><!--參考資料-->
+								<a href="#">參考資料</a>
+								<ul>
+									<li><a href="newsletters.html">童軍月刊</a></li>
+									<li><a href="#">標準步操及禮儀</a></li>
+									<li><a href="#">貝登堡略傳</a></li>
+									<li><a href="#">三指記號</a></li>
+									<li><a href="#">生活禮節</a></li>
+									<li><a href="#">出版刊物</a></li>
+								</ul>
+							</li>
 							</ul>
 						</nav>
 
@@ -254,20 +247,15 @@
 										<div class="fb-page" data-href="https://www.facebook.com/scout.mo" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/scout.mo" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/scout.mo">澳門童軍總會The Scout Association of Macau</a></blockquote></div>
 									</section>
 
-									<section>
-										<h3>童軍月刊</h3>
-										<footer>
-											<a href="#" class="button icon solid fa-info-circle">更多</a>
-										</footer>
-										<ul class="style2">
-											<li><a href="#">澳門童軍月刊2025年2月刊第155期</a></li>
-											<li><a href="#">澳門童軍月刊2025年1月刊第154期</a></li>
-											<li><a href="#">澳門童軍月刊2024年12月刊第153期</a></li>
-											<li><a href="#">澳門童軍月刊2024年11月刊第152期</a></li>
-											<li><a href="#">澳門童軍月刊2024年10月刊第151期</a></li>
-											<li><a href="#">澳門童軍月刊2024年09月刊第150期</a></li>
-										</ul>
-									</section>
+								<section>
+									<h3>童軍月刊</h3>
+									<footer>
+										<a href="newsletters.html" class="button icon solid fa-info-circle">更多</a>
+									</footer>
+									<ul class="style2" id="newsletters-list">
+										<!-- 內容將由 JavaScript 動態生成 -->
+									</ul>
+								</section>
 							</div>
 						</div>
 					</div>
@@ -382,7 +370,7 @@
 			
 			<!-- 最新消息動態生成腳本 -->
 			<script>
-								// 通告數據 - 從 news.md 同步
+													// 通告數據 - 從 news.md 同步
 				const newsData = [
 					{
 						title: "澳門童軍總會會員優惠計劃 通告",
@@ -419,6 +407,42 @@
 				];
 				
 			
+							// Newsletter data - This will be automatically generated from newsletters.md
+				const newsletterData = [
+					{
+						title: "澳門童軍月刊2025年5月刊第158期",
+						link: "https://drive.google.com/file/d/1ZpZJ-MICJndziDvdsSC7N-s9F5R7aVE_/view?usp=sharing",
+						keywords: "關鍵字"
+					},
+					{
+						title: "澳門童軍月刊2025年4月刊第157期",
+						link: "https://drive.google.com/file/d/1JQ1yNwZ0QPeIMLbHrvHhSSSqKQP8L_IZ/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2025年3月刊第156期",
+						link: "https://drive.google.com/file/d/1W33VczOXoWZd_5x43JixVmN4NFXexIjo/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2025年2月刊第155期",
+						link: "https://drive.google.com/file/d/1MoAwhWiJgsUuRQLE4U3Idy524GEe0RzT/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2025年1月刊第154期",
+						link: "https://drive.google.com/file/d/1iqCjm1nAXLjqfBJhnrnLE5RFirlsKiOv/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2024年12月刊第153期",
+						link: "https://drive.google.com/file/d/12p6XneC0QWLe-FsEfqx3S9vk4zJrlw0O/view?usp=sharing",
+						keywords: ""
+					}
+				];
+				
+				
+			
 			// 生成最新消息列表
 			document.addEventListener('DOMContentLoaded', function() {
 				const latestNewsList = document.getElementById('latest-news-list');
@@ -442,6 +466,24 @@
 					}).join('');
 					
 					latestNewsList.innerHTML = listHTML;
+				}
+				
+				// 生成月刊列表
+				const newslettersList = document.getElementById('newsletters-list');
+				
+				// 取最新6個月刊項目
+				const latestNewsletters = newsletterData.slice(0, 6);
+				
+				if (latestNewsletters.length === 0) {
+					// 如果沒有月刊，顯示"沒有月刊"
+					newslettersList.innerHTML = '<li style="color: #666; font-style: italic;">沒有月刊</li>';
+				} else {
+					// 生成月刊列表
+					const newslettersHTML = latestNewsletters.map(item => {
+						return `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+					}).join('');
+					
+					newslettersList.innerHTML = newslettersHTML;
 				}
 			});
 			</script>

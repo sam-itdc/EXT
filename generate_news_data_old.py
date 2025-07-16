@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Automation script to generate news and newsletter data from markdown files
-This script parses news.md and newsletters.md and updates relevant HTML files
+Automation script to generate news data from news.md file
+This script parses news.md and updates both announcements.html and index.html with the latest data
 """
 
 import re
@@ -278,116 +278,60 @@ def main():
     if news_md_path.exists():
         print(f"📖 Reading news data from: {news_md_path}")
         news_items = parse_news_md(news_md_path)
-        
-        if news_items:
-            print(f"✅ Found {len(news_items)} news items:")
-            for i, item in enumerate(news_items, 1):
-                print(f"   {i}. {item['title']} ({item['category']})")
-            
-            # Generate JavaScript data
-            print(f"🔧 Generating news JavaScript data...")
-            news_js_data = generate_javascript_data(news_items)
-            
-            # Update announcements.html
-            if announcements_html_path.exists():
-                print(f"📝 Updating {announcements_html_path}...")
-                if update_announcements_html(announcements_html_path, news_js_data):
-                    print("✅ Successfully updated announcements.html")
-                else:
-                    print("❌ Failed to update announcements.html")
-            else:
-                print(f"❌ Error: {announcements_html_path} not found")
-            
-            # Update index.html with news data
-            if index_html_path.exists():
-                print(f"📝 Updating {index_html_path} with news data...")
-                if update_index_html(index_html_path, news_js_data):
-                    print("✅ Successfully updated index.html with news data")
-                else:
-                    print("❌ Failed to update index.html with news data")
-            else:
-                print(f"❌ Error: {index_html_path} not found")
-        else:
-            print("❌ No news items found or error parsing news.md")
+    
+    if not news_items:
+        print("❌ No news items found or error parsing news.md")
+        return
+    
+    print(f"✅ Found {len(news_items)} news items:")
+    for i, item in enumerate(news_items, 1):
+        print(f"   {i}. {item['title']} ({item['category']})")
+    
+    # Generate JavaScript data
+    print(f"\n🔧 Generating JavaScript data...")
+    js_data = generate_javascript_data(news_items)
+    
+    # Update announcements.html
+    print(f"📝 Updating {announcements_html_path}...")
+    if update_announcements_html(announcements_html_path, js_data):
+        print("✅ Successfully updated announcements.html")
     else:
-        print(f"❌ Error: {news_md_path} not found")
+        print("❌ Failed to update announcements.html")
     
-    print("\n" + "=" * 60)
-    
-    # Process newsletter data
-    print("📖 Processing newsletter data...")
-    if newsletters_md_path.exists():
-        print(f"📖 Reading newsletter data from: {newsletters_md_path}")
-        newsletter_items = parse_newsletters_md(newsletters_md_path)
-        
-        if newsletter_items:
-            print(f"✅ Found {len(newsletter_items)} newsletter items:")
-            for i, item in enumerate(newsletter_items, 1):
-                print(f"   {i}. {item['title']}")
-            
-            # Generate JavaScript data
-            print(f"🔧 Generating newsletter JavaScript data...")
-            newsletter_js_data = generate_newsletter_javascript_data(newsletter_items)
-            
-            # Update newsletters.html
-            if newsletters_html_path.exists():
-                print(f"📝 Updating {newsletters_html_path}...")
-                if update_newsletters_html(newsletters_html_path, newsletter_js_data):
-                    print("✅ Successfully updated newsletters.html")
-                else:
-                    print("❌ Failed to update newsletters.html")
-            else:
-                print(f"❌ Error: {newsletters_html_path} not found")
-            
-            # Update index.html with newsletter data
-            if index_html_path.exists():
-                print(f"📝 Updating {index_html_path} with newsletter data...")
-                if update_index_html_newsletters(index_html_path, newsletter_js_data):
-                    print("✅ Successfully updated index.html with newsletter data")
-                else:
-                    print("❌ Failed to update index.html with newsletter data")
-            else:
-                print(f"❌ Error: {index_html_path} not found")
-        else:
-            print("❌ No newsletter items found or error parsing newsletters.md")
+    # Update index.html
+    print(f"📝 Updating {index_html_path}...")
+    if update_index_html(index_html_path, js_data):
+        print("✅ Successfully updated index.html")
     else:
-        print(f"❌ Error: {newsletters_md_path} not found")
+        print("❌ Failed to update index.html")
     
-    print("=" * 60)
-    print("🎉 Data generation completed!")
+    print("=" * 50)
+    print("🎉 News data generation completed successfully!")
+    print(f"📊 Statistics:")
+    print(f"   - Total news items: {len(news_items)}")
     
-    # Final statistics
-    if 'news_items' in locals() and news_items:
-        print(f"📊 News Statistics:")
-        print(f"   - Total news items: {len(news_items)}")
-        
-        # Count by category
-        category_counts = {}
-        for item in news_items:
-            category = item['category']
-            category_counts[category] = category_counts.get(category, 0) + 1
-        
-        for category, count in category_counts.items():
-            print(f"   - {category}: {count} items")
-        
-        # Count general announcements specifically
-        general_count = category_counts.get('總會通告', 0)
-        print(f"\n📢 Latest News Display:")
-        print(f"   - 總會通告項目: {general_count} 個")
-        if general_count > 0:
-            print(f"   - 主頁將顯示最新 {min(general_count, 10)} 個總會通告")
-        else:
-            print(f"   - 主頁將顯示 '沒有通告'")
+    # Count by category
+    category_counts = {}
+    for item in news_items:
+        category = item['category']
+        category_counts[category] = category_counts.get(category, 0) + 1
     
-    if 'newsletter_items' in locals() and newsletter_items:
-        print(f"\n📖 Newsletter Statistics:")
-        print(f"   - Total newsletter items: {len(newsletter_items)}")
-        print(f"   - 主頁將顯示最新 {min(len(newsletter_items), 6)} 個月刊")
+    for category, count in category_counts.items():
+        print(f"   - {category}: {count} items")
     
-    print(f"\n💡 To update content:")
-    print(f"   1. Edit {news_md_path} or {newsletters_md_path}")
+    # Count general announcements specifically
+    general_count = category_counts.get('總會通告', 0)
+    print(f"\n📢 Latest News Display:")
+    print(f"   - 總會通告項目: {general_count} 個")
+    if general_count > 0:
+        print(f"   - 主頁將顯示最新 {min(general_count, 10)} 個總會通告")
+    else:
+        print(f"   - 主頁將顯示 '沒有通告'")
+    
+    print(f"\n💡 To update news:")
+    print(f"   1. Edit {news_md_path}")
     print(f"   2. Run this script: python3 generate_news_data.py")
-    print(f"   3. All relevant HTML files will be automatically updated")
+    print(f"   3. Both announcements.html and index.html will be automatically updated")
 
 if __name__ == "__main__":
     main()
