@@ -15,14 +15,6 @@
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 		<style>
 			/* Custom styles for announcements page */
-			.announcements-header {
-				background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%);
-				color: white;
-				padding: 2rem 0;
-				margin-bottom: 2rem;
-				border-radius: 8px;
-			}
-			
 			.category-nav {
 				background: #f8f9fa;
 				padding: 1rem;
@@ -66,13 +58,30 @@
 			
 			.dataTables_filter {
 				margin-bottom: 1rem;
+				text-align: left;
+			}
+			
+			.dataTables_filter label {
+				display: block;
+				width: 100%;
 			}
 			
 			.dataTables_filter input {
-				padding: 0.5rem;
-				border: 1px solid #ddd;
-				border-radius: 4px;
-				margin-left: 0.5rem;
+				width: 25% !important;
+				min-width: 300px;
+				padding: 0.75rem;
+				border: 2px solid #ddd;
+				border-radius: 6px;
+				font-size: 1rem;
+				margin-left: 0;
+				box-sizing: border-box;
+				transition: border-color 0.3s ease;
+			}
+			
+			.dataTables_filter input:focus {
+				outline: none;
+				border-color: #2c5aa0;
+				box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
 			}
 			
 			#announcementsTable {
@@ -89,6 +98,22 @@
 			#announcementsTable td {
 				padding: 10px;
 				border-bottom: 1px solid #eee;
+			}
+			
+			/* 調整列寬 */
+			#announcementsTable th:nth-child(1),
+			#announcementsTable td:nth-child(1) {
+				width: 20%; /* 類別列佔20%寬度 */
+			}
+			
+			#announcementsTable th:nth-child(2),
+			#announcementsTable td:nth-child(2) {
+				width: 60%; /* 標題列佔60%寬度 */
+			}
+			
+			#announcementsTable th:nth-child(3),
+			#announcementsTable td:nth-child(3) {
+				width: 20%; /* 發佈時間列佔20%寬度 */
 			}
 			
 			.category-badge {
@@ -130,6 +155,11 @@
 				
 				.category-btn {
 					text-align: center;
+				}
+				
+				.dataTables_filter input {
+					width: 100% !important;
+					min-width: auto;
 				}
 			}
 		</style>
@@ -212,13 +242,7 @@
 			<div id="main-wrapper">
 				<div class="container">
 					
-					<!-- Announcements Header -->
-					<div class="announcements-header">
-						<div style="text-align: center;">
-							<h1 style="margin: 0; font-size: 2.5rem;">📢 通告中心</h1>
-							<p style="margin: 0.5rem 0 0 0; font-size: 1.2rem; opacity: 0.9;">澳門童軍總會最新消息與通告</p>
-						</div>
-					</div>
+
 					
 					<!-- Category Navigation -->
 					<div class="category-nav">
@@ -240,10 +264,9 @@
 								<table id="announcementsTable" class="display" style="width:100%">
 									<thead>
 										<tr>
-											<th>標題</th>
 											<th>類別</th>
+											<th>標題</th>
 											<th>發佈時間</th>
-											<th>操作</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -337,7 +360,7 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 		
 		<script>
-									// News data - This will be automatically generated from news.md
+												// News data - This will be automatically generated from news.md
 			const newsData = [
 				{
 					title: "澳門童軍總會會員優惠計劃 通告",
@@ -372,6 +395,7 @@
 					keywords: ""
 				}
 			];
+			
 			
 			
 			
@@ -423,27 +447,20 @@
 					data: newsData,
 					columns: [
 						{
-							data: 'title',
-							render: function(data, type, row) {
-								return '<a href="' + row.link + '" target="_blank" class="news-link">' + data + '</a>';
-							}
-						},
-						{
 							data: 'category',
 							render: function(data, type, row) {
 								return '<span class="category-badge ' + getCategoryBadgeClass(row.categoryKey) + '">' + data + '</span>';
 							}
 						},
 						{
-							data: 'date',
-							className: 'date-cell'
+							data: 'title',
+							render: function(data, type, row) {
+								return '<a href="' + row.link + '" target="_blank" class="news-link">' + data + '</a>';
+							}
 						},
 						{
-							data: null,
-							render: function(data, type, row) {
-								return '<a href="' + row.link + '" target="_blank" class="button small">查看詳情</a>';
-							},
-							orderable: false
+							data: 'date',
+							className: 'date-cell'
 						}
 					],
 					order: [[2, 'desc']], // Sort by date descending
@@ -456,7 +473,7 @@
 						"sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
 						"sInfoFiltered": "(由 _MAX_ 項結果過濾)",
 						"sInfoPostFix": "",
-						"sSearch": "搜索:",
+						"sSearch": "",
 						"sUrl": "",
 						"sEmptyTable": "表中數據為空",
 						"sLoadingRecords": "載入中...",
@@ -473,12 +490,16 @@
 						}
 					},
 					responsive: true,
-					dom: 'frtip'
+					dom: 'frtip',
+					initComplete: function() {
+						// 設置搜索欄的 placeholder
+						$('.dataTables_filter input').attr('placeholder', '搜索通告標題、類別或關鍵字...');
+					}
 				});
 				
 				// Apply category filter if specified
 				if (currentCategory && categoryMapping[currentCategory]) {
-					table.column(1).search(categoryMapping[currentCategory]).draw();
+					table.column(0).search(categoryMapping[currentCategory]).draw();
 				}
 				
 				// Add custom search functionality for keywords

@@ -243,17 +243,10 @@
 									<section>
 										<h3>最新消息</h3>
 										<footer>
-											<a href="#" class="button icon solid fa-info-circle">更多</a>
+											<a href="announcements.html?category=general" class="button icon solid fa-info-circle">更多</a>
 										</footer>
-										<ul class="style2">
-											<li><a href="#">澳門童軍總會會員優惠計劃_通告</a></li>
-											<li><a href="#">旅部委任2025</a></li>
-											<li><a href="#">物品供應社休假通告</a></li>
-											<li><a href="#">澳門童軍總會2025年春節假期佈告</a></li>
-											<li><a href="#">旅部活動經費批款結果</a></li>
-											<li><a href="#">特別任務紀念獎勵(個人)(新增)</a></li>
-											<li><a href="#">2025年度旅部青年代表委任</a></li>
-											<li><a href="#">部門委任2025（新增）</a></li>
+										<ul class="style2" id="latest-news-list">
+											<!-- 內容將由 JavaScript 動態生成 -->
 										</ul>
 									</section>
 
@@ -384,6 +377,72 @@
 			// 防止autofocus導致的跳轉
 			document.addEventListener('DOMContentLoaded', function() {
 				window.scrollTo(0, 0);
+			});
+			</script>
+			
+			<!-- 最新消息動態生成腳本 -->
+			<script>
+								// 通告數據 - 從 news.md 同步
+				const newsData = [
+					{
+						title: "澳門童軍總會會員優惠計劃 通告",
+						category: "總會通告",
+						categoryKey: "general",
+						link: "https://drive.google.com/file/d/1k31RW-iBAoQwgk8dh5afBW6OOrNn_QKi/view",
+						date: "2025年07月09日 21:42",
+						keywords: "關鍵字"
+					},
+					{
+						title: "幼童軍團團集會帶領技巧訓練班取消公告",
+						category: "訓練班消息",
+						categoryKey: "training",
+						link: "https://drive.google.com/file/d/1NBkarTgHsf0Z_pRB6HXWWMU--FDhKfyM/view",
+						date: "2025年07月15日 00:44",
+						keywords: ""
+					},
+					{
+						title: "第33屆亞太區童軍大露營(菲律賓) 章程",
+						category: "國際活動",
+						categoryKey: "international",
+						link: "https://drive.google.com/file/d/1tfIoxzs_PVs01P7zBPdX0XhBkQG9mHPL/view",
+						date: "2025年07月09日 21:00",
+						keywords: ""
+					},
+					{
+						title: "整理總會相片資料-會內服務",
+						category: "服務通告",
+						categoryKey: "service",
+						link: "https://drive.google.com/file/d/1d0FOKUEJ15QP_hOVCp5OC4KVpiMTId1v/view",
+						date: "2025年07月15日 00:47",
+						keywords: ""
+					}
+				];
+				
+			
+			// 生成最新消息列表
+			document.addEventListener('DOMContentLoaded', function() {
+				const latestNewsList = document.getElementById('latest-news-list');
+				
+				// 篩選總會通告
+				const generalAnnouncements = newsData.filter(item => item.categoryKey === 'general');
+				
+				// 按日期排序（最新的在前）
+				generalAnnouncements.sort((a, b) => new Date(b.date) - new Date(a.date));
+				
+				// 取最新10個項目
+				const latestItems = generalAnnouncements.slice(0, 10);
+				
+				if (latestItems.length === 0) {
+					// 如果沒有總會通告，顯示"沒有通告"
+					latestNewsList.innerHTML = '<li style="color: #666; font-style: italic;">沒有通告</li>';
+				} else {
+					// 生成通告列表
+					const listHTML = latestItems.map(item => {
+						return `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+					}).join('');
+					
+					latestNewsList.innerHTML = listHTML;
+				}
 			});
 			</script>
 	</body>

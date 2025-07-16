@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Automation script to generate news data from news.md file
-This script parses news.md and updates the announcements.html file with the latest data
+This script parses news.md and updates both announcements.html and index.html with the latest data
 """
 
 import re
@@ -82,7 +82,7 @@ def generate_javascript_data(news_items):
 				}}"""
         js_items.append(js_item)
     
-    newline = '\\n'
+    newline = '\n'
     js_data = f"""			// News data - This will be automatically generated from news.md
 			const newsData = [
 {(','+newline).join(js_items)}
@@ -98,12 +98,12 @@ def update_announcements_html(html_file_path, news_data_js):
         
         # Find and replace the newsData section
         pattern = r'(// News data - This will be automatically generated from news\.md\s*const newsData = \[)[^;]+(;)'
-        replacement = news_data_js + '\\n\\t\\t\\t'
+        replacement = news_data_js + '\n\t\t\t'
         
         updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
         
         if updated_content == content:
-            print("Warning: Could not find newsData section to update")
+            print("Warning: Could not find newsData section to update in announcements.html")
             return False
         
         with open(html_file_path, 'w', encoding='utf-8') as f:
@@ -115,11 +115,42 @@ def update_announcements_html(html_file_path, news_data_js):
         print(f"Error updating announcements.html: {e}")
         return False
 
+def update_index_html(html_file_path, news_data_js):
+    """Update index.html with new news data"""
+    try:
+        with open(html_file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Find and replace the newsData section in index.html
+        pattern = r'(// 通告數據 - 從 news\.md 同步\s*const newsData = \[)[^;]+(;)'
+        
+        # Adjust the JavaScript data for index.html (different indentation)
+        index_js_data = news_data_js.replace('			// News data - This will be automatically generated from news.md', '				// 通告數據 - 從 news.md 同步')
+        index_js_data = index_js_data.replace('\t\t\t', '\t\t\t\t')
+        
+        replacement = index_js_data + '\n\t\t\t\t'
+        
+        updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+        
+        if updated_content == content:
+            print("Warning: Could not find newsData section to update in index.html")
+            return False
+        
+        with open(html_file_path, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+        
+        return True
+        
+    except Exception as e:
+        print(f"Error updating index.html: {e}")
+        return False
+
 def main():
-    """Main function to process news.md and update announcements.html"""
+    """Main function to process news.md and update both HTML files"""
     base_dir = Path('/home/ubuntu/EXT')
     news_md_path = base_dir / 'news.md'
     announcements_html_path = base_dir / 'announcements.html'
+    index_html_path = base_dir / 'index.html'
     
     print("📰 Generating news data from news.md...")
     print("=" * 50)
@@ -131,6 +162,10 @@ def main():
     
     if not announcements_html_path.exists():
         print(f"❌ Error: {announcements_html_path} not found")
+        return
+        
+    if not index_html_path.exists():
+        print(f"❌ Error: {index_html_path} not found")
         return
     
     # Parse news.md
@@ -146,7 +181,7 @@ def main():
         print(f"   {i}. {item['title']} ({item['category']})")
     
     # Generate JavaScript data
-    print(f"\\n🔧 Generating JavaScript data...")
+    print(f"\n🔧 Generating JavaScript data...")
     js_data = generate_javascript_data(news_items)
     
     # Update announcements.html
@@ -155,7 +190,13 @@ def main():
         print("✅ Successfully updated announcements.html")
     else:
         print("❌ Failed to update announcements.html")
-        return
+    
+    # Update index.html
+    print(f"📝 Updating {index_html_path}...")
+    if update_index_html(index_html_path, js_data):
+        print("✅ Successfully updated index.html")
+    else:
+        print("❌ Failed to update index.html")
     
     print("=" * 50)
     print("🎉 News data generation completed successfully!")
@@ -171,10 +212,19 @@ def main():
     for category, count in category_counts.items():
         print(f"   - {category}: {count} items")
     
-    print(f"\\n💡 To update news:")
+    # Count general announcements specifically
+    general_count = category_counts.get('總會通告', 0)
+    print(f"\n📢 Latest News Display:")
+    print(f"   - 總會通告項目: {general_count} 個")
+    if general_count > 0:
+        print(f"   - 主頁將顯示最新 {min(general_count, 10)} 個總會通告")
+    else:
+        print(f"   - 主頁將顯示 '沒有通告'")
+    
+    print(f"\n💡 To update news:")
     print(f"   1. Edit {news_md_path}")
     print(f"   2. Run this script: python3 generate_news_data.py")
-    print(f"   3. The announcements.html will be automatically updated")
+    print(f"   3. Both announcements.html and index.html will be automatically updated")
 
 if __name__ == "__main__":
     main()
