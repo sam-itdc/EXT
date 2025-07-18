@@ -1,0 +1,494 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>澳門童軍總會</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Hero Carousel Styles */
+			.hero-carousel {
+				margin-bottom: 2em;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			}
+			
+			.carousel-container {
+				position: relative;
+				width: 100%;
+				height: 300px;
+				overflow: hidden;
+			}
+			
+			.carousel-slides {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.slide {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				transition: opacity 0.6s ease-in-out;
+			}
+			
+			.slide img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			
+			/* Show first slide by default */
+			#hero-slide1:checked ~ .carousel-slides .slide1,
+			#hero-slide2:checked ~ .carousel-slides .slide2,
+			#hero-slide3:checked ~ .carousel-slides .slide3 {
+				opacity: 1;
+			}
+			
+			/* Hide radio buttons */
+			input[type="radio"][name="hero-slide"] {
+				display: none;
+			}
+			
+			/* Carousel Controls */
+			.carousel-controls {
+				position: absolute;
+				bottom: 20px;
+				left: 50%;
+				transform: translateX(-50%);
+				display: flex;
+				gap: 10px;
+			}
+			
+			.control-dot {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background-color: rgba(255, 255, 255, 0.5);
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+				border: 2px solid rgba(255, 255, 255, 0.8);
+			}
+			
+			.control-dot:hover {
+				background-color: rgba(255, 255, 255, 0.8);
+			}
+			
+			#hero-slide1:checked ~ .carousel-controls label[for="hero-slide1"],
+			#hero-slide2:checked ~ .carousel-controls label[for="hero-slide2"],
+			#hero-slide3:checked ~ .carousel-controls label[for="hero-slide3"] {
+				background-color: #31b404;
+				border-color: #31b404;
+			}
+			
+			/* Responsive design */
+			@media screen and (max-width: 768px) {
+				.carousel-container {
+					height: 200px;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload homepage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<div id="header-wrapper">
+				<header id="header" class="container">
+
+					<!-- Logo -->
+						<div id="logo">
+							<h1><a href="/index.html"><img src="/images/layout/scout-logo-removebg-preview.png" width="505" height="108"></a></h1>							
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><!--關於我們-->
+									<a href="#">關於我們</a>
+									<ul>
+										<li><a href="/page-about/introduction.html">總會簡介</a></li>
+										<li><a href="/page-about/patrons.html">會內人員</a></li>
+										<li><a href="/page-about/structure.html">組織架構</a></li>
+										<li><a href="/page-about/departments.html">部門簡介</a></li>
+										<li><a href="/page-about/groups.html">旅部簡介</a></li>
+										<li><a href="/page-scoutinfo/apply.html">加入童軍</a></li>
+										<li><a href="#">更新會員證</a></li>
+										<li><a href="/page-about/forms.html">表格</a></li>
+									</ul>
+								</li>
+								<li><!--童軍運動簡介-->
+									<a href="#">童軍運動簡介</a>
+									<ul>
+										<li><a href="/page-about/history.html">澳門童軍發展史</a></li>
+										<li><a href="/promise.html">誓詞銘言</a></li>
+										<li><a href="/page-about/emblem.html">會徽</a></li>
+										<li><a href="/page-scoutinfo/badge.html">徽章介紹</a></li>
+										<li><a href="/page-scoutinfo/uniform.html">制服介紹</a></li>
+										<li><a href="/page-scoutinfo/ranking.html">軍職徽章</a></li>
+										<li><a href="/page-scoutinfo/award.html">獎勵制度</a></li>
+									</ul>
+								</li>
+								<li><!--支部簡介-->
+									<a href="#">支部簡介</a>
+									<ul>
+										<li><a href="/page-scoutinfo/cub.html">幼童軍</a></li>
+										<li><a href="/page-scoutinfo/scout.html">童軍</a></li>
+										<li><a href="/page-scoutinfo/venture.html">深資童軍</a></li>
+										<li><a href="/page-scoutinfo/wood-badge.html">成年領袖</a></li>
+									</ul>
+								</li>
+								<li><!--通告-->
+									<a href="#">通告</a>
+									<ul>
+										<li><a href="/announcements.html?category=training">訓練班消息</a></li>
+										<li><a href="/announcements.html?category=activity">活動消息</a></li>
+										<li><a href="/announcements.html?category=international">國際活動</a></li>
+										<li><a href="/page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
+										<li><a href="/announcements.html?category=general">總會通告</a></li>
+										<li><a href="/announcements.html?category=service">服務通告</a></li>
+									</ul>
+								</li>
+							<li><!--參考資料-->
+								<a href="#">參考資料</a>
+								<ul>
+									<li><a href="/newsletters.html">童軍月刊</a></li>
+									<li><a href="/page-about/references/marching.html">標準步操及禮儀</a></li>
+									<li><a href="/page-about/references/baden-powell.html">貝登堡略傳</a></li>
+									<li><a href="/page-about/references/signal.html">三指記號</a></li>
+									<li><a href="/page-about/references/courtesy.html">生活禮節</a></li>
+									<li><a href="/page-about/references/training.html">出版刊物</a></li>
+								</ul>
+							</li>
+							</ul>
+						</nav>
+
+					</header>
+				</div>
+
+				<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-8 col-12-medium">
+								<div id="content">
+									<!-- Hero Carousel -->
+									<div class="hero-carousel">
+										<div class="carousel-container">
+											<input type="radio" name="hero-slide" id="hero-slide1" checked>
+											<input type="radio" name="hero-slide" id="hero-slide2">
+											<input type="radio" name="hero-slide" id="hero-slide3">
+											
+											<div class="carousel-slides">
+												<div class="slide slide1">
+													<img src="images/content-bg-1.jpg" alt="童軍活動 - 支持童軍運動，培育良好公民">
+												</div>
+												<div class="slide slide2">
+													<img src="images/content-bg-2.jpg" alt="童軍水上活動 - 支持童軍運動，培育良好公民">
+												</div>
+												<div class="slide slide3">
+													<img src="images/content-bg-3.jpg" alt="童軍團體活動 - 支持童軍運動，培育良好公民">
+												</div>
+											</div>
+											
+											<div class="carousel-controls">
+												<label for="hero-slide1" class="control-dot"></label>
+												<label for="hero-slide2" class="control-dot"></label>
+												<label for="hero-slide3" class="control-dot"></label>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Grid bar-->
+									<div class="grid">
+										<a href="page-scoutinfo/apply.html"><div>加入童軍</div></a>
+										<a href="page-scoutinfo/mop.html"><div>MOP</div></a>
+										<a href="page-scoutinfo/wood-badge.html"><div>木章</div></a>
+										<a href="page-about/introduction.html"><div>簡介</div></a>
+										<a href="#"><div>小隊制度</div></a>
+										<a href="page-scoutinfo/award.html"><div>獎勵制度</div></a>
+										<a href="page-about/groups.html"><div>旅部簡介</div></a>
+										<a href="page-about/departments.html"><div>部門簡介</div></a>
+									</div>
+
+									<!-- Content -->
+									<article>
+
+									</article>
+
+							</div>
+						</div>
+						<div class="col-4 col-12-medium">
+							<div id="sidebar">
+
+								<!-- Sidebar -->
+									<section>
+										<h3>最新消息</h3>
+										<footer>
+											<a href="announcements.html?category=general" class="button icon solid fa-info-circle">更多</a>
+										</footer>
+										<ul class="style2" id="latest-news-list">
+											<!-- 內容將由 JavaScript 動態生成 -->
+										</ul>
+									</section>
+
+									<section>
+										<div class="fb-page" data-href="https://www.facebook.com/scout.mo" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/scout.mo" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/scout.mo">澳門童軍總會The Scout Association of Macau</a></blockquote></div>
+									</section>
+
+								<section style="margin-top: 25px;">
+									<h3>童軍月刊</h3>
+									<footer>
+										<a href="newsletters.html" class="button icon solid fa-info-circle">更多</a>
+									</footer>
+									<ul class="style2" id="newsletters-list">
+										<!-- 內容將由 JavaScript 動態生成 -->
+									</ul>
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							
+							<div class="col-6 col-6-medium col-12-small">
+								
+								<!-- Links -->
+								<section class="widget links d-none">
+									<h3>近期活動</h3>
+									<div class="d-none d-lg-block">
+										<iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=rks8lssh5vrqagv4cu6vr444fs%40group.calendar.google.com&amp;color=%235229A3&amp;src=e63o9v6i6hq7ms03kjtr2mt7t4%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=Asia%2FMacau" style=" border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe>									<ul class="style2">
+									</div>
+									</ul>
+								</section>
+								
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+								
+								<!-- Links -->
+								<section class="widget links">
+									<h3>相關網站</h3>
+									<ul class="style2">
+										<li><a target="_blank" href="https://www.scout.org">世界童軍總會</a></li>
+										<li><a target="_blank" href="https://www.scout.org/where-we-work/regions/asia-pacific/region">亞太童軍總會</a></li>
+										<li><a target="_blank" href="https://www.scout.org.hk/tc/">香港童軍總會</a></li>
+									</ul>
+									<h3>資訊系統</h3>
+									<ul class="style2">
+										<li><a href="#">社會服務申報系統</a></li>
+										<li><a href="#">專章報名系統</a></li>
+									</ul>
+								</section>
+
+							</div>
+							<div class="col-3 col-6-medium col-12-small">
+
+								<!-- Contact -->
+									<section class="widget contact last">
+										<h3>聯絡我們</h3>
+										<ul>
+											<li><a href="mailto:scoutmac@macau.ctm.net" class="icon far fa-envelope"><span class="label">Email</span></a></li>
+										</ul>
+										<p>澳門氹仔盧伯德圓形地氹仔炮臺<br />
+											tel: +853 28780411<br />
+											fax: +853 28780412</p>
+									</section>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; 2025 THE SCOUT ASSOCIATION OF MACAU. All rights reserved 本網站版權為澳門童軍總會所有</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v22.0"></script>
+			<div id="fb-root"></div>
+			
+			<!-- Hero Carousel Auto-play Script -->
+			<script>
+			// Auto-play functionality for hero carousel
+			document.addEventListener('DOMContentLoaded', function() {
+				let currentSlide = 1;
+				const totalSlides = 3;
+				
+				function nextSlide() {
+					currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
+					document.getElementById('hero-slide' + currentSlide).checked = true;
+				}
+				
+				// Auto-advance every 5 seconds
+				setInterval(nextSlide, 5000);
+			});
+			</script>
+			
+			<!-- 防止頁面載入時跳轉的腳本 -->
+			<script>
+			// 確保頁面載入時停留在頂部
+			window.addEventListener('load', function() {
+				window.scrollTo(0, 0);
+			});
+			
+			// 防止autofocus導致的跳轉
+			document.addEventListener('DOMContentLoaded', function() {
+				window.scrollTo(0, 0);
+			});
+			</script>
+			
+			<!-- 最新消息動態生成腳本 -->
+			<script>
+																		// 通告數據 - 從 news.md 同步
+				const newsData = [
+					{
+						title: "澳門童軍總會會員優惠計劃 通告",
+						category: "總會通告",
+						categoryKey: "general",
+						link: "https://drive.google.com/file/d/1k31RW-iBAoQwgk8dh5afBW6OOrNn_QKi/view",
+						date: "2025年07月09日 21:42",
+						keywords: "關鍵字"
+					},
+					{
+						title: "幼童軍團團集會帶領技巧訓練班取消公告",
+						category: "訓練班消息",
+						categoryKey: "training",
+						link: "https://drive.google.com/file/d/1NBkarTgHsf0Z_pRB6HXWWMU--FDhKfyM/view",
+						date: "2025年07月15日 00:44",
+						keywords: ""
+					},
+					{
+						title: "第33屆亞太區童軍大露營(菲律賓) 章程",
+						category: "國際活動",
+						categoryKey: "international",
+						link: "https://drive.google.com/file/d/1tfIoxzs_PVs01P7zBPdX0XhBkQG9mHPL/view",
+						date: "2025年07月09日 21:00",
+						keywords: ""
+					},
+					{
+						title: "整理總會相片資料-會內服務",
+						category: "服務通告",
+						categoryKey: "service",
+						link: "https://drive.google.com/file/d/1d0FOKUEJ15QP_hOVCp5OC4KVpiMTId1v/view",
+						date: "2025年07月15日 00:47",
+						keywords: ""
+					}
+				];
+				
+				
+			
+											// Newsletter data - This will be automatically generated from newsletters.md
+				const newsletterData = [
+					{
+						title: "澳門童軍月刊2025年5月刊第158期",
+						link: "https://drive.google.com/file/d/1ZpZJ-MICJndziDvdsSC7N-s9F5R7aVE_/view?usp=sharing",
+						keywords: "關鍵字"
+					},
+					{
+						title: "澳門童軍月刊2025年4月刊第157期",
+						link: "https://drive.google.com/file/d/1JQ1yNwZ0QPeIMLbHrvHhSSSqKQP8L_IZ/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2025年3月刊第156期",
+						link: "https://drive.google.com/file/d/1W33VczOXoWZd_5x43JixVmN4NFXexIjo/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2025年2月刊第155期",
+						link: "https://drive.google.com/file/d/1MoAwhWiJgsUuRQLE4U3Idy524GEe0RzT/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2025年1月刊第154期",
+						link: "https://drive.google.com/file/d/1iqCjm1nAXLjqfBJhnrnLE5RFirlsKiOv/view?usp=sharing",
+						keywords: ""
+					},
+					{
+						title: "澳門童軍月刊2024年12月刊第153期",
+						link: "https://drive.google.com/file/d/12p6XneC0QWLe-FsEfqx3S9vk4zJrlw0O/view?usp=sharing",
+						keywords: ""
+					}
+				];
+				
+				
+				
+			
+			// 生成最新消息列表
+			document.addEventListener('DOMContentLoaded', function() {
+				const latestNewsList = document.getElementById('latest-news-list');
+				
+				// 篩選總會通告
+				const generalAnnouncements = newsData.filter(item => item.categoryKey === 'general');
+				
+				// 按日期排序（最新的在前）
+				generalAnnouncements.sort((a, b) => new Date(b.date) - new Date(a.date));
+				
+				// 取最新10個項目
+				const latestItems = generalAnnouncements.slice(0, 10);
+				
+				if (latestItems.length === 0) {
+					// 如果沒有總會通告，顯示"沒有通告"
+					latestNewsList.innerHTML = '<li style="color: #666; font-style: italic;">沒有通告</li>';
+				} else {
+					// 生成通告列表
+					const listHTML = latestItems.map(item => {
+						return `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+					}).join('');
+					
+					latestNewsList.innerHTML = listHTML;
+				}
+				
+				// 生成月刊列表
+				const newslettersList = document.getElementById('newsletters-list');
+				
+				// 取最新6個月刊項目
+				const latestNewsletters = newsletterData.slice(0, 6);
+				
+				if (latestNewsletters.length === 0) {
+					// 如果沒有月刊，顯示"沒有月刊"
+					newslettersList.innerHTML = '<li style="color: #666; font-style: italic;">沒有月刊</li>';
+				} else {
+					// 生成月刊列表
+					const newslettersHTML = latestNewsletters.map(item => {
+						return `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+					}).join('');
+					
+					newslettersList.innerHTML = newslettersHTML;
+				}
+			});
+			</script>
+	</body>
+</html>
+
