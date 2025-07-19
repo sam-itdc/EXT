@@ -1,3 +1,5 @@
+- 澳門童軍月刊2025年06月刊第159期
+  - https://drive.google.com/file/d/1ttV3sIH8jJQP42nQTg5PppuJWC92i3rr/view
 - 澳門童軍月刊2025年5月刊第158期
   - https://drive.google.com/file/d/1ZpZJ-MICJndziDvdsSC7N-s9F5R7aVE_/view?usp=sharing
   - 關鍵字
