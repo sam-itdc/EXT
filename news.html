@@ -418,6 +418,8 @@
 					line = line.trim();
 					if (!line) continue;
 					
+					// Check if this is a category line
+					const categoryFound = line.startsWith('- ') && currentNews && Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(2).trim());
 					// Check if this is a news title line (starts with -)
 					if (line.startsWith('- ') && !line.includes('http') && !Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(2).trim()) && !line.includes('年') && !line.includes('關鍵字')) {
 						// Save previous news if exists
@@ -435,9 +437,8 @@
 							keywords: ''
 						};
 					}
-					// Check if this is a category line
-					else if (line.startsWith('  - ') && currentNews && Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(4).trim())) {
-						const categoryName = line.substring(4).trim();
+					else if (categoryFound) {
+						const categoryName = line.substring(2).trim();
 						currentNews.category = categoryName;
 						currentNews.categoryKey = categoryMapping[categoryName] || 'general';
 					}

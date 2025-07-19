@@ -331,7 +331,7 @@
 					if (!line) continue;
 					
 					// Check if this is a newsletter title line (starts with -)
-					if (line.startsWith('- ') && !line.includes('http')) {
+					if (line.startsWith('- ') && !line.includes('http') && line.includes('澳門童軍月刊')) {
 						// Save previous newsletter if exists
 						if (currentNewsletter) {
 							newsletters.push(currentNewsletter);
