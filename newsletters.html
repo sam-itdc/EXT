@@ -93,6 +93,22 @@
 				text-decoration: underline;
 			}
 			
+			.loading-message {
+				text-align: center;
+				padding: 2rem;
+				color: #666;
+				font-style: italic;
+			}
+			
+			.error-message {
+				text-align: center;
+				padding: 2rem;
+				color: #d32f2f;
+				background: #ffebee;
+				border-radius: 8px;
+				margin: 1rem 0;
+			}
+			
 			@media (max-width: 768px) {
 				.search-nav {
 					flex-direction: column;
@@ -161,14 +177,14 @@
 									</ul>
 								</li>
 								<li><!--通告-->
-									<a href="#">通告</a>
+									<a href="/news.html">通告</a>
 									<ul>
-										<li><a href="/announcements.html?category=training">訓練班消息</a></li>
-										<li><a href="/announcements.html?category=activity">活動消息</a></li>
-										<li><a href="/announcements.html?category=international">國際活動</a></li>
+										<li><a href="/news.html?category=training">訓練班消息</a></li>
+										<li><a href="/news.html?category=activity">活動消息</a></li>
+										<li><a href="/news.html?category=international">國際活動</a></li>
 										<li><a href="/page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
-										<li><a href="/announcements.html?category=general">總會通告</a></li>
-										<li><a href="/announcements.html?category=service">服務通告</a></li>
+										<li><a href="/news.html?category=general">總會通告</a></li>
+										<li><a href="/news.html?category=service">服務通告</a></li>
 									</ul>
 								</li>
 							<li><!--參考資料-->
@@ -204,14 +220,20 @@
 					<div class="row gtr-200">
 						<div class="col-12">
 							<div id="content">
-								<table id="newslettersTable" class="display" style="width:100%">
+								<div id="loading-message" class="loading-message">
+									正在載入童軍月刊資料...
+								</div>
+								<div id="error-message" class="error-message" style="display: none;">
+									載入月刊資料時發生錯誤，請稍後再試。
+								</div>
+								<table id="newslettersTable" class="display" style="width:100%; display: none;">
 									<thead>
 										<tr>
 											<th>標題</th>
 										</tr>
 									</thead>
 									<tbody>
-										<!-- Data will be populated by JavaScript -->
+										<!-- Data will be populated dynamically from newsletters.md -->
 									</tbody>
 								</table>
 							</div>
@@ -298,89 +320,136 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 		
 		<script>
-									// Newsletter data - This will be automatically generated from newsletters.md
-			const newsletterData = [
-				{
-					title: "澳門童軍月刊2025年5月刊第158期",
-					link: "https://drive.google.com/file/d/1ZpZJ-MICJndziDvdsSC7N-s9F5R7aVE_/view?usp=sharing",
-					keywords: "關鍵字"
-				},
-				{
-					title: "澳門童軍月刊2025年4月刊第157期",
-					link: "https://drive.google.com/file/d/1JQ1yNwZ0QPeIMLbHrvHhSSSqKQP8L_IZ/view?usp=sharing",
-					keywords: ""
-				},
-				{
-					title: "澳門童軍月刊2025年3月刊第156期",
-					link: "https://drive.google.com/file/d/1W33VczOXoWZd_5x43JixVmN4NFXexIjo/view?usp=sharing",
-					keywords: ""
-				},
-				{
-					title: "澳門童軍月刊2025年2月刊第155期",
-					link: "https://drive.google.com/file/d/1MoAwhWiJgsUuRQLE4U3Idy524GEe0RzT/view?usp=sharing",
-					keywords: ""
-				},
-				{
-					title: "澳門童軍月刊2025年1月刊第154期",
-					link: "https://drive.google.com/file/d/1iqCjm1nAXLjqfBJhnrnLE5RFirlsKiOv/view?usp=sharing",
-					keywords: ""
-				},
-				{
-					title: "澳門童軍月刊2024年12月刊第153期",
-					link: "https://drive.google.com/file/d/12p6XneC0QWLe-FsEfqx3S9vk4zJrlw0O/view?usp=sharing",
-					keywords: ""
-				}
-			];
-			
-			
-			
-			$(document).ready(function() {
-				// Initialize DataTable
-				const table = $('#newslettersTable').DataTable({
-					data: newsletterData,
-					columns: [
-						{
-							data: 'title',
-							render: function(data, type, row) {
-								return '<a href="' + row.link + '" target="_blank" class="newsletter-link">' + data + '</a>';
-							}
+			// Function to parse newsletters.md content
+			function parseNewslettersMarkdown(markdownText) {
+				const lines = markdownText.split('\n');
+				const newsletters = [];
+				let currentNewsletter = null;
+				
+				for (let line of lines) {
+					line = line.trim();
+					if (!line) continue;
+					
+					// Check if this is a newsletter title line (starts with -)
+					if (line.startsWith('- ') && !line.includes('http')) {
+						// Save previous newsletter if exists
+						if (currentNewsletter) {
+							newsletters.push(currentNewsletter);
 						}
-					],
-					order: [], // 不進行默認排序，保持原始順序
-					pageLength: 25,
-					language: {
-						"sProcessing": "處理中...",
-						"sLengthMenu": "顯示 _MENU_ 項結果",
-						"sZeroRecords": "沒有匹配結果",
-						"sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-						"sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-						"sInfoFiltered": "(由 _MAX_ 項結果過濾)",
-						"sInfoPostFix": "",
-						"sSearch": "",
-						"sUrl": "",
-						"sEmptyTable": "表中數據為空",
-						"sLoadingRecords": "載入中...",
-						"sInfoThousands": ",",
-						"oPaginate": {
-							"sFirst": "首頁",
-							"sPrevious": "上頁",
-							"sNext": "下頁",
-							"sLast": "末頁"
-						},
-						"oAria": {
-							"sSortAscending": ": 以升序排列此列",
-							"sSortDescending": ": 以降序排列此列"
-						}
-					},
-					responsive: true,
-					dom: 'rtip', // 移除搜索欄，只保留表格、信息和分頁
-					initComplete: function() {
-						// 連接自定義搜索欄
-						$('#custom-search').on('keyup', function() {
-							table.search(this.value).draw();
-						});
+						
+						// Start new newsletter
+						currentNewsletter = {
+							title: line.substring(2).trim(), // Remove "- " prefix
+							link: '',
+							keywords: ''
+						};
 					}
-				});
+					// Check if this is a link line (contains http)
+					else if (line.includes('http') && currentNewsletter) {
+						// Extract URL from the line
+						const urlMatch = line.match(/https?:\/\/[^\s]+/);
+						if (urlMatch) {
+							currentNewsletter.link = urlMatch[0];
+						}
+					}
+					// Check if this is a keywords line
+					else if (line.includes('關鍵字') && currentNewsletter) {
+						currentNewsletter.keywords = line.substring(line.indexOf('-') + 1).trim();
+					}
+				}
+				
+				// Don't forget the last newsletter
+				if (currentNewsletter) {
+					newsletters.push(currentNewsletter);
+				}
+				
+				return newsletters;
+			}
+			
+			// Function to load newsletters from markdown file
+			async function loadNewsletters() {
+				try {
+					const response = await fetch('newsletters.md');
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					
+					const markdownText = await response.text();
+					const newsletterData = parseNewslettersMarkdown(markdownText);
+					
+					// Hide loading message
+					document.getElementById('loading-message').style.display = 'none';
+					
+					// Show table
+					document.getElementById('newslettersTable').style.display = 'table';
+					
+					// Initialize DataTable with loaded data
+					const table = $('#newslettersTable').DataTable({
+						data: newsletterData,
+						columns: [
+							{
+								data: 'title',
+								render: function(data, type, row) {
+									if (row.link) {
+										return '<a href="' + row.link + '" target="_blank" class="newsletter-link">' + data + '</a>';
+									} else {
+										return '<span class="newsletter-link">' + data + '</span>';
+									}
+								}
+							}
+						],
+						order: [], // 不進行默認排序，保持原始順序
+						pageLength: 25,
+						language: {
+							"sProcessing": "處理中...",
+							"sLengthMenu": "顯示 _MENU_ 項結果",
+							"sZeroRecords": "沒有匹配結果",
+							"sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+							"sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+							"sInfoFiltered": "(由 _MAX_ 項結果過濾)",
+							"sInfoPostFix": "",
+							"sSearch": "",
+							"sUrl": "",
+							"sEmptyTable": "表中數據為空",
+							"sLoadingRecords": "載入中...",
+							"sInfoThousands": ",",
+							"oPaginate": {
+								"sFirst": "首頁",
+								"sPrevious": "上頁",
+								"sNext": "下頁",
+								"sLast": "末頁"
+							},
+							"oAria": {
+								"sSortAscending": ": 以升序排列此列",
+								"sSortDescending": ": 以降序排列此列"
+							}
+						},
+						responsive: true,
+						dom: 'rtip', // 移除搜索欄，只保留表格、信息和分頁
+						initComplete: function() {
+							// 連接自定義搜索欄
+							$('#custom-search').on('keyup', function() {
+								table.search(this.value).draw();
+							});
+						}
+					});
+					
+				} catch (error) {
+					console.error('Error loading newsletters:', error);
+					
+					// Hide loading message
+					document.getElementById('loading-message').style.display = 'none';
+					
+					// Show error message
+					document.getElementById('error-message').style.display = 'block';
+					document.getElementById('error-message').innerHTML = 
+						'載入月刊資料時發生錯誤：' + error.message + '<br>請檢查 newsletters.md 文件是否存在且格式正確。';
+				}
+			}
+			
+			// Load newsletters when document is ready
+			$(document).ready(function() {
+				loadNewsletters();
 			});
 		</script>
 	</body>

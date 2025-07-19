@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Automation script to generate news data from news.md file
-This script parses news.md and updates both announcements.html and index.html with the latest data
+This script parses news.md and updates both news.html and index.html with the latest data
 """
 
 import re
@@ -207,7 +207,7 @@ def generate_javascript_data(news_items):
     return js_data
 
 def update_announcements_html(html_file_path, news_data_js):
-    """Update announcements.html with new news data"""
+    """Update news.html with new news data"""
     try:
         with open(html_file_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -219,7 +219,7 @@ def update_announcements_html(html_file_path, news_data_js):
         updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
         
         if updated_content == content:
-            print("Warning: Could not find newsData section to update in announcements.html")
+            print("Warning: Could not find newsData section to update in news.html")
             return False
         
         with open(html_file_path, 'w', encoding='utf-8') as f:
@@ -228,7 +228,7 @@ def update_announcements_html(html_file_path, news_data_js):
         return True
         
     except Exception as e:
-        print(f"Error updating announcements.html: {e}")
+        print(f"Error updating news.html: {e}")
         return False
 
 def update_index_html(html_file_path, news_data_js):
@@ -266,7 +266,7 @@ def main():
     base_dir = Path('/home/ubuntu/EXT')
     news_md_path = base_dir / 'news.md'
     newsletters_md_path = base_dir / 'newsletters.md'
-    announcements_html_path = base_dir / 'announcements.html'
+    announcements_html_path = base_dir / 'news.html'
     newsletters_html_path = base_dir / 'newsletters.html'
     index_html_path = base_dir / 'index.html'
     
@@ -291,12 +291,12 @@ def main():
     print(f"\n🔧 Generating JavaScript data...")
     js_data = generate_javascript_data(news_items)
     
-    # Update announcements.html
+    # Update news.html
     print(f"📝 Updating {announcements_html_path}...")
     if update_announcements_html(announcements_html_path, js_data):
-        print("✅ Successfully updated announcements.html")
+        print("✅ Successfully updated news.html")
     else:
-        print("❌ Failed to update announcements.html")
+        print("❌ Failed to update news.html")
     
     # Update index.html
     print(f"📝 Updating {index_html_path}...")
@@ -331,7 +331,7 @@ def main():
     print(f"\n💡 To update news:")
     print(f"   1. Edit {news_md_path}")
     print(f"   2. Run this script: python3 generate_news_data.py")
-    print(f"   3. Both announcements.html and index.html will be automatically updated")
+    print(f"   3. Both news.html and index.html will be automatically updated")
 
 if __name__ == "__main__":
     main()

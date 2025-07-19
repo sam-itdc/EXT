@@ -130,6 +130,22 @@
 				font-size: 0.9rem;
 			}
 			
+			.loading-message {
+				text-align: center;
+				padding: 2rem;
+				color: #666;
+				font-style: italic;
+			}
+			
+			.error-message {
+				text-align: center;
+				padding: 2rem;
+				color: #d32f2f;
+				background: #ffebee;
+				border-radius: 8px;
+				margin: 1rem 0;
+			}
+			
 			@media (max-width: 768px) {
 				.category-nav > div {
 					flex-direction: column !important;
@@ -205,14 +221,14 @@
 									</ul>
 								</li>
 								<li><!--通告-->
-									<a href="#">通告</a>
+									<a href="/news.html">通告</a>
 									<ul>
-										<li><a href="/announcements.html?category=training">訓練班消息</a></li>
-										<li><a href="/announcements.html?category=activity">活動消息</a></li>
-										<li><a href="/announcements.html?category=international">國際活動</a></li>
+										<li><a href="/news.html?category=training">訓練班消息</a></li>
+										<li><a href="/news.html?category=activity">活動消息</a></li>
+										<li><a href="/news.html?category=international">國際活動</a></li>
 										<li><a href="/page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
-										<li><a href="/announcements.html?category=general">總會通告</a></li>
-										<li><a href="/announcements.html?category=service">服務通告</a></li>
+										<li><a href="/news.html?category=general">總會通告</a></li>
+										<li><a href="/news.html?category=service">服務通告</a></li>
 									</ul>
 								</li>
 							<li><!--參考資料-->
@@ -236,20 +252,18 @@
 			<div id="main-wrapper">
 				<div class="container">
 					
-
-					
 				<!-- Category Navigation -->
 				<div class="category-nav">
 					<div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
 						<div style="flex: 1; min-width: 300px;">
 							<h3>📂 通告分類</h3>
 							<div class="category-buttons">
-								<a href="announcements.html" class="category-btn" id="btn-all">全部通告</a>
-								<a href="announcements.html?category=training" class="category-btn" id="btn-training">訓練班消息</a>
-								<a href="announcements.html?category=activity" class="category-btn" id="btn-activity">活動消息</a>
-								<a href="announcements.html?category=international" class="category-btn" id="btn-international">國際活動</a>
-								<a href="announcements.html?category=general" class="category-btn" id="btn-general">總會通告</a>
-								<a href="announcements.html?category=service" class="category-btn" id="btn-service">服務通告</a>
+								<a href="news.html" class="category-btn" id="btn-all">全部通告</a>
+								<a href="news.html?category=training" class="category-btn" id="btn-training">訓練班消息</a>
+								<a href="news.html?category=activity" class="category-btn" id="btn-activity">活動消息</a>
+								<a href="news.html?category=international" class="category-btn" id="btn-international">國際活動</a>
+								<a href="news.html?category=general" class="category-btn" id="btn-general">總會通告</a>
+								<a href="news.html?category=service" class="category-btn" id="btn-service">服務通告</a>
 							</div>
 						</div>
 						<div style="flex: 0 0 auto; margin-left: 2rem; margin-top: 2rem;">
@@ -264,7 +278,13 @@
 					<div class="row gtr-200">
 						<div class="col-12">
 							<div id="content">
-								<table id="announcementsTable" class="display" style="width:100%">
+								<div id="loading-message" class="loading-message">
+									正在載入通告資料...
+								</div>
+								<div id="error-message" class="error-message" style="display: none;">
+									載入通告資料時發生錯誤，請稍後再試。
+								</div>
+								<table id="announcementsTable" class="display" style="width:100%; display: none;">
 									<thead>
 										<tr>
 											<th>類別</th>
@@ -273,7 +293,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<!-- Data will be populated by JavaScript -->
+										<!-- Data will be populated dynamically from news.md -->
 									</tbody>
 								</table>
 							</div>
@@ -359,49 +379,16 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 		
 		<script>
-																		// News data - This will be automatically generated from news.md
-			const newsData = [
-				{
-					title: "澳門童軍總會會員優惠計劃 通告",
-					category: "總會通告",
-					categoryKey: "general",
-					link: "https://drive.google.com/file/d/1k31RW-iBAoQwgk8dh5afBW6OOrNn_QKi/view",
-					date: "2025年07月09日 21:42",
-					keywords: "關鍵字"
-				},
-				{
-					title: "幼童軍團團集會帶領技巧訓練班取消公告",
-					category: "訓練班消息",
-					categoryKey: "training",
-					link: "https://drive.google.com/file/d/1NBkarTgHsf0Z_pRB6HXWWMU--FDhKfyM/view",
-					date: "2025年07月15日 00:44",
-					keywords: ""
-				},
-				{
-					title: "第33屆亞太區童軍大露營(菲律賓) 章程",
-					category: "國際活動",
-					categoryKey: "international",
-					link: "https://drive.google.com/file/d/1tfIoxzs_PVs01P7zBPdX0XhBkQG9mHPL/view",
-					date: "2025年07月09日 21:00",
-					keywords: ""
-				},
-				{
-					title: "整理總會相片資料-會內服務",
-					category: "服務通告",
-					categoryKey: "service",
-					link: "https://drive.google.com/file/d/1d0FOKUEJ15QP_hOVCp5OC4KVpiMTId1v/view",
-					date: "2025年07月15日 00:47",
-					keywords: ""
-				}
-			];
-			
-			
-			
-			
-			
-			
 			// Category mapping
 			const categoryMapping = {
+				'訓練班消息': 'training',
+				'活動消息': 'activity',
+				'國際活動': 'international',
+				'總會通告': 'general',
+				'服務通告': 'service'
+			};
+			
+			const categoryMappingReverse = {
 				'training': '訓練班消息',
 				'activity': '活動消息',
 				'international': '國際活動',
@@ -421,18 +408,117 @@
 				return classMap[categoryKey] || 'general';
 			}
 			
-			// Get URL parameter
-			function getUrlParameter(name) {
-				name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-				var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-				var results = regex.exec(location.search);
-				return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+			// Function to parse news.md content
+			function parseNewsMarkdown(markdownText) {
+				const lines = markdownText.split('\n');
+				const news = [];
+				let currentNews = null;
+				
+				for (let line of lines) {
+					line = line.trim();
+					if (!line) continue;
+					
+					// Check if this is a news title line (starts with -)
+					if (line.startsWith('- ') && !line.includes('http') && !Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(2).trim()) && !line.includes('年') && !line.includes('關鍵字')) {
+						// Save previous news if exists
+						if (currentNews) {
+							news.push(currentNews);
+						}
+						
+						// Start new news
+						currentNews = {
+							title: line.substring(2).trim(), // Remove "- " prefix
+							category: '',
+							categoryKey: '',
+							link: '',
+							date: '',
+							keywords: ''
+						};
+					}
+					// Check if this is a category line
+					else if (line.startsWith('  - ') && currentNews && Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(4).trim())) {
+						const categoryName = line.substring(4).trim();
+						currentNews.category = categoryName;
+						currentNews.categoryKey = categoryMapping[categoryName] || 'general';
+					}
+					// Check if this is a link line (contains http)
+					else if (line.includes('http') && currentNews) {
+						// Extract URL from the line
+						const urlMatch = line.match(/https?:\/\/[^\s]+/);
+						if (urlMatch) {
+							currentNews.link = urlMatch[0];
+						}
+					}
+					// Check if this is a date line (contains 年 and 日)
+					else if (line.includes('年') && line.includes('日') && currentNews) {
+						const dateMatch = line.match(/(\d{4}年\d{2}月\d{2}日\s+\d{2}:\d{2})/);
+						if (dateMatch) {
+							currentNews.date = dateMatch[1];
+						} else {
+							// Try to extract any date-like pattern
+							const simpleDateMatch = line.match(/\d{4}年\d{2}月\d{2}日\s+\d{2}:\d{2}/);
+							if (simpleDateMatch) {
+								currentNews.date = simpleDateMatch[0];
+							}
+						}
+					}
+					// Check if this is a keywords line
+					else if (line.includes('關鍵字') && currentNews) {
+						currentNews.keywords = line.substring(line.indexOf('-') + 1).trim();
+					}
+				}
+				
+				// Don't forget the last news
+				if (currentNews) {
+					news.push(currentNews);
+				}
+				
+				return news;
 			}
 			
-			// Initialize DataTable
-			let table;
+			// Function to load announcements from markdown file
+			async function loadAnnouncements() {
+				try {
+					const response = await fetch('news.md');
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					
+					const markdownText = await response.text();
+					const newsData = parseNewsMarkdown(markdownText);
+					
+					// Hide loading message
+					document.getElementById('loading-message').style.display = 'none';
+					
+					// Show table
+					document.getElementById('announcementsTable').style.display = 'table';
+					
+					// Initialize DataTable with loaded data
+					initializeDataTable(newsData);
+					
+				} catch (error) {
+					console.error('Error loading announcements:', error);
+					
+					// Hide loading message
+					document.getElementById('loading-message').style.display = 'none';
+					
+					// Show error message
+					document.getElementById('error-message').style.display = 'block';
+					document.getElementById('error-message').innerHTML = 
+						'載入通告資料時發生錯誤：' + error.message + '<br>請檢查 news.md 文件是否存在且格式正確。';
+				}
+			}
 			
-			$(document).ready(function() {
+			// Function to initialize DataTable
+			function initializeDataTable(newsData) {
+				// Get URL parameter
+				function getUrlParameter(name) {
+					name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+					var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+					var results = regex.exec(location.search);
+					return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+				}
+				
 				// Get current category from URL
 				const currentCategory = getUrlParameter('category');
 				
@@ -444,7 +530,7 @@
 				}
 				
 				// Initialize DataTable
-				table = $('#announcementsTable').DataTable({
+				const table = $('#announcementsTable').DataTable({
 					data: newsData,
 					columns: [
 						{
@@ -456,7 +542,11 @@
 						{
 							data: 'title',
 							render: function(data, type, row) {
-								return '<a href="' + row.link + '" target="_blank" class="news-link">' + data + '</a>';
+								if (row.link) {
+									return '<a href="' + row.link + '" target="_blank" class="news-link">' + data + '</a>';
+								} else {
+									return '<span class="news-link">' + data + '</span>';
+								}
 							}
 						},
 						{
@@ -501,8 +591,8 @@
 				});
 				
 				// Apply category filter if specified
-				if (currentCategory && categoryMapping[currentCategory]) {
-					table.column(0).search(categoryMapping[currentCategory]).draw();
+				if (currentCategory && categoryMappingReverse[currentCategory]) {
+					table.column(0).search(categoryMappingReverse[currentCategory]).draw();
 				}
 				
 				// Add custom search functionality for keywords
@@ -525,6 +615,11 @@
 					
 					return searchableText.includes(searchTerm);
 				});
+			}
+			
+			// Load announcements when document is ready
+			$(document).ready(function() {
+				loadAnnouncements();
 			});
 		</script>
 	</body>
