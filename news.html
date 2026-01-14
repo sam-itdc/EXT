@@ -331,9 +331,9 @@
 							</ul>
 							<h3>資訊系統</h3>
 							<ul class="style2">
-										<li><a target="_blank" href="https://pbdivision.scout.org.mo">社會服務申報系統</a></li>
-										<li><a target="_blank" href="https://www.scout.org.mo/csd">專章報名系統</a></li>
-									</ul>
+								<li><a href="#">社會服務申報系統</a></li>
+								<li><a href="#">專章報名系統</a></li>
+							</ul>
 						</section>
 
 					</div>
@@ -408,6 +408,55 @@
 				return classMap[categoryKey] || 'general';
 			}
 			
+            function loadApiNotices(key, categoryName, categoryKey) {
+        return new Promise((resolve, reject) => {
+
+            let buffer = "";
+
+            // 攔截 document.write
+            const originalWrite = document.write;
+            document.write = function (html) {
+                buffer += html;
+            };
+
+            const script = document.createElement("script");
+            script.src = "http://www.scout.org.mo/INT/api/javascript.php?key=" + key;
+            script.charset = "big5";
+
+            script.onload = function () {
+                // 還原 document.write
+                document.write = originalWrite;
+
+                try {
+                    const temp = document.createElement("div");
+                    temp.innerHTML = buffer;
+
+                    const items = temp.querySelectorAll("li a");
+                    const results = [];
+
+                    items.forEach(a => {
+                        results.push({
+                            title: a.textContent.trim(),
+                            category: categoryName,
+                            categoryKey: categoryKey,
+                            link: a.href,
+                            date: "",
+                            keywords: categoryName
+                        });
+                    });
+
+                    resolve(results);
+                } catch (e) {
+                    reject(e);
+                }
+            };
+
+            script.onerror = reject;
+            document.body.appendChild(script);
+
+        });
+    }
+
 			// Function to parse news.md content
 			function parseNewsMarkdown(markdownText) {
 				const lines = markdownText.split('\n');
@@ -487,6 +536,24 @@
 					
 					const markdownText = await response.text();
 					const newsData = parseNewsMarkdown(markdownText);
+
+
+
+// 2️⃣ 各 API 串接
+const hqNotices = await loadApiNotices("AEM2013_HQNotice", "總會通告", "general");
+const trainingNotices = await loadApiNotices("AEM2013_Training", "訓練班消息", "training");
+const activityNotices = await loadApiNotices("AEM2013_Activities", "活動消息", "activity");
+
+// 3️⃣ 合併所有來源
+const combinedData = [
+    ...hqNotices,
+    ...trainingNotices,
+    ...activityNotices,
+    ...newsData
+];
+
+// 4️⃣ 用 combinedData 初始化 DataTable
+initializeDataTable(combinedData);
 					
 					// Hide loading message
 					document.getElementById('loading-message').style.display = 'none';
@@ -625,4 +692,3 @@
 		</script>
 	</body>
 </html>
-
