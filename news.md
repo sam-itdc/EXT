@@ -2,6 +2,7 @@
   - 訓練班消息
   - https://drive.google.com/file/d/1GfNWsInaZ_HrV2brUPF6hbyAtDxjiZmD/view
   - 2025年07月19日 09:00
+  - 颱風,改期
 - 澳門童軍總會會員優惠計劃 通告
   - 總會通告
   - https://drive.google.com/file/d/1k31RW-iBAoQwgk8dh5afBW6OOrNn_QKi/view
