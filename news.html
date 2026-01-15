@@ -168,6 +168,20 @@
 				.category-btn {
 					text-align: center;
 				}
+				
+				/* Hide category and date columns on mobile */
+				#announcementsTable th:nth-child(1),
+				#announcementsTable td:nth-child(1),
+				#announcementsTable th:nth-child(3),
+				#announcementsTable td:nth-child(3) {
+					display: none;
+				}
+				
+				/* Make title column full width on mobile */
+				#announcementsTable th:nth-child(2),
+				#announcementsTable td:nth-child(2) {
+					width: 100% !important;
+				}
 			}
 		</style>
 	</head>
