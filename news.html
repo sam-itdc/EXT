@@ -431,9 +431,17 @@
                 htmlContent += content;
             });
             
+            // Unescape the HTML content (same as index.html)
+            const unescapedHtml = htmlContent
+                .replace(/\\n/g, '\n')
+                .replace(/\\t/g, '\t')
+                .replace(/\\'/g, "'")
+                .replace(/\\"/g, '"')
+                .replace(/\\\\/g, '\\');
+            
             // Parse HTML content
             const temp = document.createElement('div');
-            temp.innerHTML = htmlContent;
+            temp.innerHTML = unescapedHtml;
             
             // Look for news-item structure with dates
             const newsItems = temp.querySelectorAll('.news-item');
