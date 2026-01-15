@@ -446,10 +446,18 @@
                     const dateElem = item.querySelector('.date');
                     
                     if (linkElem) {
-                        let link = linkElem.href;
-                        // Replace domain if needed
-                        if (link.includes('www.scout.org.mo')) {
-                            link = link.replace('www.scout.org.mo', 'scout.wpang.net');
+                        // Use getAttribute to get the raw href value
+                        let link = linkElem.getAttribute('href') || '';
+                        
+                        // Replace domain (same logic as index.html)
+                        if (link) {
+                            // Handle both http and https
+                            link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                            link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                            // Ensure https protocol
+                            if (link.startsWith('http://')) {
+                                link = 'https://' + link.substring(7);
+                            }
                         }
                         
                         // Extract and format date
@@ -478,9 +486,17 @@
                 // Old API format without dates (fallback)
                 const items = temp.querySelectorAll('a');
                 items.forEach(a => {
-                    let link = a.href;
-                    if (link.includes('www.scout.org.mo')) {
-                        link = link.replace('www.scout.org.mo', 'scout.wpang.net');
+                    let link = a.getAttribute('href') || '';
+                    
+                    // Replace domain (same logic as index.html)
+                    if (link) {
+                        // Handle both http and https
+                        link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                        link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                        // Ensure https protocol
+                        if (link.startsWith('http://')) {
+                            link = 'https://' + link.substring(7);
+                        }
                     }
                     
                     results.push({
