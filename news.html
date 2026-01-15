@@ -559,15 +559,12 @@ const combinedData = [
 
 // 4️⃣ 用 combinedData 初始化 DataTable
 initializeDataTable(combinedData);
-					
-					// Hide loading message
-					document.getElementById('loading-message').style.display = 'none';
-					
-					// Show table
-					document.getElementById('announcementsTable').style.display = 'table';
-					
-					// Initialize DataTable with loaded data
-					initializeDataTable(newsData);
+						
+						// Hide loading message
+						document.getElementById('loading-message').style.display = 'none';
+						
+						// Show table
+						document.getElementById('announcementsTable').style.display = 'table';
 					
 				} catch (error) {
 					console.error('Error loading announcements:', error);
@@ -622,10 +619,16 @@ initializeDataTable(combinedData);
 								}
 							}
 						},
-						{
-							data: 'date',
-							className: 'date-cell'
+					{
+						data: 'date',
+						className: 'date-cell',
+						render: function(data, type, row) {
+							if (type === 'sort' || type === 'type') {
+								return data || '';
+							}
+							return data || '-';
 						}
+					}
 					],
 					order: [[2, 'desc']], // Sort by date descending
 					pageLength: 25,
