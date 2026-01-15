@@ -408,53 +408,58 @@
 				return classMap[categoryKey] || 'general';
 			}
 			
-            function loadApiNotices(key, categoryName, categoryKey) {
-        return new Promise((resolve, reject) => {
-
-            let buffer = "";
-
-            // 攔截 document.write
-            const originalWrite = document.write;
-            document.write = function (html) {
-                buffer += html;
-            };
-
-            const script = document.createElement("script");
-            script.src = "https://scout.wpang.net/INT/api/javascript.php?key=" + key;
-            script.charset = "big5";
-
-            script.onload = function () {
-                // 還原 document.write
-                document.write = originalWrite;
-
-                try {
-                    const temp = document.createElement("div");
-                    temp.innerHTML = buffer;
-
-                    const items = temp.querySelectorAll("li a");
-                    const results = [];
-
-                    items.forEach(a => {
-                        results.push({
-                            title: a.textContent.trim(),
-                            category: categoryName,
-                            categoryKey: categoryKey,
-                            link: a.href,
-                            date: "",
-                            keywords: categoryName
-                        });
-                    });
-
-                    resolve(results);
-                } catch (e) {
-                    reject(e);
+            async function loadApiNotices(key, categoryName, categoryKey) {
+        try {
+            const apiUrl = `https://scout.wpang.net/INT/api/javascript.php?key=${key}`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const scriptText = await response.text();
+            
+            // Extract HTML from document.write() calls
+            const writeMatches = scriptText.match(/document\.write\(['"](.+?)['"]\)/g);
+            if (!writeMatches) {
+                return [];
+            }
+            
+            let htmlContent = '';
+            writeMatches.forEach(match => {
+                const content = match.match(/document\.write\(['"](.+?)['"]\)/)[1];
+                htmlContent += content;
+            });
+            
+            // Parse HTML content
+            const temp = document.createElement('div');
+            temp.innerHTML = htmlContent;
+            
+            const items = temp.querySelectorAll('a');
+            const results = [];
+            
+            items.forEach(a => {
+                let link = a.href;
+                // Replace domain if needed
+                if (link.includes('www.scout.org.mo')) {
+                    link = link.replace('www.scout.org.mo', 'scout.wpang.net');
                 }
-            };
-
-            script.onerror = reject;
-            document.body.appendChild(script);
-
-        });
+                
+                results.push({
+                    title: a.textContent.trim(),
+                    category: categoryName,
+                    categoryKey: categoryKey,
+                    link: link,
+                    date: '',
+                    keywords: categoryName
+                });
+            });
+            
+            return results;
+        } catch (error) {
+            console.error(`Error loading API notices for ${categoryName}:`, error);
+            return [];
+        }
     }
 
 			// Function to parse news.md content
