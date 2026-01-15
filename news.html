@@ -449,6 +449,9 @@
                         // Use getAttribute to get the raw href value
                         let link = linkElem.getAttribute('href') || '';
                         
+                        // Remove surrounding quotes if present
+                        link = link.replace(/^['"]|['"]$/g, '');
+                        
                         // Replace domain (same logic as index.html)
                         if (link) {
                             // Handle both http and https
@@ -487,6 +490,9 @@
                 const items = temp.querySelectorAll('a');
                 items.forEach(a => {
                     let link = a.getAttribute('href') || '';
+                    
+                    // Remove surrounding quotes if present
+                    link = link.replace(/^['"]|['"]$/g, '');
                     
                     // Replace domain (same logic as index.html)
                     if (link) {
