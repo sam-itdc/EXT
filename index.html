@@ -674,28 +674,54 @@
 			// Function to load and display newsletters
 			async function loadNewsletters() {
 				const newslettersList = document.getElementById('newsletters-list');
+				const apiUrl = 'https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_Featured';
 				
 				try {
-					const response = await fetch('newsletters.md');
+					const response = await fetch(apiUrl);
 					if (!response.ok) {
 						throw new Error(`HTTP error! status: ${response.status}`);
 					}
 					
-					const markdownText = await response.text();
-					const newsletterData = parseNewslettersMarkdown(markdownText);
+					const scriptText = await response.text();
 					
-					// Take latest 6 newsletters
-					const latestNewsletters = newsletterData.slice(0, 6);
-					
-					if (latestNewsletters.length === 0) {
-						newslettersList.innerHTML = '<li class="error-text">沒有月刊</li>';
-					} else {
-						const newslettersHTML = latestNewsletters.map(item => {
-							return `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
-						}).join('');
-						
-						newslettersList.innerHTML = newslettersHTML;
+					// Extract HTML from document.write() call
+					const match = scriptText.match(/document\.write\('(.+)'\);/s);
+					if (!match) {
+						throw new Error('Invalid API response format');
 					}
+					
+					// Decode escaped characters
+					let htmlContent = match[1]
+						.replace(/\\n/g, '')
+						.replace(/\\'/g, "'");
+					
+					// Parse the HTML to extract links
+					const tempDiv = document.createElement('div');
+					tempDiv.innerHTML = htmlContent;
+					
+					const links = tempDiv.querySelectorAll('a');
+					if (links.length === 0) {
+						newslettersList.innerHTML = '<li class="error-text">沒有月刊</li>';
+						return;
+					}
+					
+					// Build newsletter list with domain replacement and security attributes
+					const newslettersHTML = Array.from(links).map(link => {
+						const href = link.getAttribute('href').replace('www.scout.org.mo', 'scout.wpang.net');
+						const title = link.textContent.trim();
+						
+						// Escape HTML to prevent XSS
+						const safeTitle = title
+							.replace(/&/g, '&amp;')
+							.replace(/</g, '&lt;')
+							.replace(/>/g, '&gt;')
+							.replace(/"/g, '&quot;')
+							.replace(/'/g, '&#039;');
+						
+						return `<li><a href="${href}" target="_blank" rel="noopener noreferrer">${safeTitle}</a></li>`;
+					}).join('');
+					
+					newslettersList.innerHTML = newslettersHTML;
 					
 				} catch (error) {
 					console.error('Error loading newsletters:', error);
