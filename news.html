@@ -167,6 +167,23 @@
 				
 				.category-btn {
 					text-align: center;
+					width: 100%;
+					box-sizing: border-box;
+					padding: 0.5rem 0.5rem;
+				}
+				
+				/* Hide category and date columns on mobile */
+				#announcementsTable th:nth-child(1),
+				#announcementsTable td:nth-child(1),
+				#announcementsTable th:nth-child(3),
+				#announcementsTable td:nth-child(3) {
+					display: none;
+				}
+				
+				/* Make title column full width on mobile */
+				#announcementsTable th:nth-child(2),
+				#announcementsTable td:nth-child(2) {
+					width: 100% !important;
 				}
 			}
 		</style>
@@ -408,6 +425,129 @@
 				return classMap[categoryKey] || 'general';
 			}
 			
+            async function loadApiNotices(key, categoryName, categoryKey) {
+        try {
+            const apiUrl = `https://scout.wpang.net/INT/api/javascript.php?key=${key}`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const scriptText = await response.text();
+            
+            // Extract HTML from document.write() calls
+            const writeMatches = scriptText.match(/document\.write\(['"](.+?)['"]\)/g);
+            if (!writeMatches) {
+                return [];
+            }
+            
+            let htmlContent = '';
+            writeMatches.forEach(match => {
+                const content = match.match(/document\.write\(['"](.+?)['"]\)/)[1];
+                htmlContent += content;
+            });
+            
+            // Unescape the HTML content (same as index.html)
+            const unescapedHtml = htmlContent
+                .replace(/\\n/g, '\n')
+                .replace(/\\t/g, '\t')
+                .replace(/\\'/g, "'")
+                .replace(/\\"/g, '"')
+                .replace(/\\\\/g, '\\');
+            
+            // Parse HTML content
+            const temp = document.createElement('div');
+            temp.innerHTML = unescapedHtml;
+            
+            // Look for news-item structure with dates
+            const newsItems = temp.querySelectorAll('.news-item');
+            const results = [];
+            
+            if (newsItems.length > 0) {
+                // New API format with dates
+                newsItems.forEach(item => {
+                    const linkElem = item.querySelector('h3 a');
+                    const dateElem = item.querySelector('.date');
+                    
+                    if (linkElem) {
+                        // Use getAttribute to get the raw href value
+                        let link = linkElem.getAttribute('href') || '';
+                        
+                        // Remove surrounding quotes if present
+                        link = link.replace(/^['"]|['"]$/g, '');
+                        
+                        // Replace domain (same logic as index.html)
+                        if (link) {
+                            // Handle both http and https
+                            link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                            link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                            // Ensure https protocol
+                            if (link.startsWith('http://')) {
+                                link = 'https://' + link.substring(7);
+                            }
+                        }
+                        
+                        // Extract and format date
+                        let formattedDate = '';
+                        if (dateElem) {
+                            const dateText = dateElem.textContent.trim();
+                            // Convert YY年MM月DD日 HH:MM to YYYY年MM月DD日 HH:MM
+                            const match = dateText.match(/(\d{2})年(\d{2})月(\d{2})日\s+(\d{2}):(\d{2})/);
+                            if (match) {
+                                const year = parseInt(match[1]) + 2000;
+                                formattedDate = `${year}年${match[2]}月${match[3]}日 ${match[4]}:${match[5]}`;
+                            }
+                        }
+                        
+                        results.push({
+                            title: linkElem.textContent.trim(),
+                            category: categoryName,
+                            categoryKey: categoryKey,
+                            link: link,
+                            date: formattedDate,
+                            keywords: categoryName
+                        });
+                    }
+                });
+            } else {
+                // Old API format without dates (fallback)
+                const items = temp.querySelectorAll('a');
+                items.forEach(a => {
+                    let link = a.getAttribute('href') || '';
+                    
+                    // Remove surrounding quotes if present
+                    link = link.replace(/^['"]|['"]$/g, '');
+                    
+                    // Replace domain (same logic as index.html)
+                    if (link) {
+                        // Handle both http and https
+                        link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                        link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                        // Ensure https protocol
+                        if (link.startsWith('http://')) {
+                            link = 'https://' + link.substring(7);
+                        }
+                    }
+                    
+                    results.push({
+                        title: a.textContent.trim(),
+                        category: categoryName,
+                        categoryKey: categoryKey,
+                        link: link,
+                        date: '',
+                        keywords: categoryName
+                    });
+                });
+            }
+            
+            return results;
+        } catch (error) {
+            console.error(`Error loading API notices for ${categoryName}:`, error);
+            return [];
+        }
+    }
+
 			// Function to parse news.md content
 			function parseNewsMarkdown(markdownText) {
 				const lines = markdownText.split('\n');
@@ -487,15 +627,30 @@
 					
 					const markdownText = await response.text();
 					const newsData = parseNewsMarkdown(markdownText);
-					
-					// Hide loading message
-					document.getElementById('loading-message').style.display = 'none';
-					
-					// Show table
-					document.getElementById('announcementsTable').style.display = 'table';
-					
-					// Initialize DataTable with loaded data
-					initializeDataTable(newsData);
+
+
+
+// 2️⃣ 各 API 串接
+const hqNotices = await loadApiNotices("AEM2013Page_HQNotices", "總會通告", "general");
+const trainingNotices = await loadApiNotices("AEM2013Page_Training", "訓練班消息", "training");
+const activityNotices = await loadApiNotices("AEM2013Page_Activities", "活動消息", "activity");
+
+// 3️⃣ 合併所有來源
+const combinedData = [
+    ...hqNotices,
+    ...trainingNotices,
+    ...activityNotices,
+    ...newsData
+];
+
+// 4️⃣ 用 combinedData 初始化 DataTable
+initializeDataTable(combinedData);
+						
+						// Hide loading message
+						document.getElementById('loading-message').style.display = 'none';
+						
+						// Show table
+						document.getElementById('announcementsTable').style.display = 'table';
 					
 				} catch (error) {
 					console.error('Error loading announcements:', error);
@@ -550,10 +705,16 @@
 								}
 							}
 						},
-						{
-							data: 'date',
-							className: 'date-cell'
+					{
+						data: 'date',
+						className: 'date-cell',
+						render: function(data, type, row) {
+							if (type === 'sort' || type === 'type') {
+								return data || '';
+							}
+							return data || '-';
 						}
+					}
 					],
 					order: [[2, 'desc']], // Sort by date descending
 					pageLength: 25,
@@ -625,4 +786,3 @@
 		</script>
 	</body>
 </html>
-
