@@ -106,6 +106,28 @@
 				font-size: 0.9rem;
 			}
 			
+			/* Green bullet points for notice board and scout magazine */
+			#latest-news-list li,
+			#newsletters-list li {
+				position: relative;
+				padding-left: 1.2em;
+				line-height: 1.3;
+				margin-bottom: 0.5em;
+			}
+			
+			#latest-news-list li:before,
+			#newsletters-list li:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 0.5em;
+				height: 0.5em;
+				background-color: #31b404;
+				border-radius: 50%;
+			}
+			
 			/* Responsive design */
 			@media screen and (max-width: 768px) {
 				.carousel-container {
@@ -564,44 +586,109 @@
 				return newsletters;
 			}
 			
-			// Function to load and display latest news
+			// Function to load and display latest news from API
 			async function loadLatestNews() {
 				const latestNewsList = document.getElementById('latest-news-list');
 				
+				if (!latestNewsList) {
+					console.error('Notice board container not found');
+					return;
+				}
+				
 				try {
-					const response = await fetch('news.md');
+					// Fetch the notice data from the API
+					const apiUrl = 'https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_HQNotice';
+					const response = await fetch(apiUrl);
+					
 					if (!response.ok) {
 						throw new Error(`HTTP error! status: ${response.status}`);
 					}
 					
-					const markdownText = await response.text();
-					const newsData = parseNewsMarkdown(markdownText);
+					// Get the response as text (it's JavaScript code)
+					const responseText = await response.text();
 					
-					// Filter for general announcements
-					const generalAnnouncements = newsData.filter(item => item.categoryKey === 'general');
+					// Parse the JavaScript document.write() response
+					let htmlContent = '';
 					
-					// Sort by date (newest first)
-					generalAnnouncements.sort((a, b) => {
-						if (!a.date || !b.date) return 0;
-						return new Date(b.date.replace(/年|月|日/g, '/').replace(/\s+\d{2}:\d{2}/, '')) - 
-							   new Date(a.date.replace(/年|月|日/g, '/').replace(/\s+\d{2}:\d{2}/, ''));
-					});
+					// Try to match document.write('...')
+					let match = responseText.match(/document\.write\('(.+?)'\)/s);
+					if (match) {
+						htmlContent = match[1];
+					} else {
+						// Try to match document.write("...")
+						match = responseText.match(/document\.write\("(.+?)"\)/s);
+						if (match) {
+							htmlContent = match[1];
+						} else {
+							throw new Error('Could not parse API response format');
+						}
+					}
 					
-					// Take latest 10 items
-					const latestItems = generalAnnouncements.slice(0, 10);
+					// Unescape the HTML content
+					const unescapedHtml = htmlContent
+						.replace(/\\n/g, '\n')
+						.replace(/\\t/g, '\t')
+						.replace(/\\'/g, "'")
+						.replace(/\\"/g, '"')
+						.replace(/\\\\/g, '\\');
 					
-					if (latestItems.length === 0) {
+					// Parse the HTML to extract list items
+					const tempDiv = document.createElement('div');
+					tempDiv.innerHTML = unescapedHtml;
+					
+					const listItems = tempDiv.querySelectorAll('li');
+					
+					if (listItems.length === 0) {
+						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
+						return;
+					}
+					
+					// Process each list item
+					const processedNotices = Array.from(listItems).map(item => {
+						const link = item.querySelector('a');
+						if (!link) return null;
+						
+						const title = link.textContent || link.innerText || '';
+						let href = link.getAttribute('href') || '';
+						
+						// Replace www.scout.org.mo with scout.wpang.net
+						if (href) {
+							// Handle both http and https
+							href = href.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+							href = href.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+							// Ensure https protocol
+							if (href.startsWith('http://')) {
+								href = 'https://' + href.substring(7);
+							}
+						}
+						
+						return {
+							title: title.trim(),
+							link: href
+						};
+					}).filter(notice => notice && notice.title && notice.link);
+					
+					// Display the notices
+					if (processedNotices.length === 0) {
 						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
 					} else {
-						const listHTML = latestItems.map(item => {
-							return `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+						// Create list items with target="_blank" for new window opening
+						const listHTML = processedNotices.map(notice => {
+							// Escape HTML special characters in title
+							const escapedTitle = notice.title
+								.replace(/&/g, '&amp;')
+								.replace(/</g, '&lt;')
+								.replace(/>/g, '&gt;')
+								.replace(/"/g, '&quot;')
+								.replace(/'/g, '&#039;');
+							return `<li><a href="${notice.link}" target="_blank" rel="noopener noreferrer">${escapedTitle}</a></li>`;
 						}).join('');
 						
 						latestNewsList.innerHTML = listHTML;
 					}
 					
 				} catch (error) {
-					console.error('Error loading latest news:', error);
+					console.error('Error loading notices from API:', error);
 					latestNewsList.innerHTML = '<li class="error-text">載入最新消息時發生錯誤</li>';
 				}
 			}
@@ -609,28 +696,54 @@
 			// Function to load and display newsletters
 			async function loadNewsletters() {
 				const newslettersList = document.getElementById('newsletters-list');
+				const apiUrl = 'https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_Featured';
 				
 				try {
-					const response = await fetch('newsletters.md');
+					const response = await fetch(apiUrl);
 					if (!response.ok) {
 						throw new Error(`HTTP error! status: ${response.status}`);
 					}
 					
-					const markdownText = await response.text();
-					const newsletterData = parseNewslettersMarkdown(markdownText);
+					const scriptText = await response.text();
 					
-					// Take latest 6 newsletters
-					const latestNewsletters = newsletterData.slice(0, 6);
-					
-					if (latestNewsletters.length === 0) {
-						newslettersList.innerHTML = '<li class="error-text">沒有月刊</li>';
-					} else {
-						const newslettersHTML = latestNewsletters.map(item => {
-							return `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
-						}).join('');
-						
-						newslettersList.innerHTML = newslettersHTML;
+					// Extract HTML from document.write() call
+					const match = scriptText.match(/document\.write\('(.+)'\);/s);
+					if (!match) {
+						throw new Error('Invalid API response format');
 					}
+					
+					// Decode escaped characters
+					let htmlContent = match[1]
+						.replace(/\\n/g, '')
+						.replace(/\\'/g, "'");
+					
+					// Parse the HTML to extract links
+					const tempDiv = document.createElement('div');
+					tempDiv.innerHTML = htmlContent;
+					
+					const links = tempDiv.querySelectorAll('a');
+					if (links.length === 0) {
+						newslettersList.innerHTML = '<li class="error-text">沒有月刊</li>';
+						return;
+					}
+					
+					// Build newsletter list with domain replacement and security attributes
+					const newslettersHTML = Array.from(links).map(link => {
+						const href = link.getAttribute('href').replace('www.scout.org.mo', 'scout.wpang.net');
+						const title = link.textContent.trim();
+						
+						// Escape HTML to prevent XSS
+						const safeTitle = title
+							.replace(/&/g, '&amp;')
+							.replace(/</g, '&lt;')
+							.replace(/>/g, '&gt;')
+							.replace(/"/g, '&quot;')
+							.replace(/'/g, '&#039;');
+						
+						return `<li><a href="${href}" target="_blank" rel="noopener noreferrer">${safeTitle}</a></li>`;
+					}).join('');
+					
+					newslettersList.innerHTML = newslettersHTML;
 					
 				} catch (error) {
 					console.error('Error loading newsletters:', error);
