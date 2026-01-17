@@ -467,7 +467,7 @@
             if (newsItems.length > 0) {
                 // New API format with dates
                 newsItems.forEach(item => {
-                    const linkElem = item.querySelector('h3 a');
+                    const linkElem = item.querySelector('h3 a, h5 a');
                     const dateElem = item.querySelector('.date');
                     
                     if (linkElem) {
@@ -491,14 +491,26 @@
                         // Extract and format date
                         let formattedDate = '';
                         if (dateElem) {
-                            const dateText = dateElem.textContent.trim();
-                            // Convert YY年MM月DD日 HH:MM to YYYY年MM月DD日 HH:MM
-                            const match = dateText.match(/(\d{2})年(\d{2})月(\d{2})日\s+(\d{2}):(\d{2})/);
-                            if (match) {
-                                const year = parseInt(match[1]) + 2000;
-                                formattedDate = `${year}年${match[2]}月${match[3]}日 ${match[4]}:${match[5]}`;
-                            }
-                        }
+    const dateText = dateElem.textContent.trim();
+
+    // ✅ 國際活動專用格式
+    if (categoryKey === 'international') {
+        const m = dateText.match(/(\d{2}).*?(\d{2}).*?(\d{2}).*?(\d{2}):(\d{2})/);
+        if (m) {
+            const year = 2000 + parseInt(m[1], 10);
+            formattedDate = `${year}年${m[2]}月${m[3]}日 ${m[4]}:${m[5]}`;
+        }
+    }
+    // ✅ 原本 API 的正常格式
+    else {
+        const match = dateText.match(/(\d{2})年(\d{2})月(\d{2})日\s+(\d{2}):(\d{2})/);
+        if (match) {
+            const year = parseInt(match[1]) + 2000;
+            formattedDate = `${year}年${match[2]}月${match[3]}日 ${match[4]}:${match[5]}`;
+        }
+    }
+}
+
                         
                         results.push({
                             title: linkElem.textContent.trim(),
