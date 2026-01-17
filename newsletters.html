@@ -320,137 +320,126 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 		
 		<script>
-			// Function to parse newsletters.md content
-			function parseNewslettersMarkdown(markdownText) {
-				const lines = markdownText.split('\n');
-				const newsletters = [];
-				let currentNewsletter = null;
-				
-				for (let line of lines) {
-					line = line.trim();
-					if (!line) continue;
-					
-					// Check if this is a newsletter title line (starts with -)
-					if (line.startsWith('- ') && !line.includes('http') && line.includes('澳門童軍月刊')) {
-						// Save previous newsletter if exists
-						if (currentNewsletter) {
-							newsletters.push(currentNewsletter);
-						}
-						
-						// Start new newsletter
-						currentNewsletter = {
-							title: line.substring(2).trim(), // Remove "- " prefix
-							link: '',
-							keywords: ''
-						};
-					}
-					// Check if this is a link line (contains http)
-					else if (line.includes('http') && currentNewsletter) {
-						// Extract URL from the line
-						const urlMatch = line.match(/https?:\/\/[^\s]+/);
-						if (urlMatch) {
-							currentNewsletter.link = urlMatch[0];
-						}
-					}
-					// Check if this is a keywords line
-					else if (line.includes('關鍵字') && currentNewsletter) {
-						currentNewsletter.keywords = line.substring(line.indexOf('-') + 1).trim();
-					}
-				}
-				
-				// Don't forget the last newsletter
-				if (currentNewsletter) {
-					newsletters.push(currentNewsletter);
-				}
-				
-				return newsletters;
-			}
-			
-			// Function to load newsletters from markdown file
-			async function loadNewsletters() {
-				try {
-					const response = await fetch('newsletters.md');
-					if (!response.ok) {
-						throw new Error(`HTTP error! status: ${response.status}`);
-					}
-					
-					const markdownText = await response.text();
-					const newsletterData = parseNewslettersMarkdown(markdownText);
-					
-					// Hide loading message
-					document.getElementById('loading-message').style.display = 'none';
-					
-					// Show table
-					document.getElementById('newslettersTable').style.display = 'table';
-					
-					// Initialize DataTable with loaded data
-					const table = $('#newslettersTable').DataTable({
-						data: newsletterData,
-						columns: [
-							{
-								data: 'title',
-								render: function(data, type, row) {
-									if (row.link) {
-										return '<a href="' + row.link + '" target="_blank" class="newsletter-link">' + data + '</a>';
-									} else {
-										return '<span class="newsletter-link">' + data + '</span>';
-									}
-								}
-							}
-						],
-						order: [], // 不進行默認排序，保持原始順序
-						pageLength: 25,
-						language: {
-							"sProcessing": "處理中...",
-							"sLengthMenu": "顯示 _MENU_ 項結果",
-							"sZeroRecords": "沒有匹配結果",
-							"sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-							"sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-							"sInfoFiltered": "(由 _MAX_ 項結果過濾)",
-							"sInfoPostFix": "",
-							"sSearch": "",
-							"sUrl": "",
-							"sEmptyTable": "表中數據為空",
-							"sLoadingRecords": "載入中...",
-							"sInfoThousands": ",",
-							"oPaginate": {
-								"sFirst": "首頁",
-								"sPrevious": "上頁",
-								"sNext": "下頁",
-								"sLast": "末頁"
-							},
-							"oAria": {
-								"sSortAscending": ": 以升序排列此列",
-								"sSortDescending": ": 以降序排列此列"
-							}
-						},
-						responsive: true,
-						dom: 'rtip', // 移除搜索欄，只保留表格、信息和分頁
-						initComplete: function() {
-							// 連接自定義搜索欄
-							$('#custom-search').on('keyup', function() {
-								table.search(this.value).draw();
-							});
-						}
-					});
-					
-				} catch (error) {
-					console.error('Error loading newsletters:', error);
-					
-					// Hide loading message
-					document.getElementById('loading-message').style.display = 'none';
-					
-					// Show error message
-					document.getElementById('error-message').style.display = 'block';
-					document.getElementById('error-message').innerHTML = 
-						'載入月刊資料時發生錯誤：' + error.message + '<br>請檢查 newsletters.md 文件是否存在且格式正確。';
-				}
-			}
-			
-			// Load newsletters when document is ready
-			$(document).ready(function() {
-				loadNewsletters();
-			});
+// Function to parse newsletters.md content
+function parseNewslettersMarkdown(markdownText) {
+    const lines = markdownText.split('\n');
+    const newsletters = [];
+    let currentNewsletter = null;
+
+    for (let line of lines) {
+        line = line.trim();
+        if (!line) continue;
+
+        if (line.startsWith('- ') && !line.includes('http') && line.includes('澳門童軍月刊')) {
+            if (currentNewsletter) newsletters.push(currentNewsletter);
+            currentNewsletter = { title: line.substring(2).trim(), link: '', keywords: '' };
+        } else if (line.includes('http') && currentNewsletter) {
+            const urlMatch = line.match(/https?:\/\/[^\s]+/);
+            if (urlMatch) currentNewsletter.link = urlMatch[0];
+        } else if (line.includes('關鍵字') && currentNewsletter) {
+            currentNewsletter.keywords = line.substring(line.indexOf('-') + 1).trim();
+        }
+    }
+
+    if (currentNewsletter) newsletters.push(currentNewsletter);
+    return newsletters;
+}
+
+// Function to normalize API links into newsletter objects
+function parseNewslettersFromAPI(htmlContent) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    const links = tempDiv.querySelectorAll('a');
+    return Array.from(links).map(link => ({
+        title: link.textContent.trim(),
+        link: link.getAttribute('href').replace('www.scout.org.mo', 'scout.wpang.net'),
+        keywords: ''
+    }));
+}
+
+// Function to display newsletters in DataTable
+function displayNewsletters(newsletterData) {
+    $('#loading-message').hide();
+    $('#newslettersTable').show();
+
+    $('#newslettersTable').DataTable({
+        data: newsletterData,
+        columns: [
+            {
+                data: 'title',
+                render: function(data, type, row) {
+                    if (row.link) {
+                        return `<a href="${row.link}" target="_blank" rel="noopener noreferrer" class="newsletter-link">${data}</a>`;
+                    } else {
+                        return `<span class="newsletter-link">${data}</span>`;
+                    }
+                }
+            }
+        ],
+        order: [],
+        pageLength: 25,
+        language: {
+            "sProcessing": "處理中...",
+            "sLengthMenu": "顯示 _MENU_ 項結果",
+            "sZeroRecords": "沒有匹配結果",
+            "sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+            "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+            "sInfoFiltered": "(由 _MAX_ 項結果過濾)",
+            "sEmptyTable": "表中數據為空",
+            "sLoadingRecords": "載入中...",
+            "oPaginate": {
+                "sFirst": "首頁",
+                "sPrevious": "上頁",
+                "sNext": "下頁",
+                "sLast": "末頁"
+            }
+        },
+        responsive: true,
+        dom: 'rtip'
+    });
+}
+
+// Main function to load newsletters (API first, fallback Markdown)
+async function loadNewsletters() {
+    const apiUrl = 'https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_Featured';
+    let newsletterData = [];
+
+    try {
+        // Try API
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`API HTTP error: ${response.status}`);
+        const scriptText = await response.text();
+
+        const match = scriptText.match(/document\.write\('(.+)'\);/s);
+        if (!match) throw new Error('API response format invalid');
+
+        let htmlContent = match[1].replace(/\\n/g, '').replace(/\\'/g, "'");
+        newsletterData = parseNewslettersFromAPI(htmlContent);
+    } catch (apiError) {
+        console.warn('API failed, fallback to local markdown:', apiError);
+        try {
+            const response = await fetch('newsletters.md');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const markdownText = await response.text();
+            newsletterData = parseNewslettersMarkdown(markdownText);
+        } catch (mdError) {
+            console.error('Error loading newsletters from markdown:', mdError);
+            $('#loading-message').hide();
+            $('#newslettersTable').hide();
+            $('#error-message').show().html('載入月刊時發生錯誤');
+            return;
+        }
+    }
+
+    // Display newsletters in table
+    displayNewsletters(newsletterData);
+}
+
+// Initialize on document ready
+$(document).ready(function() {
+    loadNewsletters();
+});
+
 		</script>
 	</body>
 </html>
