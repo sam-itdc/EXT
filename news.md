@@ -1,3 +1,4 @@
+<!--
 - 童軍團團集會帶領技巧訓練班 - 延期通告
   - 訓練班消息
   - https://drive.google.com/file/d/1GfNWsInaZ_HrV2brUPF6hbyAtDxjiZmD/view
@@ -20,3 +21,4 @@
   - 服務通告
   - https://drive.google.com/file/d/1d0FOKUEJ15QP_hOVCp5OC4KVpiMTId1v/view
   - 2025年07月15日 00:47
+  -->
