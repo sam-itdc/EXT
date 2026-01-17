@@ -1,0 +1,788 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>通告 - 澳門童軍總會</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- DataTables CSS -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+		<style>
+			/* Custom styles for announcements page */
+			.category-nav {
+				background: #f8f9fa;
+				padding: 1rem;
+				border-radius: 8px;
+				margin-bottom: 2rem;
+				border: 1px solid #e9ecef;
+			}
+			
+			.category-nav h3 {
+				margin: 0 0 1rem 0;
+				color: #2c5aa0;
+				font-size: 1.2rem;
+			}
+			
+			.category-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+			
+			.category-btn {
+				padding: 0.5rem 1rem;
+				background: #fff;
+				border: 2px solid #2c5aa0;
+				color: #2c5aa0;
+				text-decoration: none;
+				border-radius: 5px;
+				transition: all 0.3s ease;
+				font-weight: 500;
+			}
+			
+			.category-btn:hover,
+			.category-btn.active {
+				background: #2c5aa0;
+				color: white;
+			}
+			
+			.dataTables_wrapper {
+				margin-top: 1rem;
+			}
+			
+			.dataTables_filter {
+				display: none; /* 隱藏DataTables默認搜索欄 */
+			}
+			
+			.search-container input:focus {
+				outline: none;
+				border-color: #2c5aa0;
+				box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+			}
+			
+			#announcementsTable {
+				width: 100% !important;
+			}
+			
+			#announcementsTable th {
+				background: #2c5aa0;
+				color: white;
+				padding: 12px;
+				text-align: left;
+			}
+			
+			#announcementsTable td {
+				padding: 10px;
+				border-bottom: 1px solid #eee;
+			}
+			
+			/* 調整列寬 */
+			#announcementsTable th:nth-child(1),
+			#announcementsTable td:nth-child(1) {
+				width: 20%; /* 類別列佔20%寬度 */
+			}
+			
+			#announcementsTable th:nth-child(2),
+			#announcementsTable td:nth-child(2) {
+				width: 60%; /* 標題列佔60%寬度 */
+			}
+			
+			#announcementsTable th:nth-child(3),
+			#announcementsTable td:nth-child(3) {
+				width: 20%; /* 發佈時間列佔20%寬度 */
+			}
+			
+			.category-badge {
+				display: inline-block;
+				padding: 0.25rem 0.5rem;
+				background: #e9ecef;
+				color: #495057;
+				border-radius: 3px;
+				font-size: 0.875rem;
+				font-weight: 500;
+			}
+			
+			.category-badge.training { background: #d4edda; color: #155724; }
+			.category-badge.activity { background: #d1ecf1; color: #0c5460; }
+			.category-badge.international { background: #f8d7da; color: #721c24; }
+			.category-badge.general { background: #fff3cd; color: #856404; }
+			.category-badge.service { background: #e2e3e5; color: #383d41; }
+			
+			.news-link {
+				color: #2c5aa0;
+				text-decoration: none;
+				font-weight: 500;
+			}
+			
+			.news-link:hover {
+				text-decoration: underline;
+			}
+			
+			.date-cell {
+				white-space: nowrap;
+				font-family: monospace;
+				font-size: 0.9rem;
+			}
+			
+			.loading-message {
+				text-align: center;
+				padding: 2rem;
+				color: #666;
+				font-style: italic;
+			}
+			
+			.error-message {
+				text-align: center;
+				padding: 2rem;
+				color: #d32f2f;
+				background: #ffebee;
+				border-radius: 8px;
+				margin: 1rem 0;
+			}
+			
+			@media (max-width: 768px) {
+				.category-nav > div {
+					flex-direction: column !important;
+				}
+				
+				.category-nav > div > div:last-child {
+					margin-left: 0 !important;
+					margin-top: 1rem !important;
+					width: 100%;
+				}
+				
+				.search-container input {
+					width: 100% !important;
+				}
+				
+				.category-buttons {
+					flex-direction: column;
+				}
+				
+				.category-btn {
+					text-align: center;
+					width: 100%;
+					box-sizing: border-box;
+					padding: 0.5rem 0.5rem;
+				}
+				
+				/* Hide category and date columns on mobile */
+				#announcementsTable th:nth-child(1),
+				#announcementsTable td:nth-child(1),
+				#announcementsTable th:nth-child(3),
+				#announcementsTable td:nth-child(3) {
+					display: none;
+				}
+				
+				/* Make title column full width on mobile */
+				#announcementsTable th:nth-child(2),
+				#announcementsTable td:nth-child(2) {
+					width: 100% !important;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload homepage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<div id="header-wrapper">
+				<header id="header" class="container">
+
+					<!-- Logo -->
+					<div id="logo">
+						<h1><a href="/index.html"><img src="/images/layout/scout-logo-removebg-preview.png" width="505" height="108"></a></h1>
+					</div>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+						<li><!--關於我們-->
+									<a href="#">關於我們</a>
+									<ul>
+										<li><a href="/page-about/introduction.html">總會簡介</a></li>
+										<li><a href="/page-about/patrons.html">會內人員</a></li>
+										<li><a href="/page-about/structure.html">組織架構</a></li>
+										<li><a href="/page-about/departments.html">部門簡介</a></li>
+										<li><a href="/page-about/groups.html">旅部簡介</a></li>
+										<li><a href="/page-scoutinfo/apply.html">加入童軍</a></li>
+										<li><a href="#">更新會員證</a></li>
+										<li><a href="/page-about/forms.html">表格</a></li>
+									</ul>
+								</li>
+								<li><!--童軍運動簡介-->
+									<a href="#">童軍運動簡介</a>
+									<ul>
+										<li><a href="/page-about/history.html">澳門童軍發展史</a></li>
+										<li><a href="/promise.html">誓詞銘言</a></li>
+										<li><a href="/page-about/emblem.html">會徽</a></li>
+										<li><a href="/page-scoutinfo/badge.html">徽章介紹</a></li>
+										<li><a href="/page-scoutinfo/uniform.html">制服介紹</a></li>
+										<li><a href="/page-scoutinfo/ranking.html">軍職徽章</a></li>
+										<li><a href="/page-scoutinfo/award.html">獎勵制度</a></li>
+									</ul>
+								</li>
+								<li><!--支部簡介-->
+									<a href="#">支部簡介</a>
+									<ul>
+										<li><a href="/page-scoutinfo/cub.html">幼童軍</a></li>
+										<li><a href="/page-scoutinfo/scout.html">童軍</a></li>
+										<li><a href="/page-scoutinfo/venture.html">深資童軍</a></li>
+										<li><a href="/page-scoutinfo/wood-badge.html">成年領袖</a></li>
+									</ul>
+								</li>
+								<li><!--通告-->
+									<a href="/news.html">通告</a>
+									<ul>
+										<li><a href="/news.html?category=training">訓練班消息</a></li>
+										<li><a href="/news.html?category=activity">活動消息</a></li>
+										<li><a href="/news.html?category=international">國際活動</a></li>
+										<li><a href="/page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
+										<li><a href="/news.html?category=general">總會通告</a></li>
+										<li><a href="/news.html?category=service">服務通告</a></li>
+									</ul>
+								</li>
+							<li><!--參考資料-->
+								<a href="#">參考資料</a>
+								<ul>
+									<li><a href="/newsletters.html">童軍月刊</a></li>
+									<li><a href="/page-about/references/marching.html">標準步操及禮儀</a></li>
+									<li><a href="/page-about/references/baden-powell.html">貝登堡略傳</a></li>
+									<li><a href="/page-about/references/signal.html">三指記號</a></li>
+									<li><a href="/page-about/references/courtesy.html">生活禮節</a></li>
+									<li><a href="/page-about/references/training.html">出版刊物</a></li>
+								</ul>
+							</li>
+					</ul>
+					</nav>
+
+				</header>
+			</div>
+
+			<!-- Main -->
+			<div id="main-wrapper">
+				<div class="container">
+					
+				<!-- Category Navigation -->
+				<div class="category-nav">
+					<div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+						<div style="flex: 1; min-width: 300px;">
+							<h3>📂 通告分類</h3>
+							<div class="category-buttons">
+								<a href="news.html" class="category-btn" id="btn-all">全部通告</a>
+								<a href="news.html?category=training" class="category-btn" id="btn-training">訓練班消息</a>
+								<a href="news.html?category=activity" class="category-btn" id="btn-activity">活動消息</a>
+								<a href="news.html?category=international" class="category-btn" id="btn-international">國際活動</a>
+								<a href="news.html?category=general" class="category-btn" id="btn-general">總會通告</a>
+								<a href="news.html?category=service" class="category-btn" id="btn-service">服務通告</a>
+							</div>
+						</div>
+						<div style="flex: 0 0 auto; margin-left: 2rem; margin-top: 2rem;">
+							<div class="search-container">
+								<input type="text" id="custom-search" placeholder="搜索通告標題、類別或關鍵字..." style="width: 300px; padding: 0.75rem; border: 2px solid #ddd; border-radius: 6px; font-size: 1rem; box-sizing: border-box; transition: border-color 0.3s ease;">
+							</div>
+						</div>
+					</div>
+				</div>
+					
+					<!-- Announcements Table -->
+					<div class="row gtr-200">
+						<div class="col-12">
+							<div id="content">
+								<div id="loading-message" class="loading-message">
+									正在載入通告資料...
+								</div>
+								<div id="error-message" class="error-message" style="display: none;">
+									載入通告資料時發生錯誤，請稍後再試。
+								</div>
+								<table id="announcementsTable" class="display" style="width:100%; display: none;">
+									<thead>
+										<tr>
+											<th>類別</th>
+											<th>標題</th>
+											<th>發佈時間</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- Data will be populated dynamically from news.md -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer-wrapper">
+				<footer id="footer" class="container">
+					<div class="row">
+					<div class="col-6 col-6-medium col-12-small">
+						
+						<!-- Links -->
+						<section class="widget links d-none">
+							<h3>近期活動</h3>
+							<div class="d-none d-lg-block">
+								<iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=rks8lssh5vrqagv4cu6vr444fs%40group.calendar.google.com&amp;color=%235229A3&amp;src=e63o9v6i6hq7ms03kjtr2mt7t4%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=Asia%2FMacau" style=" border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe>									<ul class="style2">
+							</div>
+							</ul>
+						</section>
+						
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+						
+						<!-- Links -->
+						<section class="widget links">
+							<h3>相關網站</h3>
+							<ul class="style2">
+								<li><a target="_blank" href="https://www.scout.org">世界童軍總會</a></li>
+								<li><a target="_blank" href="https://www.scout.org/where-we-work/regions/asia-pacific/region">亞太童軍總會</a></li>
+								<li><a target="_blank" href="https://www.scout.org.hk/tc/">香港童軍總會</a></li>
+							</ul>
+							<h3>資訊系統</h3>
+							<ul class="style2">
+								<li><a href="#">社會服務申報系統</a></li>
+								<li><a href="#">專章報名系統</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Contact -->
+							<section class="widget contact last">
+								<h3>聯絡我們</h3>
+								<ul>
+									<li><a href="mailto:scoutmac@macau.ctm.net" class="icon far fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+								<p>澳門氹仔盧伯德圓形地氹仔炮臺<br />
+									tel: +853 28780411<br />
+									fax: +853 28780412</p>
+							</section>
+
+					</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; 2025 THE SCOUT ASSOCIATION OF MACAU. All rights reserved 本網站版權為澳門童軍總會所有</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+		<!-- DataTables JavaScript -->
+		<script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+		
+		<script>
+			// Category mapping
+			const categoryMapping = {
+				'訓練班消息': 'training',
+				'活動消息': 'activity',
+				'國際活動': 'international',
+				'總會通告': 'general',
+				'服務通告': 'service'
+			};
+			
+			const categoryMappingReverse = {
+				'training': '訓練班消息',
+				'activity': '活動消息',
+				'international': '國際活動',
+				'general': '總會通告',
+				'service': '服務通告'
+			};
+			
+			// Get category badge class
+			function getCategoryBadgeClass(categoryKey) {
+				const classMap = {
+					'training': 'training',
+					'activity': 'activity',
+					'international': 'international',
+					'general': 'general',
+					'service': 'service'
+				};
+				return classMap[categoryKey] || 'general';
+			}
+			
+            async function loadApiNotices(key, categoryName, categoryKey) {
+        try {
+            const apiUrl = `https://scout.wpang.net/INT/api/javascript.php?key=${key}`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const scriptText = await response.text();
+            
+            // Extract HTML from document.write() calls
+            const writeMatches = scriptText.match(/document\.write\(['"](.+?)['"]\)/g);
+            if (!writeMatches) {
+                return [];
+            }
+            
+            let htmlContent = '';
+            writeMatches.forEach(match => {
+                const content = match.match(/document\.write\(['"](.+?)['"]\)/)[1];
+                htmlContent += content;
+            });
+            
+            // Unescape the HTML content (same as index.html)
+            const unescapedHtml = htmlContent
+                .replace(/\\n/g, '\n')
+                .replace(/\\t/g, '\t')
+                .replace(/\\'/g, "'")
+                .replace(/\\"/g, '"')
+                .replace(/\\\\/g, '\\');
+            
+            // Parse HTML content
+            const temp = document.createElement('div');
+            temp.innerHTML = unescapedHtml;
+            
+            // Look for news-item structure with dates
+            const newsItems = temp.querySelectorAll('.news-item');
+            const results = [];
+            
+            if (newsItems.length > 0) {
+                // New API format with dates
+                newsItems.forEach(item => {
+                    const linkElem = item.querySelector('h3 a');
+                    const dateElem = item.querySelector('.date');
+                    
+                    if (linkElem) {
+                        // Use getAttribute to get the raw href value
+                        let link = linkElem.getAttribute('href') || '';
+                        
+                        // Remove surrounding quotes if present
+                        link = link.replace(/^['"]|['"]$/g, '');
+                        
+                        // Replace domain (same logic as index.html)
+                        if (link) {
+                            // Handle both http and https
+                            link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                            link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                            // Ensure https protocol
+                            if (link.startsWith('http://')) {
+                                link = 'https://' + link.substring(7);
+                            }
+                        }
+                        
+                        // Extract and format date
+                        let formattedDate = '';
+                        if (dateElem) {
+                            const dateText = dateElem.textContent.trim();
+                            // Convert YY年MM月DD日 HH:MM to YYYY年MM月DD日 HH:MM
+                            const match = dateText.match(/(\d{2})年(\d{2})月(\d{2})日\s+(\d{2}):(\d{2})/);
+                            if (match) {
+                                const year = parseInt(match[1]) + 2000;
+                                formattedDate = `${year}年${match[2]}月${match[3]}日 ${match[4]}:${match[5]}`;
+                            }
+                        }
+                        
+                        results.push({
+                            title: linkElem.textContent.trim(),
+                            category: categoryName,
+                            categoryKey: categoryKey,
+                            link: link,
+                            date: formattedDate,
+                            keywords: categoryName
+                        });
+                    }
+                });
+            } else {
+                // Old API format without dates (fallback)
+                const items = temp.querySelectorAll('a');
+                items.forEach(a => {
+                    let link = a.getAttribute('href') || '';
+                    
+                    // Remove surrounding quotes if present
+                    link = link.replace(/^['"]|['"]$/g, '');
+                    
+                    // Replace domain (same logic as index.html)
+                    if (link) {
+                        // Handle both http and https
+                        link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                        link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+                        // Ensure https protocol
+                        if (link.startsWith('http://')) {
+                            link = 'https://' + link.substring(7);
+                        }
+                    }
+                    
+                    results.push({
+                        title: a.textContent.trim(),
+                        category: categoryName,
+                        categoryKey: categoryKey,
+                        link: link,
+                        date: '',
+                        keywords: categoryName
+                    });
+                });
+            }
+            
+            return results;
+        } catch (error) {
+            console.error(`Error loading API notices for ${categoryName}:`, error);
+            return [];
+        }
+    }
+
+			// Function to parse news.md content
+			function parseNewsMarkdown(markdownText) {
+				const lines = markdownText.split('\n');
+				const news = [];
+				let currentNews = null;
+				
+				for (let line of lines) {
+					line = line.trim();
+					if (!line) continue;
+					
+					// Check if this is a category line
+					const categoryFound = line.startsWith('- ') && currentNews && Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(2).trim());
+					// Check if this is a news title line (starts with -)
+					if (line.startsWith('- ') && !line.includes('http') && !Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(2).trim()) && !line.includes('年') && !line.includes('關鍵字')) {
+						// Save previous news if exists
+						if (currentNews) {
+							news.push(currentNews);
+						}
+						
+						// Start new news
+						currentNews = {
+							title: line.substring(2).trim(), // Remove "- " prefix
+							category: '',
+							categoryKey: '',
+							link: '',
+							date: '',
+							keywords: ''
+						};
+					}
+					else if (categoryFound) {
+						const categoryName = line.substring(2).trim();
+						currentNews.category = categoryName;
+						currentNews.categoryKey = categoryMapping[categoryName] || 'general';
+					}
+					// Check if this is a link line (contains http)
+					else if (line.includes('http') && currentNews) {
+						// Extract URL from the line
+						const urlMatch = line.match(/https?:\/\/[^\s]+/);
+						if (urlMatch) {
+							currentNews.link = urlMatch[0];
+						}
+					}
+					// Check if this is a date line (contains 年 and 日)
+					else if (line.includes('年') && line.includes('日') && currentNews) {
+						const dateMatch = line.match(/(\d{4}年\d{2}月\d{2}日\s+\d{2}:\d{2})/);
+						if (dateMatch) {
+							currentNews.date = dateMatch[1];
+						} else {
+							// Try to extract any date-like pattern
+							const simpleDateMatch = line.match(/\d{4}年\d{2}月\d{2}日\s+\d{2}:\d{2}/);
+							if (simpleDateMatch) {
+								currentNews.date = simpleDateMatch[0];
+							}
+						}
+					}
+					// Check if this is a keywords line
+					else if (line.includes('關鍵字') && currentNews) {
+						currentNews.keywords = line.substring(line.indexOf('-') + 1).trim();
+					}
+				}
+				
+				// Don't forget the last news
+				if (currentNews) {
+					news.push(currentNews);
+				}
+				
+				return news;
+			}
+			
+			// Function to load announcements from markdown file
+			async function loadAnnouncements() {
+				try {
+					const response = await fetch('news.md');
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					
+					const markdownText = await response.text();
+					const newsData = parseNewsMarkdown(markdownText);
+
+
+
+// 2️⃣ 各 API 串接
+const hqNotices = await loadApiNotices("AEM2013Page_HQNotices", "總會通告", "general");
+const trainingNotices = await loadApiNotices("AEM2013Page_Training", "訓練班消息", "training");
+const activityNotices = await loadApiNotices("AEM2013Page_Activities", "活動消息", "activity");
+
+// 3️⃣ 合併所有來源
+const combinedData = [
+    ...hqNotices,
+    ...trainingNotices,
+    ...activityNotices,
+    ...newsData
+];
+
+// 4️⃣ 用 combinedData 初始化 DataTable
+initializeDataTable(combinedData);
+						
+						// Hide loading message
+						document.getElementById('loading-message').style.display = 'none';
+						
+						// Show table
+						document.getElementById('announcementsTable').style.display = 'table';
+					
+				} catch (error) {
+					console.error('Error loading announcements:', error);
+					
+					// Hide loading message
+					document.getElementById('loading-message').style.display = 'none';
+					
+					// Show error message
+					document.getElementById('error-message').style.display = 'block';
+					document.getElementById('error-message').innerHTML = 
+						'載入通告資料時發生錯誤：' + error.message + '<br>請檢查 news.md 文件是否存在且格式正確。';
+				}
+			}
+			
+			// Function to initialize DataTable
+			function initializeDataTable(newsData) {
+				// Get URL parameter
+				function getUrlParameter(name) {
+					name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+					var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+					var results = regex.exec(location.search);
+					return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+				}
+				
+				// Get current category from URL
+				const currentCategory = getUrlParameter('category');
+				
+				// Set active button
+				if (currentCategory) {
+					$('#btn-' + currentCategory).addClass('active');
+				} else {
+					$('#btn-all').addClass('active');
+				}
+				
+				// Initialize DataTable
+				const table = $('#announcementsTable').DataTable({
+					data: newsData,
+					columns: [
+						{
+							data: 'category',
+							render: function(data, type, row) {
+								return '<span class="category-badge ' + getCategoryBadgeClass(row.categoryKey) + '">' + data + '</span>';
+							}
+						},
+						{
+							data: 'title',
+							render: function(data, type, row) {
+								if (row.link) {
+									return '<a href="' + row.link + '" target="_blank" class="news-link">' + data + '</a>';
+								} else {
+									return '<span class="news-link">' + data + '</span>';
+								}
+							}
+						},
+					{
+						data: 'date',
+						className: 'date-cell',
+						render: function(data, type, row) {
+							if (type === 'sort' || type === 'type') {
+								return data || '';
+							}
+							return data || '-';
+						}
+					}
+					],
+					order: [[2, 'desc']], // Sort by date descending
+					pageLength: 25,
+					language: {
+						"sProcessing": "處理中...",
+						"sLengthMenu": "顯示 _MENU_ 項結果",
+						"sZeroRecords": "沒有匹配結果",
+						"sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+						"sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+						"sInfoFiltered": "(由 _MAX_ 項結果過濾)",
+						"sInfoPostFix": "",
+						"sSearch": "",
+						"sUrl": "",
+						"sEmptyTable": "表中數據為空",
+						"sLoadingRecords": "載入中...",
+						"sInfoThousands": ",",
+						"oPaginate": {
+							"sFirst": "首頁",
+							"sPrevious": "上頁",
+							"sNext": "下頁",
+							"sLast": "末頁"
+						},
+						"oAria": {
+							"sSortAscending": ": 以升序排列此列",
+							"sSortDescending": ": 以降序排列此列"
+						}
+					},
+					responsive: true,
+					dom: 'rtip', // 移除搜索欄，只保留表格、信息和分頁
+					initComplete: function() {
+						// 連接自定義搜索欄
+						$('#custom-search').on('keyup', function() {
+							table.search(this.value).draw();
+						});
+					}
+				});
+				
+				// Apply category filter if specified
+				if (currentCategory && categoryMappingReverse[currentCategory]) {
+					table.column(0).search(categoryMappingReverse[currentCategory]).draw();
+				}
+				
+				// Add custom search functionality for keywords
+				$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+					if (settings.nTable.id !== 'announcementsTable') {
+						return true;
+					}
+					
+					const searchTerm = table.search().toLowerCase();
+					if (!searchTerm) {
+						return true;
+					}
+					
+					const rowData = newsData[dataIndex];
+					const searchableText = (
+						rowData.title + ' ' + 
+						rowData.category + ' ' + 
+						rowData.keywords
+					).toLowerCase();
+					
+					return searchableText.includes(searchTerm);
+				});
+			}
+			
+			// Load announcements when document is ready
+			$(document).ready(function() {
+				loadAnnouncements();
+			});
+		</script>
+	</body>
+</html>

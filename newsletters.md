@@ -1,0 +1,15 @@
+- 澳門童軍月刊2025年06月刊第159期
+  - https://drive.google.com/file/d/1ttV3sIH8jJQP42nQTg5PppuJWC92i3rr/view
+- 澳門童軍月刊2025年5月刊第158期
+  - https://drive.google.com/file/d/1ZpZJ-MICJndziDvdsSC7N-s9F5R7aVE_/view?usp=sharing
+  - 關鍵字
+- 澳門童軍月刊2025年4月刊第157期
+  - https://drive.google.com/file/d/1JQ1yNwZ0QPeIMLbHrvHhSSSqKQP8L_IZ/view?usp=sharing
+- 澳門童軍月刊2025年3月刊第156期
+  - https://drive.google.com/file/d/1W33VczOXoWZd_5x43JixVmN4NFXexIjo/view?usp=sharing
+- 澳門童軍月刊2025年2月刊第155期
+  - https://drive.google.com/file/d/1MoAwhWiJgsUuRQLE4U3Idy524GEe0RzT/view?usp=sharing
+- 澳門童軍月刊2025年1月刊第154期
+  - https://drive.google.com/file/d/1iqCjm1nAXLjqfBJhnrnLE5RFirlsKiOv/view?usp=sharing
+- 澳門童軍月刊2024年12月刊第153期
+  - https://drive.google.com/file/d/12p6XneC0QWLe-FsEfqx3S9vk4zJrlw0O/view?usp=sharing
