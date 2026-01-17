@@ -14,46 +14,37 @@
 			/* 旅部簡介專用樣式 */
 	<style>
 /* 旅部簡介專用樣式 */
-.group-navigation {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    text-align: center;
-    overflow-x: auto; /* 橫向滑動 */
-    white-space: nowrap;
-}
-.group-navigation h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-.group-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+<style>
+/* 通用導航按鈕風格（會內人員 & 旅級導航共用） */
+.nav-grid, .group-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 10px;
+    justify-items: center;
+    margin-bottom: 20px;
 }
-.group-links a {
+
+.nav-grid a, .group-links a {
     display: inline-block;
     width: 90px;         /* 統一寬度 */
     height: 40px;        /* 統一高度 */
-    line-height: 40px;   /* 文字垂直置中 */
-    margin: 5px;         /* 按鈕間距 */
+    line-height: 40px;   /* 垂直置中 */
+    text-align: center;  /* 水平置中 */
     background: #3498db;
     color: white;
     text-decoration: none;
     border-radius: 20px;
-    text-align: center;  /* 文字水平置中 */
     font-size: 14px;
     transition: all 0.3s ease;
-    white-space: normal; /* 文字自動換行 */
+    white-space: normal; /* 遇長文字自動換行 */
 }
-.group-links a:hover {
+
+.nav-grid a:hover, .group-links a:hover {
     background: #2980b9;
     transform: translateY(-2px);
 }
 
-/* 旅部卡片 */
+/* 旅部簡介卡片 */
 .group-card {
     background: white;
     border-radius: 15px;
@@ -141,7 +132,7 @@
     font-size: 14px;
 }
 
-/* RWD */
+/* RWD 小螢幕自適應 */
 @media (max-width: 768px) {
     .group-header {
         flex-direction: column;
@@ -154,13 +145,15 @@
     .group-info {
         grid-template-columns: 1fr;
     }
-    .group-links a {
+    .nav-grid a, .group-links a {
         width: 70px;
         height: 35px;
         line-height: 35px;
         font-size: 12px;
     }
 }
+</style>
+
 </style>
 
 		</style>
