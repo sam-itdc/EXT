@@ -15,31 +15,33 @@
 	<style>
 /* 旅部簡介專用樣式 */
 <style>
-/* 通用導航按鈕風格（會內人員 & 旅級導航共用） */
-.nav-grid, .group-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 10px;
-    justify-items: center;
-    margin-bottom: 20px;
+.dept-navigation {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
 }
-
-.nav-grid a, .group-links a {
-    display: inline-block;
-    width: 90px;         /* 統一寬度 */
-    height: 40px;        /* 統一高度 */
-    line-height: 40px;   /* 垂直置中 */
-    text-align: center;  /* 水平置中 */
+.dept-navigation h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+.dept-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+.dept-nav-item {
     background: #3498db;
     color: white;
-    text-decoration: none;
+    padding: 8px 12px;
     border-radius: 20px;
+    text-decoration: none;
     font-size: 14px;
     transition: all 0.3s ease;
-    white-space: normal; /* 遇長文字自動換行 */
 }
-
-.nav-grid a:hover, .group-links a:hover {
+.dept-nav-item:hover {
     background: #2980b9;
     transform: translateY(-2px);
 }
@@ -145,11 +147,8 @@
     .group-info {
         grid-template-columns: 1fr;
     }
-    .nav-grid a, .group-links a {
-        width: 70px;
-        height: 35px;
-        line-height: 35px;
-        font-size: 12px;
+    .dept-nav-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
 </style>
@@ -244,43 +243,42 @@
 						<article>
 							<h2>旅部簡介</h2>
 							
-							<div class="group-navigation">
-								<div class="group-links">
-									<a href="#group-01">第一旅</a>
-									<a href="#group-02">第二旅</a>
-									<a href="#group-03">第三旅</a>
-									<a href="#group-04">第四旅</a>
-									<a href="#group-05">第五旅</a>
-									
-									<a href="#group-08">第八旅</a>
-									<a href="#group-12">第十二旅</a>
-									
-									<a href="#group-15">第十五旅</a>
-									<a href="#group-16">第十六旅</a>
-									<a href="#group-17">第十七旅</a>
-									<a href="#group-19">第十九旅</a>
-									<a href="#group-20">第二十旅</a>
-									<a href="#group-21">第二十一旅</a>
-									<a href="#group-22">第二十二旅</a>
-									<a href="#group-23">第二十三旅</a>
-									<a href="#group-24">第二十四旅</a>
-									
-									<a href="#group-28">第二十八旅</a>
-									<a href="#group-29">第二十九旅</a>
-									<a href="#group-30">第三十旅</a>
-									
-									<a href="#group-33">第三十三旅</a>
-									<a href="#group-34">第三十四旅</a>
-									<a href="#group-35">第三十五旅</a>
-									<a href="#group-36">第三十六旅</a>
-									<a href="#group-37">第三十七旅</a>
-									
-									<a href="#group-39">第三十九旅</a>
-									<a href="#group-40">第四十旅</a>
-									<a href="#group-41">第四十一旅</a>
-									<a href="#group-42">第四十二旅</a>
-								</div>
-							</div>
+							<div class="dept-navigation" id="top">
+    <div class="dept-nav-grid">
+        <a href="#group-01" class="dept-nav-item">第一旅</a>
+        <a href="#group-02" class="dept-nav-item">第二旅</a>
+        <a href="#group-03" class="dept-nav-item">第三旅</a>
+        <a href="#group-04" class="dept-nav-item">第四旅</a>
+        <a href="#group-05" class="dept-nav-item">第五旅</a>
+        <a href="#group-06" class="dept-nav-item">第六旅</a>
+        <a href="#group-08" class="dept-nav-item">第八旅</a>
+        <a href="#group-12" class="dept-nav-item">第十二旅</a>
+        <a href="#group-14" class="dept-nav-item">第十四旅</a>
+        <a href="#group-15" class="dept-nav-item">第十五旅</a>
+        <a href="#group-16" class="dept-nav-item">第十六旅</a>
+        <a href="#group-17" class="dept-nav-item">第十七旅</a>
+        <a href="#group-18" class="dept-nav-item">第十八旅</a>
+        <a href="#group-22" class="dept-nav-item">第二十二旅</a>
+        <a href="#group-23" class="dept-nav-item">第二十三旅</a>
+        <a href="#group-24" class="dept-nav-item">第二十四旅</a>
+        <a href="#group-25" class="dept-nav-item">第二十五旅</a>
+        <a href="#group-28" class="dept-nav-item">第二十八旅</a>
+        <a href="#group-29" class="dept-nav-item">第二十九旅</a>
+        <a href="#group-30" class="dept-nav-item">第三十旅</a>
+        <a href="#group-32" class="dept-nav-item">第三十二旅</a>
+        <a href="#group-33" class="dept-nav-item">第三十三旅</a>
+        <a href="#group-34" class="dept-nav-item">第三十四旅</a>
+        <a href="#group-35" class="dept-nav-item">第三十五旅</a>
+        <a href="#group-36" class="dept-nav-item">第三十六旅</a>
+        <a href="#group-37" class="dept-nav-item">第三十七旅</a>
+        <a href="#group-38" class="dept-nav-item">第三十八旅</a>
+        <a href="#group-39" class="dept-nav-item">第三十九旅</a>
+        <a href="#group-40" class="dept-nav-item">第四十旅</a>
+        <a href="#group-41" class="dept-nav-item">第四十一旅</a>
+        <a href="#group-42" class="dept-nav-item">第四十二旅</a>
+    </div>
+</div>
+
 
 							<!-- 第一旅 -->
 							<div class="group-card" id="group-01">
