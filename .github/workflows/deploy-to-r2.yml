@@ -23,8 +23,8 @@ jobs:
       
       - name: Sync to R2
         env:
-          R2_ENDPOINT: https://54911001cd87addf755fbc08be3c974f.r2.cloudflarestorage.com
-          R2_BUCKET: scoutmac
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
           # Install AWS CLI
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
