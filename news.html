@@ -634,12 +634,16 @@
 const hqNotices = await loadApiNotices("AEM2013Page_HQNotices", "總會通告", "general");
 const trainingNotices = await loadApiNotices("AEM2013Page_Training", "訓練班消息", "training");
 const activityNotices = await loadApiNotices("AEM2013Page_Activities", "活動消息", "activity");
+const serviceNotices = await loadApiNotices("AEM2013Page_Services", "服務通告", "service");	
+const internationalNotices = await loadApiNotices("AEMINTL_MainPage", "國際活動", "international");		
 
 // 3️⃣ 合併所有來源
 const combinedData = [
     ...hqNotices,
     ...trainingNotices,
     ...activityNotices,
+	...serviceNotices,
+	...internationalNotices,
     ...newsData
 ];
 
