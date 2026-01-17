@@ -12,134 +12,157 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<style>
 			/* 旅部簡介專用樣式 */
-			.group-navigation {
-				background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-				padding: 20px;
-				border-radius: 10px;
-				margin-bottom: 30px;
-				text-align: center;
-			}
-			.group-navigation h3 {
-				color: #2c3e50;
-				margin-bottom: 15px;
-			}
-			.group-links {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				gap: 10px;
-			}
-			.group-links a {
-				background: #3498db;
-				color: white;
-				padding: 8px 15px;
-				border-radius: 20px;
-				text-decoration: none;
-				font-size: 14px;
-				transition: background 0.3s ease;
-			}
-			.group-links a:hover {
-				background: #2980b9;
-			}
-			.group-card {
-				background: white;
-				border-radius: 15px;
-				padding: 25px;
-				margin-bottom: 30px;
-				box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-				border-left: 5px solid #3498db;
-			}
-			.group-header {
-				display: flex;
-				align-items: center;
-				margin-bottom: 20px;
-				flex-wrap: wrap;
-			}
-			.group-logo {
-				width: 120px;
-				height: 120px;
-				margin-right: 25px;
-				border-radius: 10px;
-				object-fit: contain;
-				background: #f8f9fa;
-				padding: 10px;
-			}
-			.group-title {
-				flex: 1;
-				min-width: 300px;
-			}
-			.group-title h3 {
-				color: #2c3e50;
-				margin-bottom: 10px;
-				font-size: 24px;
-			}
-			.group-info {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-				gap: 15px;
-			}
-			.info-item {
-				display: flex;
-				align-items: center;
-				padding: 10px;
-				background: #f8f9fa;
-				border-radius: 8px;
-			}
-			.info-label {
-				font-weight: bold;
-				color: #34495e;
-				min-width: 80px;
-				margin-right: 10px;
-			}
-			.info-value {
-				color: #2c3e50;
-				flex: 1;
-			}
-			.group-sections {
-				display: flex;
-				gap: 10px;
-				flex-wrap: wrap;
-				margin-top: 10px;
-			}
-			.section-badge {
-				padding: 5px 12px;
-				border-radius: 15px;
-				font-size: 12px;
-				font-weight: bold;
-				text-decoration: none;
-			}
-			.cub-badge { background: #ffebee; color: #c62828; }
-			.scout-badge { background: #e8f5e8; color: #2e7d32; }
-			.venture-badge { background: #e3f2fd; color: #1565c0; }
-			.neckerchief {
-				max-width: 120px;
-				height: auto;
-				border-radius: 5px;
-				margin-top: 10px;
-				object-fit: contain;
-			}
-			.back-to-top {
-				text-align: right;
-				margin-top: 15px;
-			}
-			.back-to-top a {
-				color: #3498db;
-				text-decoration: none;
-				font-size: 14px;
-			}
-			@media (max-width: 768px) {
-				.group-header {
-					flex-direction: column;
-					text-align: center;
-				}
-				.group-logo {
-					margin-right: 0;
-					margin-bottom: 15px;
-				}
-				.group-info {
-					grid-template-columns: 1fr;
-				}
-			}
+	<style>
+/* 旅部簡介專用樣式 */
+.group-navigation {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    overflow-x: auto; /* 橫向滑動 */
+    white-space: nowrap;
+}
+.group-navigation h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+.group-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.group-links a {
+    display: inline-block;
+    width: 90px;         /* 統一寬度 */
+    height: 40px;        /* 統一高度 */
+    line-height: 40px;   /* 文字垂直置中 */
+    margin: 5px;         /* 按鈕間距 */
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    text-align: center;  /* 文字水平置中 */
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: normal; /* 文字自動換行 */
+}
+.group-links a:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* 旅部卡片 */
+.group-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #3498db;
+}
+.group-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.group-logo {
+    width: 120px;
+    height: 120px;
+    margin-right: 25px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: #f8f9fa;
+    padding: 10px;
+}
+.group-title {
+    flex: 1;
+    min-width: 300px;
+}
+.group-title h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+.group-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+.info-label {
+    font-weight: bold;
+    color: #34495e;
+    min-width: 80px;
+    margin-right: 10px;
+}
+.info-value {
+    color: #2c3e50;
+    flex: 1;
+}
+.group-sections {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+.section-badge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.cub-badge { background: #ffebee; color: #c62828; }
+.scout-badge { background: #e8f5e8; color: #2e7d32; }
+.venture-badge { background: #e3f2fd; color: #1565c0; }
+.neckerchief {
+    max-width: 120px;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+    object-fit: contain;
+}
+.back-to-top {
+    text-align: right;
+    margin-top: 15px;
+}
+.back-to-top a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* RWD */
+@media (max-width: 768px) {
+    .group-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .group-logo {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .group-info {
+        grid-template-columns: 1fr;
+    }
+    .group-links a {
+        width: 70px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 12px;
+    }
+}
+</style>
+
 		</style>
 	</head>
 	<body class="is-preload no-sidebar">
@@ -235,28 +258,30 @@
 									<a href="#group-03">第三旅</a>
 									<a href="#group-04">第四旅</a>
 									<a href="#group-05">第五旅</a>
-									<a href="#group-06">第六旅</a>
+									
 									<a href="#group-08">第八旅</a>
 									<a href="#group-12">第十二旅</a>
-									<a href="#group-14">第十四旅</a>
+									
 									<a href="#group-15">第十五旅</a>
 									<a href="#group-16">第十六旅</a>
 									<a href="#group-17">第十七旅</a>
-									<a href="#group-18">第十八旅</a>
+									<a href="#group-19">第十九旅</a>
+									<a href="#group-20">第二十旅</a>
+									<a href="#group-21">第二十一旅</a>
 									<a href="#group-22">第二十二旅</a>
 									<a href="#group-23">第二十三旅</a>
 									<a href="#group-24">第二十四旅</a>
-									<a href="#group-25">第二十五旅</a>
+									
 									<a href="#group-28">第二十八旅</a>
 									<a href="#group-29">第二十九旅</a>
 									<a href="#group-30">第三十旅</a>
-									<a href="#group-32">第三十二旅</a>
+									
 									<a href="#group-33">第三十三旅</a>
 									<a href="#group-34">第三十四旅</a>
 									<a href="#group-35">第三十五旅</a>
 									<a href="#group-36">第三十六旅</a>
 									<a href="#group-37">第三十七旅</a>
-									<a href="#group-38">第三十八旅</a>
+									
 									<a href="#group-39">第三十九旅</a>
 									<a href="#group-40">第四十旅</a>
 									<a href="#group-41">第四十一旅</a>
@@ -324,12 +349,9 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">待更新</span>
+										<span class="info-value">連漪汶</span>
 									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">待更新</span>
-									</div>
+								
 									<div class="info-item">
 										<span class="info-label">性質：</span>
 										<span class="info-value">公開旅</span>
@@ -412,11 +434,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">連漪汶</span>
+										<span class="info-value">梁嘉賀</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">梁嘉賀、趙啟源</span>
+										<span class="info-value">趙啟源</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -475,43 +497,6 @@
 								</div>
 							</div>
 
-							<!-- 第六旅 -->
-							<div class="group-card" id="group-06">
-								<div class="group-header">
-									<img src="../images/about/group/logo/06.gif" alt="第六旅徽章" class="group-logo">
-									<div class="group-title">
-										<h3>第六旅 (Group No. 6)</h3>
-										<div class="group-sections">
-											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
-										</div>
-									</div>
-								</div>
-								<div class="group-info">
-									<div class="info-item">
-										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">待委任</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">待委任</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">性質：</span>
-										<span class="info-value">學校旅 - 聖羅撒女子中學</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">聖羅撒女子中學英文部</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">旅巾式樣：</span>
-										<span class="info-value"><img src="../images/about/group/neckie/06.gif" alt="第六旅旅巾" class="neckerchief"></span>
-									</div>
-								</div>
-								<div class="back-to-top">
-									<a href="#top">回到頂部 ↑</a>
-								</div>
-							</div>
 
 							<!-- 第八旅 -->
 							<div class="group-card" id="group-08">
@@ -528,7 +513,7 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">梁韻思〔暫許〕</span>
+										<span class="info-value">梁韻思</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
@@ -567,7 +552,7 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">許健鴻〔暫許〕</span>
+										<span class="info-value">許健鴻</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
@@ -591,44 +576,7 @@
 								</div>
 							</div>
 
-							<!-- 第十四旅 -->
-							<div class="group-card" id="group-14">
-								<div class="group-header">
-									<img src="../images/about/group/logo/14.gif" alt="第十四旅徽章" class="group-logo">
-									<div class="group-title">
-										<h3>第十四旅 (Group No. 14)</h3>
-										<div class="group-sections">
-											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
-										</div>
-									</div>
-								</div>
-								<div class="group-info">
-									<div class="info-item">
-										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">待委任</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">待委任</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">性質：</span>
-										<span class="info-value">學校旅 - 澳門菜農子弟學校</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">菜農子弟學校</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">旅巾式樣：</span>
-										<span class="info-value"><img src="../images/about/group/neckie/14.gif" alt="第十四旅旅巾" class="neckerchief"></span>
-									</div>
-								</div>
-								<div class="back-to-top">
-									<a href="#top">回到頂部 ↑</a>
-								</div>
-							</div>
-
+							
 							<!-- 第十五旅 -->
 							<div class="group-card" id="group-15">
 								<div class="group-header">
@@ -645,11 +593,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">曹潤鵬〔暫許〕</span>
+										<span class="info-value">林旺</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">林旺、余永耀〔暫許〕</span>
+										<span class="info-value">黃鴻傑</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -727,7 +675,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">黃嘉慧〔暫許〕、劉曉彤〔暫許〕</span>
+										<span class="info-value">黃嘉慧、劉曉彤</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -747,14 +695,48 @@
 								</div>
 							</div>
 
-							<!-- 第十八旅 -->
-							<div class="group-card" id="group-18">
+							<!-- 第十九旅 -->
+							<div class="group-card" id="group-19">
 								<div class="group-header">
-									<img src="../images/about/group/logo/18.gif" alt="第十八旅徽章" class="group-logo">
+									<img src="../images/about/group/logo/19.gif" alt="第十九旅徽章" class="group-logo">
 									<div class="group-title">
-										<h3>第十八旅 (Group No. 18)</h3>
+										<h3>第十九 (Group No. 19)</h3>
 										<div class="group-sections">
 											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
+										</div>
+									</div>
+								</div>
+								<div class="group-info">
+									<div class="info-item">
+										<span class="info-label">👤 旅長：</span>
+										<span class="info-value">吳少玲</span>
+									</div>
+
+									<div class="info-item">
+										<span class="info-label">性質：</span>
+										<span class="info-value">學校旅 - 聖瑪沙利羅學校</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">📍 集會地點：</span>
+										<span class="info-value">聖瑪沙利羅學校</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">旅巾式樣：</span>
+										<span class="info-value"><img src="../images/about/group/neckie/19.gif" alt="第十九旅旅巾" class="neckerchief"></span>
+									</div>
+								</div>
+								<div class="back-to-top">
+									<a href="#top">回到頂部 ↑</a>
+								</div>
+							</div>
+
+							<!-- 第二十旅 -->
+							<div class="group-card" id="group-20">
+								<div class="group-header">
+									<img src="../images/about/group/logo/20.gif" alt="第二十旅徽章" class="group-logo">
+									<div class="group-title">
+										<h3>第二十旅 (Group No. 20)</h3>
+										<div class="group-sections">
 											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
 										</div>
 									</div>
@@ -762,23 +744,62 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">待委任</span>
+										<span class="info-value">李鴻燦</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">待委任</span>
+										<span class="info-value">黃慧忠、張思雅</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
-										<span class="info-value">團體公開旅 - 國際聯密佛教慈航會澳門分會</span>
+										<span class="info-value">公開旅 - 樂團</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">昌明花園</span>
+										<span class="info-value">澳門童軍總會總部</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">旅巾式樣：</span>
-										<span class="info-value"><img src="../images/about/group/neckie/18.gif" alt="第十八旅旅巾" class="neckerchief"></span>
+										<span class="info-value"><img src="../images/about/group/neckie/20.gif" alt="第二十旅旅巾" class="neckerchief"></span>
+									</div>
+								</div>
+								<div class="back-to-top">
+									<a href="#top">回到頂部 ↑</a>
+								</div>
+							</div>
+
+							<!-- 第二十一旅 -->
+							<div class="group-card" id="group-21">
+								<div class="group-header">
+									<img src="../images/about/group/logo/21.gif" alt="第二十一旅徽章" class="group-logo">
+									<div class="group-title">
+										<h3>第二十一旅 (Group No. 21)</h3>
+										<div class="group-sections">
+											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
+
+										</div>
+									</div>
+								</div>
+								<div class="group-info">
+									<div class="info-item">
+										<span class="info-label">👤 旅長：</span>
+										<span class="info-value">梁偉豪</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">👥 副旅長：</span>
+										<span class="info-value">王潤權、蔡佩茵</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">性質：</span>
+										<span class="info-value">團體公開旅 - 澳門基督教青年會</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">📍 集會地點：</span>
+										<span class="info-value">澳門基督教青年會</span>
+									</div>
+									<div class="info-item">
+										<span class="info-label">旅巾式樣：</span>
+										<span class="info-value"><img src="../images/about/group/neckie/21.gif" alt="第二十一旅旅巾" class="neckerchief"></span>
 									</div>
 								</div>
 								<div class="back-to-top">
@@ -802,11 +823,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">待委任</span>
+										<span class="info-value">劉智龍</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">待委任</span>
+										<span class="info-value">譚子豪、陳世昕</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -842,11 +863,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">黃家傑〔暫許〕</span>
+										<span class="info-value">黃家傑</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">嚴少暉、吳文婷〔暫許〕</span>
+										<span class="info-value">嚴少暉、吳文婷</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -905,43 +926,7 @@
 								</div>
 							</div>
 
-							<!-- 第二十五旅 -->
-							<div class="group-card" id="group-25">
-								<div class="group-header">
-									<img src="../images/about/group/logo/25.gif" alt="第二十五旅徽章" class="group-logo">
-									<div class="group-title">
-										<h3>第二十五旅 (Group No. 25)</h3>
-										<div class="group-sections">
-											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
-										</div>
-									</div>
-								</div>
-								<div class="group-info">
-									<div class="info-item">
-										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">待委任</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">待委任</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">性質：</span>
-										<span class="info-value">學校旅 - 庇道中學</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">庇道中學</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">旅巾式樣：</span>
-										<span class="info-value"><img src="../images/about/group/neckie/25.gif" alt="第二十五旅旅巾" class="neckerchief"></span>
-									</div>
-								</div>
-								<div class="back-to-top">
-									<a href="#top">回到頂部 ↑</a>
-								</div>
-							</div>
+
 
 							<!-- 第二十八旅 -->
 							<div class="group-card" id="group-28">
@@ -961,7 +946,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">關麗珠、易倩宜、鄭倩雯</span>
+										<span class="info-value">易倩宜、關麗珠、鄭倩雯</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1000,7 +985,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">朱嘉寧、蘇家隆、彭詠龍〔暫許〕</span>
+										<span class="info-value">彭詠龍、朱嘉寧、蘇家隆</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1034,11 +1019,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">鄧文輝〔暫許〕</span>
+										<span class="info-value">鄧文輝</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">蘇真義〔暫許〕、周紅〔暫許〕</span>
+										<span class="info-value">蘇真義、周紅</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1058,81 +1043,7 @@
 								</div>
 							</div>
 
-							<!-- 第三十一旅 -->
-							<div class="group-card" id="group-31">
-								<div class="group-header">
-									<img src="../images/about/group/logo/31.gif" alt="第三十一旅徽章" class="group-logo">
-									<div class="group-title">
-										<h3>第三十一旅 (Group No. 31)</h3>
-										<div class="group-sections">
-											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
-										</div>
-									</div>
-								</div>
-								<div class="group-info">
-									<div class="info-item">
-										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">陳春新〔暫許〕</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">方嘉燕、李翠蓮〔暫許〕</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">性質：</span>
-										<span class="info-value">學校旅 - 東南中學</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">東南中學</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">旅巾式樣：</span>
-										<span class="info-value"><img src="../images/about/group/neckie/31.gif" alt="第三十一旅旅巾" class="neckerchief"></span>
-									</div>
-								</div>
-								<div class="back-to-top">
-									<a href="#top">回到頂部 ↑</a>
-								</div>
-							</div>
 
-							<!-- 第三十二旅 -->
-							<div class="group-card" id="group-32">
-								<div class="group-header">
-									<img src="../images/about/group/logo/32.gif" alt="第三十二旅徽章" class="group-logo">
-									<div class="group-title">
-										<h3>第三十二旅 (Group No. 31)</h3>
-										<div class="group-sections">
-											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
-										</div>
-									</div>
-								</div>
-								<div class="group-info">
-									<div class="info-item">
-										<span class="info-label">👤 旅長：</span>
-										<span class="info-value"></span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value"></span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">性質：</span>
-										<span class="info-value">學校旅 - 澳門大學附屬應用學校</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">氹仔澳門大學附屬應用學校</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">旅巾式樣：</span>
-										<span class="info-value"><img src="../images/about/group/neckie/32.gif" alt="第三十二旅旅巾" class="neckerchief"></span>
-									</div>
-								</div>
-								<div class="back-to-top">
-									<a href="#top">回到頂部 ↑</a>
-								</div>
-							</div>
 
 							<!-- 第三十三旅 -->
 							<div class="group-card" id="group-33">
@@ -1153,7 +1064,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">梁鈞豪、麥蘭花〔暫許〕</span>
+										<span class="info-value">麥蘭花、梁鈞豪</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1193,11 +1104,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">戴栢榮</span>
+										<span class="info-value">洪博宇</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">	梁傑聰、黃婉珊〔暫許〕</span>
+										<span class="info-value">廖惠欣、程子娟、黃婉珊</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1237,11 +1148,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">鄧順意</span>
+										<span class="info-value">羅漢華</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">	羅漢華〔暫許〕</span>
+										<span class="info-value">林慧嫻</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1275,12 +1186,9 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">余麗芬〔暫許〕</span>
+										<span class="info-value">余麗芬</span>
 									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value"></span>
-									</div>
+									
 									<div class="info-item">
 										<span class="info-label">性質：</span>
 										<span class="info-value">學校旅 - 聖心英文中學</span>
@@ -1320,7 +1228,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">朱嘉寧、張嘉文〔暫許〕、梁芷欣〔暫許〕</span>
+										<span class="info-value">朱嘉寧、梁芷欣、徐靖婷</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1340,49 +1248,7 @@
 								</div>
 							</div>
 
-							<!-- 第三十八旅 -->
-							<div class="group-card" id="group-38">
-								<div class="group-header">
-									<img src="../images/about/group/logo/38.gif" alt="第三十八旅徽章" class="group-logo">
-									<div class="group-title">
-										<h3>第三十八旅 (Group No. 38)</h3>
-										<div class="group-sections">
-											<a href="../page-scoutinfo/cub.html" class="section-badge cub-badge">幼童軍</a>
-											<a href="../page-scoutinfo/scout.html" class="section-badge scout-badge">童軍</a>
-											<a href="../page-scoutinfo/venture.html" class="section-badge venture-badge">深資童軍</a>
-										</div>
-									</div>
-								</div>
-								<div class="group-info">
-									<div class="info-item">
-										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">	陳茵茵〔暫許〕</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">	陳文斌〔暫許〕</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">性質：</span>
-										<span class="info-value">團體公開旅 - 民眾青年會</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">澳門馬場海邊馬路麗華新邨第二座地下</span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">🌐 旅部網址：</span>
-										<span class="info-value"><a href="	https://www.facebook.com/澳門童軍第38旅-111463794041704" target="_blank">www.facebook.com/澳門童軍第38旅-111463794041704</a></span>
-									</div>
-									<div class="info-item">
-										<span class="info-label">旅巾式樣：</span>
-										<span class="info-value"><img src="../images/about/group/neckie/38.gif" alt="第三十八旅旅巾" class="neckerchief"></span>
-									</div>
-								</div>
-								<div class="back-to-top">
-									<a href="#top">回到頂部 ↑</a>
-								</div>
-							</div>
+
 
 							<!-- 第三十九旅 -->
 							<div class="group-card" id="group-39">
@@ -1403,7 +1269,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">	蔡穎琦〔暫許〕、奧嘉欣</span>
+										<span class="info-value">蔡穎琦、奧嘉欣</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1411,7 +1277,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">📍 集會地點：</span>
-										<span class="info-value">	聖若瑟教區中學第六校</span>
+										<span class="info-value">聖若瑟教區中學第六校</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">🌐 旅部網址：</span>
@@ -1445,7 +1311,7 @@
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">	陳漪蔓〔暫許〕、黎美玲〔暫許〕</span>
+										<span class="info-value">陳漪蔓、黎美玲</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1479,11 +1345,11 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">盧思敏〔暫許〕</span>
+										<span class="info-value">盧思敏</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">	吳超偉〔暫許〕</span>
+										<span class="info-value">吳超偉</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
@@ -1517,15 +1383,15 @@
 								<div class="group-info">
 									<div class="info-item">
 										<span class="info-label">👤 旅長：</span>
-										<span class="info-value">汪東〔暫許〕</span>
+										<span class="info-value">汪東</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">👥 副旅長：</span>
-										<span class="info-value">	孫文侻〔暫許〕</span>
+										<span class="info-value">孫文侻</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">性質：</span>
-										<span class="info-value">	學校旅 - 婦聯學校</span>
+										<span class="info-value">學校旅 - 婦聯學校</span>
 									</div>
 									<div class="info-item">
 										<span class="info-label">📍 集會地點：</span>
