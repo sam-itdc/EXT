@@ -101,103 +101,175 @@
 									<h2>部門簡介</h2>
 									
 									<style>
-										.dept-navigation {
-											background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-											padding: 20px;
-											border-radius: 10px;
-											margin-bottom: 30px;
-											text-align: center;
-										}
-										.dept-navigation h3 {
-											color: #2c3e50;
-											margin-bottom: 15px;
-										}
-										.dept-nav-grid {
-											display: grid;
-											grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-											gap: 10px;
-											margin-top: 15px;
-										}
-										.dept-nav-item {
-											background: #3498db;
-											color: white;
-											padding: 8px 12px;
-											border-radius: 20px;
-											text-decoration: none;
-											font-size: 14px;
-											transition: all 0.3s ease;
-										}
-										.dept-nav-item:hover {
-											background: #2980b9;
-											transform: translateY(-2px);
-										}
-										.dept-card {
-											background: white;
-											border: 1px solid #e0e0e0;
-											border-radius: 10px;
-											margin-bottom: 30px;
-											box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-											overflow: hidden;
-										}
-										.dept-header {
-											background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-											color: white;
-											padding: 20px;
-										}
-										.dept-title {
-											font-size: 24px;
-											font-weight: bold;
-											margin: 0;
-											color: #f0f0f0;
-										}
-										.dept-info {
-											padding: 20px;
-										}
-										.info-item {
-											display: flex;
-											margin-bottom: 10px;
-											align-items: flex-start;
-										}
-										.info-label {
-											font-weight: bold;
-											color: #2c3e50;
-											min-width: 120px;
-											margin-right: 10px;
-										}
-										.info-value {
-											color: #34495e;
-											flex: 1;
-										}
-										.dept-description {
-											background: #f8f9fa;
-											padding: 15px;
-											border-radius: 5px;
-											margin-top: 15px;
-											line-height: 1.6;
-										}
-										.dept-description h4 {
-											color: #2c3e50;
-											margin-bottom: 10px;
-										}
-										.dept-description ul {
-											margin: 0;
-											padding-left: 20px;
-										}
-										.dept-description li {
-											margin-bottom: 5px;
-										}
-										@media (max-width: 768px) {
-											.dept-nav-grid {
-												grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-											}
-											.info-item {
-												flex-direction: column;
-											}
-											.info-label {
-												min-width: auto;
-												margin-bottom: 5px;
-											}
-										}
+										/* =========================
+   導航區塊
+========================= */
+.dept-navigation {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.dept-navigation h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+.dept-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+.dept-nav-item {
+    background: #3498db;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+.dept-nav-item:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   卡片樣式
+========================= */
+.dept-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 20px; /* 增加內距，避免貼邊 */
+    transition: transform 0.2s;
+}
+.dept-card:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   卡片標題
+========================= */
+.dept-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+}
+.dept-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: #f0f0f0;
+}
+
+/* =========================
+   卡片內容
+========================= */
+.dept-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 0;
+}
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.info-label {
+    font-weight: bold;
+    color: #2c3e50;
+    min-width: 120px;
+    margin-right: 10px;
+}
+.info-value {
+    color: #34495e;
+    flex: 1;
+}
+
+/* =========================
+   說明 / 名單區塊
+========================= */
+.dept-description {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+.dept-description h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+.dept-description ul {
+    margin: 0;
+    padding-left: 20px;
+}
+.dept-description li {
+    margin-bottom: 6px;
+}
+
+/* =========================
+   子區塊（每個處/小卡）
+========================= */
+.dept-section {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    margin: 10px 0; /* 與卡片內文分隔 */
+}
+.dept-section summary {
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    outline: none;
+    list-style: none;
+}
+.dept-section summary::-webkit-details-marker {
+    display: none;
+}
+.dept-section ul {
+    margin: 8px 0 0 20px;
+    padding: 0;
+    list-style-type: disc;
+}
+.dept-section li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+/* =========================
+   響應式
+========================= */
+@media (max-width: 768px) {
+    .dept-nav-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .info-item {
+        flex-direction: column;
+    }
+    .info-label {
+        min-width: auto;
+        margin-bottom: 5px;
+    }
+    .dept-section {
+        padding: 12px 15px;
+    }
+    .dept-card {
+        padding: 15px;
+    }
+    .dept-title {
+        font-size: 1.5rem;
+    }
+}
+
 									</style>
 
 									<!-- 部門快速導航 -->
