@@ -629,57 +629,64 @@
 				return news;
 			}
 			
-			// Function to load announcements from markdown file
-			async function loadAnnouncements() {
-				try {
-					const response = await fetch('news.md');
-					if (!response.ok) {
-						throw new Error(`HTTP error! status: ${response.status}`);
-					}
-					
-					const markdownText = await response.text();
-					const newsData = parseNewsMarkdown(markdownText);
+async function loadAnnouncements() {
 
+    try {
 
+        const sheetAPI = "https://opensheet.elk.sh/1EYMseSkpbsv563Zl_PbD5SX0Nqe9WqSVaLnujThpj-I/Form%20Responses%201";
 
-// 2️⃣ 各 API 串接
-const hqNotices = await loadApiNotices("AEM2013Page_HQNotices", "總會通告", "general");
-const trainingNotices = await loadApiNotices("AEM2013Page_Training", "訓練班消息", "training");
-const activityNotices = await loadApiNotices("AEM2013Page_Activities", "活動消息", "activity");
-const serviceNotices = await loadApiNotices("AEM2013Page_Services", "服務通告", "service");	
-const internationalNotices = await loadApiNotices("AEMINTL_MainPage", "國際活動", "international");		
+        const response = await fetch(sheetAPI);
 
-// 3️⃣ 合併所有來源
-const combinedData = [
-    ...hqNotices,
-    ...trainingNotices,
-    ...activityNotices,
-	...serviceNotices,
-	...internationalNotices,
-    ...newsData
-];
+        if (!response.ok) {
+            throw new Error("Sheet API error");
+        }
 
-// 4️⃣ 用 combinedData 初始化 DataTable
-initializeDataTable(combinedData);
-						
-						// Hide loading message
-						document.getElementById('loading-message').style.display = 'none';
-						
-						// Show table
-						document.getElementById('announcementsTable').style.display = 'table';
-					
-				} catch (error) {
-					console.error('Error loading announcements:', error);
-					
-					// Hide loading message
-					document.getElementById('loading-message').style.display = 'none';
-					
-					// Show error message
-					document.getElementById('error-message').style.display = 'block';
-					document.getElementById('error-message').innerHTML = 
-						'載入通告資料時發生錯誤：' + error.message + '<br>請檢查 news.md 文件是否存在且格式正確。';
-				}
-			}
+        const sheetData = await response.json();
+
+        const newsData = sheetData.map(row => {
+
+            const categoryName = row.Category || row.分類 || "";
+            const categoryKey = categoryMapping[categoryName] || "general";
+
+            return {
+                title: row.Title || row.標題 || "",
+                category: categoryName,
+                categoryKey: categoryKey,
+                link: row.Link || row.連結 || "",
+                date: row.Date || row.日期 || "",
+                keywords: row.Keywords || row.關鍵字 || ""
+            };
+
+        });
+
+        // API sources
+        const hqNotices = await loadApiNotices("AEM2013Page_HQNotices", "總會通告", "general");
+        const trainingNotices = await loadApiNotices("AEM2013Page_Training", "訓練班消息", "training");
+        const activityNotices = await loadApiNotices("AEM2013Page_Activities", "活動消息", "activity");
+
+        const combinedData = [
+            ...hqNotices,
+            ...trainingNotices,
+            ...activityNotices,
+            ...newsData
+        ];
+
+        initializeDataTable(combinedData);
+
+        document.getElementById('loading-message').style.display = 'none';
+        document.getElementById('announcementsTable').style.display = 'table';
+
+    } catch (error) {
+
+        console.error("Error loading announcements:", error);
+
+        document.getElementById('loading-message').style.display = 'none';
+        document.getElementById('error-message').style.display = 'block';
+
+    }
+
+}
+
 			
 			// Function to initialize DataTable
 			function initializeDataTable(newsData) {
