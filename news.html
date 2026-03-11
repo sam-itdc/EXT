@@ -413,6 +413,11 @@
 				'service': '服務通告'
 			};
 			
+			function formatDate(dateStr) {
+		const date = new Date(dateStr);
+		return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
+	}
+
 			// Get category badge class
 			function getCategoryBadgeClass(categoryKey) {
 				const classMap = {
@@ -647,16 +652,16 @@ async function loadAnnouncements() {
 
         const newsData = sheetData.map(row => {
 
-            const categoryName = row.Category || row.分類 || "";
+            const categoryName = row.category || "";
             const categoryKey = categoryMapping[categoryName] || "general";
 
             return {
-                title: row.Title || row.標題 || "",
+                title: row.title ||  "",
                 category: categoryName,
                 categoryKey: categoryKey,
-                link: row.Link || row.連結 || "",
-                date: row.Date || row.日期 || "",
-                keywords: row.Keywords || row.關鍵字 || ""
+                link: row.link || "",
+                date: formatDate(row.date) ||  "",
+                keywords: row.keywords ||  ""
             };
 
         });
@@ -667,6 +672,8 @@ async function loadAnnouncements() {
         const activityNotices = await loadApiNotices("AEM2013Page_Activities", "活動消息", "activity");
 		const serviceNotices = await loadApiNotices("AEM2013Page_Services", "服務通告", "service");	
 	    const internationalNotices = await loadApiNotices("AEMINTL_MainPage", "國際活動", "international");	
+
+		console.log(newsData);
 
         const combinedData = [
             ...hqNotices,

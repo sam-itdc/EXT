@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>澳門童軍總會</title>
+
+<link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header"></div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="container">
+
+<h1>歡迎來到澳門童軍總會</h1>
+
+<p>這是一個 HTML include 示範頁面。</p>
+
+</div>
+
+
+<!-- FACEBOOK -->
+<div id="facebook"></div>
+
+
+<!-- FOOTER -->
+<div id="footer"></div>
+
+
+<!-- Facebook SDK -->
+
+<div id="fb-root"></div>
+
+<script async defer crossorigin="anonymous"
+src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v22.0">
+</script>
+
+
+<!-- INCLUDE SCRIPT -->
+
+<script>
+
+function loadHTML(id,url){
+
+fetch(url)
+.then(res => res.text())
+.then(data => {
+
+document.getElementById(id).innerHTML=data;
+
+});
+
+}
+
+loadHTML("header","/includes/header.html");
+loadHTML("facebook","/includes/facebook.html");
+loadHTML("footer","/includes/footer.html");
+
+
+function toggleMenu(){
+
+document.getElementById("menu").classList.toggle("show");
+
+}
+
+</script>
+
+
+</body>
+
+</html>
