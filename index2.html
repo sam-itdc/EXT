@@ -24,20 +24,58 @@
 
 <h1>歡迎來到澳門童軍總會</h1>
 
-<p>這是一個 HTML include 示範頁面。</p>
+<div class="row">
+
+    <!-- Facebook -->
+    <div class="col-8 col-12-medium">
+
+        <section>
+            <h2>Facebook</h2>
+
+            <div class="fb-center">
+
+                <div class="fb-page"
+                data-href="https://www.facebook.com/scout.mo"
+                data-tabs="timeline"
+                data-width="600"
+                data-height="600"
+                data-adapt-container-width="true">
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- 最新消息 -->
+    <div class="col-4 col-12-medium">
+
+<section>
+										<h3>最新消息</h3>
+										<footer>
+											<a href="news.html?category=general" class="button icon solid fa-info-circle">更多</a>
+										</footer>
+										<ul class="style2" id="latest-news-list">
+											<li class="loading-text">正在載入最新消息...</li>
+										</ul>
+									</section>
+
+    </div>
+
+</div>
 
 </div>
 
 
-<!-- FACEBOOK -->
-<div id="facebook"></div>
 
 
 <!-- FOOTER -->
 <div id="footer"></div>
 
 
-<!-- Facebook SDK -->
+
 
 <div id="fb-root"></div>
 
@@ -58,21 +96,135 @@ fetch(url)
 
 document.getElementById(id).innerHTML=data;
 
+// 重新解析 Facebook plugin
+if (window.FB){
+FB.XFBML.parse();
+}
+
 });
 
 }
 
-loadHTML("header","/includes/header.html");
-loadHTML("facebook","/includes/facebook.html");
-loadHTML("footer","/includes/footer.html");
-
+loadHTML("header","includes/header.html");
+loadHTML("facebook","includes/facebook.html");
+loadHTML("footer","includes/footer.html");
 
 function toggleMenu(){
-
 document.getElementById("menu").classList.toggle("show");
-
 }
 
+// Function to load and display latest news from API
+			async function loadLatestNews() {
+				const latestNewsList = document.getElementById('latest-news-list');
+				
+				if (!latestNewsList) {
+					console.error('Notice board container not found');
+					return;
+				}
+				
+				try {
+					// Fetch the notice data from the API
+					const apiUrl = 'https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_HQNotice';
+					const response = await fetch(apiUrl);
+					
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					
+					// Get the response as text (it's JavaScript code)
+					const responseText = await response.text();
+					
+					// Parse the JavaScript document.write() response
+					let htmlContent = '';
+					
+					// Try to match document.write('...')
+					let match = responseText.match(/document\.write\('(.+?)'\)/s);
+					if (match) {
+						htmlContent = match[1];
+					} else {
+						// Try to match document.write("...")
+						match = responseText.match(/document\.write\("(.+?)"\)/s);
+						if (match) {
+							htmlContent = match[1];
+						} else {
+							throw new Error('Could not parse API response format');
+						}
+					}
+					
+					// Unescape the HTML content
+					const unescapedHtml = htmlContent
+						.replace(/\\n/g, '\n')
+						.replace(/\\t/g, '\t')
+						.replace(/\\'/g, "'")
+						.replace(/\\"/g, '"')
+						.replace(/\\\\/g, '\\');
+					
+					// Parse the HTML to extract list items
+					const tempDiv = document.createElement('div');
+					tempDiv.innerHTML = unescapedHtml;
+					
+					const listItems = tempDiv.querySelectorAll('li');
+					
+					if (listItems.length === 0) {
+						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
+						return;
+					}
+					
+					// Process each list item
+					const processedNotices = Array.from(listItems).map(item => {
+						const link = item.querySelector('a');
+						if (!link) return null;
+						
+						const title = link.textContent || link.innerText || '';
+						let href = link.getAttribute('href') || '';
+						
+						// Replace www.scout.org.mo with scout.wpang.net
+						if (href) {
+							// Handle both http and https
+							href = href.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+							href = href.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
+							// Ensure https protocol
+							if (href.startsWith('http://')) {
+								href = 'https://' + href.substring(7);
+							}
+						}
+						
+						return {
+							title: title.trim(),
+							link: href
+						};
+					}).filter(notice => notice && notice.title && notice.link);
+					
+					// Display the notices
+					if (processedNotices.length === 0) {
+						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
+					} else {
+						// Create list items with target="_blank" for new window opening
+						const listHTML = processedNotices.map(notice => {
+							// Escape HTML special characters in title
+							const escapedTitle = notice.title
+								.replace(/&/g, '&amp;')
+								.replace(/</g, '&lt;')
+								.replace(/>/g, '&gt;')
+								.replace(/"/g, '&quot;')
+								.replace(/'/g, '&#039;');
+							return `<li><a href="${notice.link}" target="_blank" rel="noopener noreferrer">${escapedTitle}</a></li>`;
+						}).join('');
+						
+						latestNewsList.innerHTML = listHTML;
+					}
+					
+				} catch (error) {
+					console.error('Error loading notices from API:', error);
+					latestNewsList.innerHTML = '<li class="error-text">載入最新消息時發生錯誤</li>';
+				}
+			}
+            
+// Load content when document is ready
+			document.addEventListener('DOMContentLoaded', function() {
+				loadLatestNews();
+
+			});
 </script>
 
 

@@ -3009,6 +3009,27 @@ padding:0;
 margin:0;
 }
 
+/* LOGO 控制 */
+nav li.logo{
+display:flex;
+align-items:center;
+margin-right:10px;
+}
+
+nav li.logo a{
+width:auto;
+height:auto;
+padding:0;
+}
+
+nav li.logo img{
+height:50px;
+width:auto;
+display:block;
+}
+
+/* menu item */
+
 nav li{
 position:relative;
 }
@@ -3081,4 +3102,99 @@ nav li:not(:last-child)::after{
 display:none;
 }
 
+/* mobile logo */
+
+nav li.logo img{
+height:40px;
+}
+
+}
+
+/* Hero 區塊 */
+.hero-layout{
+  display:flex;
+  min-height:400px;
+  overflow:hidden;
+  position:relative;
+}
+
+.hero-image{
+  flex:0 0 33%;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+  overflow:hidden;
+}
+
+
+
+.hero-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* 右側內容 */
+.hero-content{
+  flex:0 0 67%;           /* 右側占2/3 */
+  display:flex;
+  flex-direction:column;  /* 重要！改為垂直排列 */
+  align-items:center;      /* 置中標題和 ICON grid */
+  justify-content:flex-start; /* 從上方開始排列 */
+  padding:40px;
+
+}
+
+/* ICON grid */
+.icon-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:30px;
+  justify-items:center;
+}
+
+.hero-title{
+  font-size:28px;
+  font-weight:bold;
+  color:#108b9d;
+  text-align:left;      /* 文字對齊左 */
+  align-self: flex-start; /* 重要！讓這個元素在 Flex 容器中靠左 */
+  margin-bottom:30px;
+}
+
+/* Media query - 小螢幕上下排列 */
+@media (max-width:900px){
+  .hero-layout{
+    flex-direction:column; /* 左右變上下 */
+  }
+
+  .hero-image{
+    flex:0 0 auto;
+    width:100%;
+    height:auto;          /* 改為自動高度 */
+    clip-path:none;       /* 去掉斜切 */
+    box-shadow:none;      /* 可以去掉陰影或保留 */
+  }
+
+  .hero-image img{
+    width:100%;
+    height:auto;          /* 自適應高度 */
+    object-fit:cover;     /* 保持圖片比例 */
+    clip-path:none;       /* 去掉斜切 */
+  }
+
+  .hero-content{
+    width:100%;
+    padding:20px;
+    align-items:center;   /* ICON grid 仍置中 */
+  }
+
+  .icon-grid{
+    grid-template-columns:repeat(2,1fr); /* 手機兩個一行 */
+  }
+}
+
+@media (max-width:500px){
+  .icon-grid{
+    grid-template-columns:1fr; /* 超小螢幕一個一行 */
+  }
 }
