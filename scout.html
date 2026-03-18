@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header"></div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="container">
+
+
+
+<div class="row">
+
+<section class="hero-layout">
+
+  <!-- 左側斜切圖片 -->
+  <div class="hero-image">
+    <img src="images/background1.jpeg" alt="背景圖">
+  </div>
+
+<!-- 右側 ICON card -->
+<div class="hero-content">
+  <h2 class="hero-title">童軍運動簡介</h2>
+
+  <div class="flex flex-wrap justify-center my-[16px]">
+
+    <!-- 澳門童軍發展史 -->
+    <a href="/page-about/history.html" class="group my-[20px] mx-[25px] text-center">
+      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
+      group-hover:border-[#108b9d] transition">
+        <iconify-icon icon="tabler:timeline"
+        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+      </div>
+      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+        發展史
+      </p>
+    </a>
+
+    <!-- 誓詞銘言 -->
+    <a href="/promise.html" class="group my-[20px] mx-[25px] text-center">
+      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
+      group-hover:border-[#108b9d]">
+        <iconify-icon icon="tabler:shield-check"
+        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+      </div>
+      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+        誓詞銘言
+      </p>
+    </a>
+
+    <!-- 會徽 -->
+    <a href="/page-about/emblem.html" class="group my-[20px] mx-[25px] text-center">
+      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
+      group-hover:border-[#108b9d]">
+        <iconify-icon icon="tabler:rosette"
+        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+      </div>
+      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+        會徽
+      </p>
+    </a>
+
+    <!-- 徽章介紹 -->
+    <a href="/page-scoutinfo/badge.html" class="group my-[20px] mx-[25px] text-center">
+      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
+      group-hover:border-[#108b9d]">
+        <iconify-icon icon="tabler:award"
+        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+      </div>
+      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+        徽章介紹
+      </p>
+    </a>
+
+    <!-- 制服介紹 -->
+    <a href="/page-scoutinfo/uniform.html" class="group my-[20px] mx-[25px] text-center">
+      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
+      group-hover:border-[#108b9d]">
+        <iconify-icon icon="tabler:shirt"
+        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+      </div>
+      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+        制服介紹
+      </p>
+    </a>
+
+    <!-- 軍職徽章 -->
+    <a href="/page-scoutinfo/ranking.html" class="group my-[20px] mx-[25px] text-center">
+      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
+      group-hover:border-[#108b9d]">
+        <iconify-icon icon="tabler:military-rank"
+        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+      </div>
+      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+        軍職徽章
+      </p>
+    </a>
+
+    <!-- 獎勵制度 -->
+    <a href="/page-scoutinfo/award.html" class="group my-[20px] mx-[25px] text-center">
+      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
+      group-hover:border-[#108b9d]">
+        <iconify-icon icon="tabler:trophy"
+        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+      </div>
+      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+        獎勵制度
+      </p>
+    </a>
+
+  </div>
+</div>
+
+</section>
+
+
+
+</div>
+
+</div>
+
+
+
+
+<!-- FOOTER -->
+<div id="footer"></div>
+
+
+
+<!-- INCLUDE SCRIPT -->
+
+<script>
+
+function loadHTML(id,url){
+
+fetch(url)
+.then(res => res.text())
+.then(data => {
+
+document.getElementById(id).innerHTML=data;
+
+});
+
+}
+
+loadHTML("header","includes/header.html");
+loadHTML("footer","includes/footer.html");
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+}
+
+</script>
+
+
+
+
+</body>
+
+</html>
