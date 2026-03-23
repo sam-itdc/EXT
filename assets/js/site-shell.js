@@ -50,6 +50,14 @@ function stripSiteRoot(pathname, siteRoot) {
   return pathname || "/";
 }
 
+function resolveLabels(pathname) {
+  if (SITE_SHELL_LABELS[pathname]) return SITE_SHELL_LABELS[pathname];
+  if (!/\.html$/i.test(pathname) && SITE_SHELL_LABELS[pathname + ".html"]) {
+    return SITE_SHELL_LABELS[pathname + ".html"];
+  }
+  return null;
+}
+
 function withSiteRoot(path, siteRoot) {
   if (!path || /^https?:\/\//i.test(path) || path.indexOf("//") === 0) return path;
   if (path.charAt(0) !== "/") return path;
@@ -83,7 +91,7 @@ function insertBreadcrumb() {
 
   const siteRoot = getSiteRoot(window.__siteShellPrefix || "");
   const pathname = stripSiteRoot(window.location.pathname.replace(/\/+$/, "") || "/", siteRoot);
-  const labels = SITE_SHELL_LABELS[pathname];
+  const labels = resolveLabels(pathname);
   if (!labels || !labels.length) return;
 
   const target =
