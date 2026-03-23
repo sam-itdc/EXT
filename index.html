@@ -1,762 +1,665 @@
-<!DOCTYPE HTML>
-<!--
-	Verti by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>澳門童軍總會</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-		<style>
-			/* Hero Carousel Styles */
-			.hero-carousel {
-				margin-bottom: 2em;
-				border-radius: 8px;
-				overflow: hidden;
-				box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-			}
-			
-			.carousel-container {
-				position: relative;
-				width: 100%;
-				height: 300px;
-				overflow: hidden;
-			}
-			
-			.carousel-slides {
-				position: relative;
-				width: 100%;
-				height: 100%;
-			}
-			
-			.slide {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				opacity: 0;
-				transition: opacity 0.6s ease-in-out;
-			}
-			
-			.slide img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				display: block;
-			}
-			
-			/* Show first slide by default */
-			#hero-slide1:checked ~ .carousel-slides .slide1,
-			#hero-slide2:checked ~ .carousel-slides .slide2,
-			#hero-slide3:checked ~ .carousel-slides .slide3 {
-				opacity: 1;
-			}
-			
-			/* Hide radio buttons */
-			input[type="radio"][name="hero-slide"] {
-				display: none;
-			}
-			
-			/* Carousel Controls */
-			.carousel-controls {
-				position: absolute;
-				bottom: 20px;
-				left: 50%;
-				transform: translateX(-50%);
-				display: flex;
-				gap: 10px;
-			}
-			
-			.control-dot {
-				width: 12px;
-				height: 12px;
-				border-radius: 50%;
-				background-color: rgba(255, 255, 255, 0.5);
-				cursor: pointer;
-				transition: background-color 0.3s ease;
-				border: 2px solid rgba(255, 255, 255, 0.8);
-			}
-			
-			.control-dot:hover {
-				background-color: rgba(255, 255, 255, 0.8);
-			}
-			
-			#hero-slide1:checked ~ .carousel-controls label[for="hero-slide1"],
-			#hero-slide2:checked ~ .carousel-controls label[for="hero-slide2"],
-			#hero-slide3:checked ~ .carousel-controls label[for="hero-slide3"] {
-				background-color: #31b404;
-				border-color: #31b404;
-			}
-			
-			/* Loading and Error Messages */
-			.loading-text {
-				color: #666;
-				font-style: italic;
-				font-size: 0.9rem;
-			}
-			
-			.error-text {
-				color: #d32f2f;
-				font-style: italic;
-				font-size: 0.9rem;
-			}
-			
-			/* Green bullet points for notice board and scout magazine */
-			#latest-news-list li,
-			#newsletters-list li {
-				position: relative;
-				padding-left: 1.2em;
-				line-height: 1.3;
-				margin-bottom: 0.5em;
-			}
-			
-			#latest-news-list li:before,
-			#newsletters-list li:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				top: 50%;
-				transform: translateY(-50%);
-				width: 0.5em;
-				height: 0.5em;
-				background-color: #31b404;
-				border-radius: 50%;
-			}
-			
-			/* Responsive design */
-			@media screen and (max-width: 768px) {
-				.carousel-container {
-					height: 200px;
-				}
-			}
-		</style>
-	</head>
-	<body class="is-preload homepage">
-		<div id="page-wrapper">
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>澳門童軍總會</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+body.homepage{
+background:linear-gradient(180deg,#eef6f7 0%,#f9f6ef 28%,#ffffff 100%);
+}
 
-			<!-- Header -->
-			<div id="header-wrapper">
-				<header id="header" class="container">
+body.homepage #site-header{
+background:
+linear-gradient(135deg,rgba(16,139,157,0.96),rgba(14,96,116,0.98)),
+radial-gradient(circle at top right,rgba(255,255,255,0.18),transparent 38%);
+box-shadow:0 14px 40px rgba(8,67,79,0.18);
+}
 
-					<!-- Logo -->
-						<div id="logo">
-							<h1><a href="/index.html"><img src="/images/layout/scout-logo-removebg-preview.png" width="505" height="108"></a></h1>							
-						</div>
+body.homepage #site-header .header-title{
+max-width:1120px;
+padding:14px 24px 12px;
+font-size:22px;
+font-weight:700;
+letter-spacing:1px;
+text-transform:none;
+color:#ffffff;
+}
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><!--關於我們-->
-									<a href="#">關於我們</a>
-									<ul>
-										<li><a href="/page-about/introduction.html">總會簡介</a></li>
-										<li><a href="/page-about/patrons.html">會內人員</a></li>
-										<li><a href="/page-about/structure.html">組織架構</a></li>
-										<li><a href="/page-about/departments.html">部門簡介</a></li>
-										<li><a href="/page-about/groups.html">旅部簡介</a></li>
-										<li><a href="/page-scoutinfo/apply.html">加入童軍</a></li>
-									
-										<li><a href="/page-about/forms.html">表格</a></li>
-									</ul>
-								</li>
-								<li><!--童軍運動簡介-->
-									<a href="#">童軍運動簡介</a>
-									<ul>
-										<li><a href="/page-about/history.html">澳門童軍發展史</a></li>
-										<li><a href="/promise.html">誓詞銘言</a></li>
-										<li><a href="/page-about/emblem.html">會徽</a></li>
-										<li><a href="/page-scoutinfo/badge.html">徽章介紹</a></li>
-										<li><a href="/page-scoutinfo/uniform.html">制服介紹</a></li>
-										<li><a href="/page-scoutinfo/ranking.html">軍職徽章</a></li>
-										<li><a href="/page-scoutinfo/award.html">獎勵制度</a></li>
-									</ul>
-								</li>
-								<li><!--支部簡介-->
-									<a href="#">支部簡介</a>
-									<ul>
-										<li><a href="/page-scoutinfo/cub.html">幼童軍</a></li>
-										<li><a href="/page-scoutinfo/scout.html">童軍</a></li>
-										<li><a href="/page-scoutinfo/venture.html">深資童軍</a></li>
-										<li><a href="/page-scoutinfo/wood-badge.html">成年領袖</a></li>
-									</ul>
-								</li>
-								<li><!--通告-->
-									<a href="/news.html">通告</a>
-									<ul>
-										<li><a href="/news.html?category=training">訓練班消息</a></li>
-										<li><a href="/news.html?category=activity">活動消息</a></li>
-										<li><a href="/news.html?category=international">國際活動</a></li>
-										<li><a href="/page-scoutinfo/mop.html">MOP 和平使者計劃</a></li>
-										<li><a href="/news.html?category=general">總會通告</a></li>
-										<li><a href="/news.html?category=service">服務通告</a></li>
-									</ul>
-								</li>
-							<li><!--參考資料-->
-								<a href="#">參考資料</a>
-								<ul>
-									<li><a href="/newsletters.html">童軍月刊</a></li>
-									<li><a href="/page-about/references/marching.html">標準步操及禮儀</a></li>
-									<li><a href="/page-about/references/baden-powell.html">貝登堡略傳</a></li>
-									<li><a href="/page-about/references/signal.html">三指記號</a></li>
-									<li><a href="/page-about/references/courtesy.html">生活禮節</a></li>
-									<li><a href="/page-about/references/training.html">出版刊物</a></li>
-								</ul>
-							</li>
-							</ul>
-						</nav>
+body.homepage #site-header nav{
+max-width:1120px;
+margin:0 auto 18px;
+background:rgba(255,255,255,0.96);
+backdrop-filter:blur(10px);
+box-shadow:0 18px 36px rgba(6,44,52,0.16);
+}
 
-					</header>
-				</div>
+.home-shell{
+max-width:1120px;
+margin:0 auto;
+padding:36px 20px 56px;
+}
 
-				<!-- Main -->
-				<div id="main-wrapper">
-					<div class="container">
-						<div class="row gtr-200">
-							<div class="col-8 col-12-medium">
-								<div id="content">
-									<!-- Hero Carousel -->
-									<div class="hero-carousel">
-										<div class="carousel-container">
-											<input type="radio" name="hero-slide" id="hero-slide1" checked>
-											<input type="radio" name="hero-slide" id="hero-slide2">
-											<input type="radio" name="hero-slide" id="hero-slide3">
-											
-											<div class="carousel-slides">
-												<div class="slide slide1">
-													<img src="images/content-bg-1.jpg" alt="童軍活動 - 支持童軍運動，培育良好公民">
-												</div>
-												<div class="slide slide2">
-													<img src="images/content-bg-2.jpg" alt="童軍水上活動 - 支持童軍運動，培育良好公民">
-												</div>
-												<div class="slide slide3">
-													<img src="images/content-bg-3.jpg" alt="童軍團體活動 - 支持童軍運動，培育良好公民">
-												</div>
-											</div>
-											
-											<div class="carousel-controls">
-												<label for="hero-slide1" class="control-dot"></label>
-												<label for="hero-slide2" class="control-dot"></label>
-												<label for="hero-slide3" class="control-dot"></label>
-											</div>
-										</div>
-									</div>
-									
-									<!-- Grid bar-->
-									<section class="grid-menu">
-                <h2>快速導航</h2>
-                <div class="grid-container">
-                    <a href="page-scoutinfo/apply.html" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <h3>加入童軍</h3>
-                        <p>成為童軍大家庭的一員</p>
-                    </a>
-                    
-                    <a href="page-scoutinfo/mop.html" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-dove"></i>
-                        </div>
-                        <h3>MOP</h3>
-                        <p>和平使者計劃</p>
-                    </a>
-                    
-                    <a href="page-scoutinfo/wood-badge.html" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <h3>木章</h3>
-                        <p>成年領袖訓練課程</p>
-                    </a>
-                    
-                    <a href="page-about/introduction.html" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-info-circle"></i>
-                        </div>
-                        <h3>簡介</h3>
-                        <p>了解澳門童軍總會</p>
-                    </a>
-                    
-                    <a href="#" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>小隊制度</h3>
-                        <p>童軍組織運作方式</p>
-                    </a>
-                    
-                    <a href="page-scoutinfo/award.html" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h3>獎勵制度</h3>
-                        <p>徽章與獎勵系統</p>
-                    </a>
-                    
-                    <a href="page-about/groups.html" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-campground"></i>
-                        </div>
-                        <h3>旅部簡介</h3>
-                        <p>各童軍旅部介紹</p>
-                    </a>
-                    
-                    <a href="page-about/departments.html" class="grid-item">
-                        <div class="grid-icon">
-                            <i class="fas fa-sitemap"></i>
-                        </div>
-                        <h3>部門簡介</h3>
-                        <p>組織架構與部門</p>
-                    </a>
-                </div>
-            </section>
+.home-hero{
+display:grid;
+grid-template-columns:minmax(0,1fr) minmax(300px,0.9fr);
+gap:24px;
+align-items:stretch;
+margin-bottom:30px;
+}
 
-									<!-- Content -->
-									<article>
+.hero-copy{
+background:linear-gradient(140deg,#ffffff 0%,#f4fbfc 100%);
+border:1px solid rgba(16,139,157,0.12);
+border-radius:32px;
+padding:30px 32px;
+box-shadow:0 20px 45px rgba(17,74,87,0.10);
+position:relative;
+overflow:hidden;
+}
 
-									</article>
+.hero-copy:after{
+content:"";
+position:absolute;
+right:-40px;
+top:-50px;
+width:180px;
+height:180px;
+background:radial-gradient(circle,rgba(16,139,157,0.14),transparent 68%);
+}
 
-							</div>
-						</div>
-						<div class="col-4 col-12-medium">
-							<div id="sidebar">
+.hero-kicker{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:8px 14px;
+border-radius:999px;
+background:#e6f5f7;
+color:#0e6977;
+font-size:13px;
+font-weight:700;
+letter-spacing:0.08em;
+text-transform:uppercase;
+}
 
-								<!-- Sidebar -->
-									<section>
-										<h3>最新消息</h3>
-										<footer>
-											<a href="news.html?category=general" class="button icon solid fa-info-circle">更多</a>
-										</footer>
-										<ul class="style2" id="latest-news-list">
-											<li class="loading-text">正在載入最新消息...</li>
-										</ul>
-									</section>
+.hero-copy h1{
+margin:18px 0 8px;
+font-size:clamp(2rem,4vw,3.4rem);
+line-height:1.1;
+color:#09343d;
+}
 
-									<section>
-										<div class="fb-page" data-href="https://www.facebook.com/scout.mo" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/scout.mo" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/scout.mo">澳門童軍總會The Scout Association of Macau</a></blockquote></div>
-									</section>
+.hero-copy p{
+margin:0;
+font-size:1rem;
+line-height:1.8;
+color:#34565d;
+max-width:44rem;
+}
 
-								<section style="margin-top: 25px;">
-									<h3>童軍月刊</h3>
-									<footer>
-										<a href="newsletters.html" class="button icon solid fa-info-circle">更多</a>
-									</footer>
-									<ul class="style2" id="newsletters-list">
-										<li class="loading-text">正在載入童軍月刊...</li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+.hero-actions{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:26px;
+}
 
+.hero-actions a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:160px;
+padding:12px 18px;
+border-radius:999px;
+text-decoration:none;
+font-weight:700;
+transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
 
-			<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							
-							<div class="col-6 col-6-medium col-12-small">
-								
-								<!-- Links -->
-								<section class="widget links d-none">
-									<h3>近期活動</h3>
-									<div class="d-none d-lg-block">
-										<iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=rks8lssh5vrqagv4cu6vr444fs%40group.calendar.google.com&amp;color=%235229A3&amp;src=e63o9v6i6hq7ms03kjtr2mt7t4%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=Asia%2FMacau" style=" border-width:0" width="600" height="300" frameborder="0" scrolling="no"></iframe>									<ul class="style2">
-									</div>
-									</ul>
-								</section>
-								
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
-								
-								<!-- Links -->
-								<section class="widget links">
-									<h3>相關網站</h3>
-									<ul class="style2">
-										<li><a target="_blank" href="https://www.scout.org">世界童軍總會</a></li>
-										<li><a target="_blank" href="https://www.scout.org/where-we-work/regions/asia-pacific/region">亞太童軍總會</a></li>
-										<li><a target="_blank" href="https://www.scout.org.hk/tc/">香港童軍總會</a></li>
-									</ul>
-									<h3>資訊系統</h3>
-									<ul class="style2">
-										<li><a target="_blank" href="http://pbdivision.scout.org.mo">社會服務申報系統</a></li>
-										<li><a target="_blank" href="http://www.scout.org.mo/csd">專章報名系統</a></li>
-									</ul>
-								</section>
+.hero-actions a:hover{
+transform:translateY(-2px);
+}
 
-							</div>
-							<div class="col-3 col-6-medium col-12-small">
+.action-secondary{
+background:#fbf3e9;
+color:#7f5f35;
+}
 
-								<!-- Contact -->
-									<section class="widget contact last">
-										<h3>聯絡我們</h3>
-										<ul>
-											<li><a href="mailto:scoutmac@macau.ctm.net" class="icon far fa-envelope"><span class="label">Email</span></a></li>
-										</ul>
-										<p>澳門氹仔盧伯德圓形地氹仔炮臺<br />
-											tel: +853 28780411<br />
-											fax: +853 28780412</p>
-									</section>
+.hero-side{
+display:grid;
+gap:18px;
+}
 
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; 2025 THE SCOUT ASSOCIATION OF MACAU. All rights reserved 本網站版權為澳門童軍總會所有</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</footer>
-				</div>
+.hero-card{
+background:#fff;
+border-radius:28px;
+padding:24px;
+border:1px solid rgba(16,139,157,0.10);
+box-shadow:0 14px 30px rgba(17,74,87,0.10);
+}
 
-			</div>
+.hero-card h2{
+margin:0 0 12px;
+font-size:1.35rem;
+color:#0d5561;
+}
 
-		<!-- Scripts -->
+.quick-nav{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:14px;
+margin-top:18px;
+}
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v22.0"></script>
-			<div id="fb-root"></div>
-			
-			<!-- Hero Carousel Auto-play Script -->
-			<script>
-			// Auto-play functionality for hero carousel
-			document.addEventListener('DOMContentLoaded', function() {
-				let currentSlide = 1;
-				const totalSlides = 3;
-				
-				function nextSlide() {
-					currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
-					document.getElementById('hero-slide' + currentSlide).checked = true;
-				}
-				
-				// Auto-advance every 5 seconds
-				setInterval(nextSlide, 5000);
-			});
-			</script>
-			
-			<!-- 防止頁面載入時跳轉的腳本 -->
-			<script>
-			// 確保頁面載入時停留在頂部
-			window.addEventListener('load', function() {
-				window.scrollTo(0, 0);
-			});
-			
-			// 防止autofocus導致的跳轉
-			document.addEventListener('DOMContentLoaded', function() {
-				window.scrollTo(0, 0);
-			});
-			</script>
-			
-			<!-- 動態載入內容腳本 -->
-			<script>
-			// Category mapping for news
-			const categoryMapping = {
-				'訓練班消息': 'training',
-				'活動消息': 'activity',
-				'國際活動': 'international',
-				'總會通告': 'general',
-				'服務通告': 'service'
-			};
-			
-			// Function to parse news.md content
-			function parseNewsMarkdown(markdownText) {
-				const lines = markdownText.split('\n');
-				const news = [];
-				let currentNews = null;
-				
-				for (let line of lines) {
-					line = line.trim();
-					if (!line) continue;
-					
-					// Check if this is a news title line (starts with -)
-					if (line.startsWith('- ') && !line.includes('http') && 
-						!Object.values(categoryMapping).some(key => 
-							Object.keys(categoryMapping).find(k => categoryMapping[k] === key) === line.substring(2).trim()) && 
-						!line.includes('年') && !line.includes('關鍵字')) {
-						
-						// Save previous news if exists
-						if (currentNews) {
-							news.push(currentNews);
-						}
-						
-						// Start new news
-						currentNews = {
-							title: line.substring(2).trim(), // Remove "- " prefix
-							category: '',
-							categoryKey: '',
-							link: '',
-							date: '',
-							keywords: ''
-						};
-					}
-					// Check if this is a category line
-					else if (line.startsWith('- ') && currentNews && 
-							 Object.keys(categoryMapping).includes(line.substring(2).trim())) {
-						const categoryName = line.substring(2).trim();
-						currentNews.category = categoryName;
-						currentNews.categoryKey = categoryMapping[categoryName] || 'general';
-					}
-					// Check if this is a link line (contains http)
-					else if (line.includes('http') && currentNews) {
-						// Extract URL from the line
-						const urlMatch = line.match(/https?:\/\/[^\s]+/);
-						if (urlMatch) {
-							currentNews.link = urlMatch[0];
-						}
-					}
-					// Check if this is a date line (contains 年 and 日)
-					else if (line.includes('年') && line.includes('日') && currentNews) {
-						const dateMatch = line.match(/\d{4}年\d{2}月\d{2}日\s+\d{2}:\d{2}/);
-						if (dateMatch) {
-							currentNews.date = dateMatch[0];
-						}
-					}
-					// Check if this is a keywords line
-					else if (line.includes('關鍵字') && currentNews) {
-						currentNews.keywords = line.substring(line.indexOf('-') + 1).trim();
-					}
-				}
-				
-				// Don't forget the last news
-				if (currentNews) {
-					news.push(currentNews);
-				}
-				
-				return news;
-			}
-			
-			// Function to parse newsletters.md content
-			function parseNewslettersMarkdown(markdownText) {
-				const lines = markdownText.split('\n');
-				const newsletters = [];
-				let currentNewsletter = null;
-				
-				for (let line of lines) {
-					line = line.trim();
-					if (!line) continue;
-					
-					// Check if this is a newsletter title line (starts with -)
-					if (line.startsWith('- ') && !line.includes('http') && line.includes('澳門童軍月刊')) {
-						// Save previous newsletter if exists
-						if (currentNewsletter) {
-							newsletters.push(currentNewsletter);
-						}
-						
-						// Start new newsletter
-						currentNewsletter = {
-							title: line.substring(2).trim(), // Remove "- " prefix
-							link: '',
-							keywords: ''
-						};
-					}
-					// Check if this is a link line (contains http)
-					else if (line.includes('http') && currentNewsletter) {
-						// Extract URL from the line
-						const urlMatch = line.match(/https?:\/\/[^\s]+/);
-						if (urlMatch) {
-							currentNewsletter.link = urlMatch[0];
-						}
-					}
-					// Check if this is a keywords line
-					else if (line.includes('關鍵字') && currentNewsletter) {
-						currentNewsletter.keywords = line.substring(line.indexOf('-') + 1).trim();
-					}
-				}
-				
-				// Don't forget the last newsletter
-				if (currentNewsletter) {
-					newsletters.push(currentNewsletter);
-				}
-				
-				return newsletters;
-			}
-			
-			// Function to load and display latest news from API
-			async function loadLatestNews() {
-				const latestNewsList = document.getElementById('latest-news-list');
-				
-				if (!latestNewsList) {
-					console.error('Notice board container not found');
-					return;
-				}
-				
-				try {
-					// Fetch the notice data from the API
-					const apiUrl = 'https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_HQNotice';
-					const response = await fetch(apiUrl);
-					
-					if (!response.ok) {
-						throw new Error(`HTTP error! status: ${response.status}`);
-					}
-					
-					// Get the response as text (it's JavaScript code)
-					const responseText = await response.text();
-					
-					// Parse the JavaScript document.write() response
-					let htmlContent = '';
-					
-					// Try to match document.write('...')
-					let match = responseText.match(/document\.write\('(.+?)'\)/s);
-					if (match) {
-						htmlContent = match[1];
-					} else {
-						// Try to match document.write("...")
-						match = responseText.match(/document\.write\("(.+?)"\)/s);
-						if (match) {
-							htmlContent = match[1];
-						} else {
-							throw new Error('Could not parse API response format');
-						}
-					}
-					
-					// Unescape the HTML content
-					const unescapedHtml = htmlContent
-						.replace(/\\n/g, '\n')
-						.replace(/\\t/g, '\t')
-						.replace(/\\'/g, "'")
-						.replace(/\\"/g, '"')
-						.replace(/\\\\/g, '\\');
-					
-					// Parse the HTML to extract list items
-					const tempDiv = document.createElement('div');
-					tempDiv.innerHTML = unescapedHtml;
-					
-					const listItems = tempDiv.querySelectorAll('li');
-					
-					if (listItems.length === 0) {
-						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
-						return;
-					}
-					
-					// Process each list item
-					const processedNotices = Array.from(listItems).map(item => {
-						const link = item.querySelector('a');
-						if (!link) return null;
-						
-						const title = link.textContent || link.innerText || '';
-						let href = link.getAttribute('href') || '';
-						
-						// Replace www.scout.org.mo with scout.wpang.net
-						if (href) {
-							// Handle both http and https
-							href = href.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
-							href = href.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
-							// Ensure https protocol
-							if (href.startsWith('http://')) {
-								href = 'https://' + href.substring(7);
-							}
-						}
-						
-						return {
-							title: title.trim(),
-							link: href
-						};
-					}).filter(notice => notice && notice.title && notice.link);
-					
-					// Display the notices
-					if (processedNotices.length === 0) {
-						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
-					} else {
-						// Create list items with target="_blank" for new window opening
-						const listHTML = processedNotices.map(notice => {
-							// Escape HTML special characters in title
-							const escapedTitle = notice.title
-								.replace(/&/g, '&amp;')
-								.replace(/</g, '&lt;')
-								.replace(/>/g, '&gt;')
-								.replace(/"/g, '&quot;')
-								.replace(/'/g, '&#039;');
-							return `<li><a href="${notice.link}" target="_blank" rel="noopener noreferrer">${escapedTitle}</a></li>`;
-						}).join('');
-						
-						latestNewsList.innerHTML = listHTML;
-					}
-					
-				} catch (error) {
-					console.error('Error loading notices from API:', error);
-					latestNewsList.innerHTML = '<li class="error-text">載入最新消息時發生錯誤</li>';
-				}
-			}
-			
-			// Function to load and display newsletters
-			async function loadNewsletters() {
-				const newslettersList = document.getElementById('newsletters-list');
-				const apiUrl = 'https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_Featured';
-				
-				try {
-					const response = await fetch(apiUrl);
-					if (!response.ok) {
-						throw new Error(`HTTP error! status: ${response.status}`);
-					}
-					
-					const scriptText = await response.text();
-					
-					// Extract HTML from document.write() call
-					const match = scriptText.match(/document\.write\('(.+)'\);/s);
-					if (!match) {
-						throw new Error('Invalid API response format');
-					}
-					
-					// Decode escaped characters
-					let htmlContent = match[1]
-						.replace(/\\n/g, '')
-						.replace(/\\'/g, "'");
-					
-					// Parse the HTML to extract links
-					const tempDiv = document.createElement('div');
-					tempDiv.innerHTML = htmlContent;
-					
-					const links = tempDiv.querySelectorAll('a');
-					if (links.length === 0) {
-						newslettersList.innerHTML = '<li class="error-text">沒有月刊</li>';
-						return;
-					}
-					
-					// Build newsletter list with domain replacement and security attributes
-					const newslettersHTML = Array.from(links).map(link => {
-						const href = link.getAttribute('href').replace('www.scout.org.mo', 'scout.wpang.net');
-						const title = link.textContent.trim();
-						
-						// Escape HTML to prevent XSS
-						const safeTitle = title
-							.replace(/&/g, '&amp;')
-							.replace(/</g, '&lt;')
-							.replace(/>/g, '&gt;')
-							.replace(/"/g, '&quot;')
-							.replace(/'/g, '&#039;');
-						
-						return `<li><a href="${href}" target="_blank" rel="noopener noreferrer">${safeTitle}</a></li>`;
-					}).join('');
-					
-					newslettersList.innerHTML = newslettersHTML;
-					
-				} catch (error) {
-					console.error('Error loading newsletters:', error);
-					newslettersList.innerHTML = '<li class="error-text">載入童軍月刊時發生錯誤</li>';
-				}
-			}
-			
-			// Load content when document is ready
-			document.addEventListener('DOMContentLoaded', function() {
-				loadLatestNews();
-				loadNewsletters();
-			});
-			</script>
-	</body>
+.quick-nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+gap:10px;
+padding:18px 14px;
+text-align:center;
+text-decoration:none;
+border-radius:22px;
+background:linear-gradient(180deg,#f5fbfb 0%,#ffffff 100%);
+border:1px solid rgba(16,139,157,0.12);
+color:#244d54;
+transition:transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.quick-nav-item:hover{
+transform:translateY(-3px);
+border-color:rgba(16,139,157,0.28);
+box-shadow:0 14px 24px rgba(17,74,87,0.10);
+}
+
+.quick-nav-icon{
+width:68px;
+height:68px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f2c67d;
+color:#0d5561;
+box-shadow:0 12px 24px rgba(16,139,157,0.18);
+border:2px solid #0d5561;
+}
+
+.quick-nav-icon svg{
+width:30px;
+height:30px;
+stroke:currentColor;
+stroke-width:2;
+fill:none;
+stroke-linecap:round;
+stroke-linejoin:round;
+}
+
+.quick-nav-item strong{
+display:block;
+font-size:1rem;
+line-height:1.4;
+color:#0d5561;
+}
+
+.home-dashboard{
+display:grid;
+grid-template-columns:minmax(0,1.5fr) minmax(280px,0.95fr);
+gap:24px;
+align-items:start;
+}
+
+.panel{
+background:#fff;
+border-radius:30px;
+padding:24px;
+border:1px solid rgba(16,139,157,0.10);
+box-shadow:0 16px 36px rgba(17,74,87,0.10);
+}
+
+.panel-header{
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:16px;
+margin-bottom:18px;
+}
+
+.panel-header h2{
+margin:0;
+font-size:1.45rem;
+color:#09343d;
+}
+
+.panel-link{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:10px 16px;
+border-radius:999px;
+text-decoration:none;
+font-weight:700;
+background:#eef7f8;
+color:#0f7382;
+white-space:nowrap;
+}
+
+.facebook-card{
+display:block;
+text-decoration:none;
+color:inherit;
+border-radius:30px;
+overflow:hidden;
+background:#fff;
+border:1px solid rgba(16,139,157,0.10);
+box-shadow:0 20px 45px rgba(17,74,87,0.12);
+transition:transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.facebook-card:hover{
+transform:translateY(-4px);
+box-shadow:0 26px 54px rgba(17,74,87,0.16);
+}
+
+.facebook-card-cover{
+position:relative;
+min-height:350px;
+background:
+linear-gradient(115deg,rgba(9,52,61,0.38),rgba(9,52,61,0.10)),
+url("images/background2.jpeg") center/cover no-repeat;
+display:flex;
+align-items:flex-end;
+padding:26px;
+}
+
+.facebook-card-cover:after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,transparent 28%,rgba(7,34,40,0.36) 100%);
+}
+
+.facebook-card-badge{
+position:absolute;
+top:22px;
+right:22px;
+z-index:1;
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:9px 14px;
+border-radius:999px;
+background:rgba(255,255,255,0.92);
+color:#1877f2;
+font-weight:700;
+font-size:0.95rem;
+box-shadow:0 10px 24px rgba(9,52,61,0.12);
+}
+
+.facebook-card-body{
+position:relative;
+z-index:1;
+display:flex;
+align-items:center;
+gap:16px;
+color:#fff;
+}
+
+.facebook-avatar{
+width:68px;
+height:68px;
+border-radius:50%;
+background:#fff;
+padding:6px;
+box-shadow:0 10px 22px rgba(0,0,0,0.15);
+flex:0 0 auto;
+}
+
+.facebook-avatar img{
+width:100%;
+height:100%;
+object-fit:contain;
+border-radius:50%;
+}
+
+.facebook-meta strong{
+display:block;
+font-size:1.25rem;
+line-height:1.3;
+}
+
+.facebook-meta span{
+display:block;
+margin-top:4px;
+color:rgba(255,255,255,0.88);
+}
+
+.facebook-card-content{
+padding:22px 24px 24px;
+}
+
+.facebook-card-footer{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
+padding-top:16px;
+border-top:1px solid rgba(16,139,157,0.12);
+color:#0f7382;
+font-weight:700;
+}
+
+.facebook-card-footer span:last-child{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:10px 16px;
+border-radius:999px;
+background:#eef7f8;
+}
+
+.notice-list{
+list-style:none;
+margin:0;
+padding:0;
+display:grid;
+gap:12px;
+}
+
+.notice-list li{
+margin:0;
+padding:0;
+}
+
+.notice-list a{
+display:block;
+padding:14px 16px 14px 20px;
+border-radius:18px;
+text-decoration:none;
+background:#f7fbfb;
+color:#23474f;
+line-height:1.7;
+border:1px solid transparent;
+position:relative;
+transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notice-list a:before{
+content:"";
+position:absolute;
+left:10px;
+top:22px;
+width:6px;
+height:6px;
+border-radius:50%;
+background:#108b9d;
+}
+
+.notice-list a:hover{
+transform:translateY(-2px);
+border-color:rgba(16,139,157,0.22);
+box-shadow:0 12px 20px rgba(17,74,87,0.08);
+}
+
+.loading-text,
+.error-text{
+display:block;
+padding:14px 16px;
+border-radius:18px;
+background:#f7fbfb;
+color:#5a7177;
+}
+
+.error-text{
+background:#fff1f0;
+color:#b1473a;
+}
+
+@media (max-width:980px){
+.home-hero,
+.home-dashboard{
+grid-template-columns:1fr;
+}
+}
+
+@media (max-width:640px){
+.home-shell{
+padding:24px 14px 42px;
+}
+
+.hero-copy,
+.hero-card,
+.panel{
+border-radius:22px;
+padding:20px;
+}
+
+.panel-header{
+flex-direction:column;
+}
+
+.panel-link{
+width:100%;
+}
+
+.quick-nav{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+<body class="homepage">
+
+<div id="header"></div>
+
+<main class="home-shell">
+<section class="home-hero">
+<div class="hero-copy">
+<span class="hero-kicker">The Scout Association of Macau</span>
+<h1>澳門童軍總會</h1>
+<p>Support Scouting, build character, and serve the community.</p>
+<div class="hero-actions">
+<a class="action-secondary" href="aboutus.html">認識澳門童軍總會</a>
+</div>
+</div>
+
+<div class="hero-side">
+<div class="hero-card">
+<h2>快速導航</h2>
+<div class="quick-nav">
+<a class="quick-nav-item" href="page-scoutinfo/apply.html">
+<div class="quick-nav-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24">
+<path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+<circle cx="9.5" cy="7" r="4"></circle>
+<path d="M19 8v6"></path>
+<path d="M16 11h6"></path>
+</svg>
+</div>
+<strong>加入童軍</strong>
+</a>
+<a class="quick-nav-item" href="page-scoutinfo/mop.html">
+<div class="quick-nav-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24">
+<path d="M12 21c4.5-3.2 7-6.1 7-9.2A4.3 4.3 0 0 0 12 8a4.3 4.3 0 0 0-7 3.8c0 3.1 2.5 6 7 9.2z"></path>
+<path d="M12 8c1.2-2.1 3-3.5 5.3-4"></path>
+<path d="M8.5 10.5c1.1.3 2.3.5 3.5.5"></path>
+</svg>
+</div>
+<strong>MOP</strong>
+</a>
+<a class="quick-nav-item" href="scout-sections.html">
+<div class="quick-nav-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24">
+<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+<path d="M8 7h8"></path>
+<path d="M8 11h8"></path>
+</svg>
+</div>
+<strong>參考資料</strong>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="home-dashboard">
+<div class="panel">
+<div class="panel-header">
+<div>
+<h2>Facebook 專頁</h2>
+</div>
+<a class="panel-link" href="https://www.facebook.com/scout.mo" target="_blank" rel="noopener noreferrer">開啟專頁</a>
+</div>
+<a class="facebook-card" href="https://www.facebook.com/scout.mo" target="_blank" rel="noopener noreferrer" aria-label="Open Facebook page">
+<div class="facebook-card-cover">
+<div class="facebook-card-badge">Facebook</div>
+<div class="facebook-card-body">
+<div class="facebook-avatar">
+<img src="images/layout/scout-logo-s.png" alt="澳門童軍總會標誌">
+</div>
+<div class="facebook-meta">
+<strong>澳門童軍總會</strong>
+<span>The Scout Association of Macau</span>
+</div>
+</div>
+</div>
+<div class="facebook-card-content">
+<div class="facebook-card-footer">
+<span>@scout.mo</span>
+<span>前往專頁</span>
+</div>
+</div>
+</a>
+</div>
+
+<aside class="panel">
+<div class="panel-header">
+<div>
+<h2>最新通告</h2>
+</div>
+<a class="panel-link" href="news.html?category=general">更多通告</a>
+</div>
+<ul class="notice-list" id="latest-news-list">
+<li class="loading-text">正在載入最新通告...</li>
+</ul>
+</aside>
+</section>
+</main>
+
+<div id="footer"></div>
+
+<script>
+function loadHTML(id, url, callback) {
+fetch(url)
+.then((res) => res.text())
+.then((data) => {
+const target = document.getElementById(id);
+if (!target) return;
+target.innerHTML = data;
+if (typeof callback === "function") callback(target);
+});
+}
+
+loadHTML("header", "includes/header.html", (target) => {
+const header = target.querySelector(".header-wrap");
+if (header) {
+header.id = "site-header";
+}
+});
+
+loadHTML("footer", "includes/footer.html");
+
+function toggleMenu() {
+const menu = document.getElementById("menu");
+if (menu) {
+menu.classList.toggle("show");
+}
+}
+
+async function loadLatestNews() {
+const latestNewsList = document.getElementById("latest-news-list");
+if (!latestNewsList) return;
+
+try {
+const apiUrl = "https://scout.wpang.net/INT/api/javascript.php?key=AEM2013_HQNotice";
+const response = await fetch(apiUrl);
+if (!response.ok) throw new Error("HTTP error " + response.status);
+
+const responseText = await response.text();
+let htmlContent = "";
+let match = responseText.match(/document\.write\('([\s\S]+?)'\)/);
+
+if (match) {
+htmlContent = match[1];
+} else {
+match = responseText.match(/document\.write\("([\s\S]+?)"\)/);
+if (match) {
+htmlContent = match[1];
+} else {
+throw new Error("Could not parse API response format");
+}
+}
+
+const unescapedHtml = htmlContent
+.replace(/\\n/g, "\n")
+.replace(/\\t/g, "\t")
+.replace(/\\'/g, "'")
+.replace(/\\"/g, "\"")
+.replace(/\\\\/g, "\\");
+
+const tempDiv = document.createElement("div");
+tempDiv.innerHTML = unescapedHtml;
+
+const listItems = tempDiv.querySelectorAll("li");
+if (listItems.length === 0) {
+latestNewsList.innerHTML = '<li class="error-text">暫時未能讀取最新通告。</li>';
+return;
+}
+
+const processedNotices = Array.from(listItems).map((item) => {
+const link = item.querySelector("a");
+if (!link) return null;
+
+const title = (link.textContent || link.innerText || "").trim();
+let href = link.getAttribute("href") || "";
+
+if (href) {
+href = href.replace(/https?:\/\/www\.scout\.org\.mo/gi, "https://scout.wpang.net");
+href = href.replace(/www\.scout\.org\.mo/gi, "https://scout.wpang.net");
+if (href.startsWith("http://")) href = "https://" + href.substring(7);
+}
+
+if (!title || !href) return null;
+return { title, link: href };
+}).filter(Boolean);
+
+if (processedNotices.length === 0) {
+latestNewsList.innerHTML = '<li class="error-text">暫時未能讀取最新通告。</li>';
+return;
+}
+
+latestNewsList.innerHTML = processedNotices.map((notice) => {
+const escapedTitle = notice.title
+.replace(/&/g, "&amp;")
+.replace(/</g, "&lt;")
+.replace(/>/g, "&gt;")
+.replace(/"/g, "&quot;")
+.replace(/'/g, "&#039;");
+return '<li><a href="' + notice.link + '" target="_blank" rel="noopener noreferrer">' + escapedTitle + "</a></li>";
+}).join("");
+} catch (error) {
+console.error("Error loading notices from API:", error);
+latestNewsList.innerHTML = '<li class="error-text">最新通告暫時無法載入，請稍後再試。</li>';
+}
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+loadLatestNews();
+});
+</script>
+</body>
 </html>
-

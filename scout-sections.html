@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
 
 <head>
@@ -6,17 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-
-
 <link rel="stylesheet" href="assets/css/main.css">
 
 </head>
 
-<body>
+<body class="inner-page no-breadcrumb">
 
 <!-- HEADER -->
-<div id="header"></div>
+<div id="header-slot"></div>
 
 
 <!-- MAIN CONTENT -->
@@ -38,52 +35,44 @@
 <div class="hero-content">
   <h2 class="hero-title">支部簡介</h2>
 
-  <div id="scout-sections" class="flex flex-wrap justify-center my-[16px]">
+  <div id="scout-sections" class="entry-grid">
 
     <!-- 幼童軍 -->
-    <a href="/page-scoutinfo/cub.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d] transition">
-        <iconify-icon icon="tabler:leaf"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/cub.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:leaf"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         幼童軍
       </p>
     </a>
 
     <!-- 童軍 -->
-    <a href="/page-scoutinfo/scout.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:compass"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/scout.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:compass"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         童軍
       </p>
     </a>
 
     <!-- 深資童軍 -->
-    <a href="/page-scoutinfo/venture.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:mountain"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/venture.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:mountain"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         深資童軍
       </p>
     </a>
 
     <!-- 成年領袖 -->
-    <a href="/page-scoutinfo/wood-badge.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:user-star"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/wood-badge.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:user-star"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         成年領袖
       </p>
     </a>
@@ -103,34 +92,12 @@
 
 
 <!-- FOOTER -->
-<div id="footer"></div>
+<div id="footer-slot"></div>
 
 
 
-<!-- INCLUDE SCRIPT -->
-
-<script>
-
-function loadHTML(id,url){
-
-fetch(url)
-.then(res => res.text())
-.then(data => {
-
-document.getElementById(id).innerHTML=data;
-
-});
-
-}
-
-loadHTML("header","includes/header.html");
-loadHTML("footer","includes/footer.html");
-
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("show");
-}
-
-</script>
+<script src="assets/js/site-shell.js"></script>
+<script>initSiteShell("");</script>
 
 
 

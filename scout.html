@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
 
 <head>
@@ -6,17 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-
-
 <link rel="stylesheet" href="assets/css/main.css">
 
 </head>
 
-<body>
+<body class="inner-page no-breadcrumb">
 
 <!-- HEADER -->
-<div id="header"></div>
+<div id="header-slot"></div>
 
 
 <!-- MAIN CONTENT -->
@@ -38,88 +35,74 @@
 <div class="hero-content">
   <h2 class="hero-title">童軍運動簡介</h2>
 
-  <div class="flex flex-wrap justify-center my-[16px]">
+  <div class="entry-grid">
 
     <!-- 澳門童軍發展史 -->
-    <a href="/page-about/history.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d] transition">
-        <iconify-icon icon="tabler:timeline"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-about/history.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:timeline"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         發展史
       </p>
     </a>
 
     <!-- 誓詞銘言 -->
-    <a href="/promise.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:shield-check"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/promise.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:shield-check"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         誓詞銘言
       </p>
     </a>
 
     <!-- 會徽 -->
-    <a href="/page-about/emblem.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:rosette"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-about/emblem.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:rosette"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         會徽
       </p>
     </a>
 
     <!-- 徽章介紹 -->
-    <a href="/page-scoutinfo/badge.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:award"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/badge.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:award"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         徽章介紹
       </p>
     </a>
 
     <!-- 制服介紹 -->
-    <a href="/page-scoutinfo/uniform.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:shirt"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/uniform.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:shirt"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         制服介紹
       </p>
     </a>
 
     <!-- 軍職徽章 -->
-    <a href="/page-scoutinfo/ranking.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:military-rank"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/ranking.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:military-rank"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         軍職徽章
       </p>
     </a>
 
     <!-- 獎勵制度 -->
-    <a href="/page-scoutinfo/award.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:trophy"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-scoutinfo/award.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:trophy"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         獎勵制度
       </p>
     </a>
@@ -139,34 +122,12 @@
 
 
 <!-- FOOTER -->
-<div id="footer"></div>
+<div id="footer-slot"></div>
 
 
 
-<!-- INCLUDE SCRIPT -->
-
-<script>
-
-function loadHTML(id,url){
-
-fetch(url)
-.then(res => res.text())
-.then(data => {
-
-document.getElementById(id).innerHTML=data;
-
-});
-
-}
-
-loadHTML("header","includes/header.html");
-loadHTML("footer","includes/footer.html");
-
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("show");
-}
-
-</script>
+<script src="assets/js/site-shell.js"></script>
+<script>initSiteShell("");</script>
 
 
 

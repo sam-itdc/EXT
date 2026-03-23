@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
 
 <head>
@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>澳門童軍總會</title>
+<title>瞉喲?蝡亥?蝮賣?</title>
 
 <link rel="stylesheet" href="assets/css/main.css">
 
@@ -22,7 +22,7 @@
 
 <div class="container">
 
-<h1>歡迎來到澳門童軍總會</h1>
+<h1>甇∟?靘瞉喲?蝡亥?蝮賣?</h1>
 
 <div class="row">
 
@@ -49,16 +49,16 @@
     </div>
 
 
-    <!-- 最新消息 -->
+    <!-- ??唳???-->
     <div class="col-4 col-12-medium">
 
 <section>
-										<h3>最新消息</h3>
+										<h3>??唳???/h3>
 										<footer>
-											<a href="news.html?category=general" class="button icon solid fa-info-circle">更多</a>
+											<a href="news.html?category=general" class="button icon solid fa-info-circle">?游?</a>
 										</footer>
 										<ul class="style2" id="latest-news-list">
-											<li class="loading-text">正在載入最新消息...</li>
+											<li class="loading-text">甇?頛??唳???..</li>
 										</ul>
 									</section>
 
@@ -84,8 +84,6 @@ src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v22.0">
 </script>
 
 
-<!-- INCLUDE SCRIPT -->
-
 <script>
 
 function loadHTML(id,url){
@@ -96,7 +94,7 @@ fetch(url)
 
 document.getElementById(id).innerHTML=data;
 
-// 重新解析 Facebook plugin
+// ?閫?? Facebook plugin
 if (window.FB){
 FB.XFBML.parse();
 }
@@ -166,7 +164,7 @@ document.getElementById("menu").classList.toggle("show");
 					const listItems = tempDiv.querySelectorAll('li');
 					
 					if (listItems.length === 0) {
-						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
+						latestNewsList.innerHTML = '<li class="error-text">瘝???</li>';
 						return;
 					}
 					
@@ -197,7 +195,7 @@ document.getElementById("menu").classList.toggle("show");
 					
 					// Display the notices
 					if (processedNotices.length === 0) {
-						latestNewsList.innerHTML = '<li class="error-text">沒有通告</li>';
+						latestNewsList.innerHTML = '<li class="error-text">瘝???</li>';
 					} else {
 						// Create list items with target="_blank" for new window opening
 						const listHTML = processedNotices.map(notice => {
@@ -216,7 +214,7 @@ document.getElementById("menu").classList.toggle("show");
 					
 				} catch (error) {
 					console.error('Error loading notices from API:', error);
-					latestNewsList.innerHTML = '<li class="error-text">載入最新消息時發生錯誤</li>';
+					latestNewsList.innerHTML = '<li class="error-text">頛??唳??舀??潛??航炊</li>';
 				}
 			}
             
@@ -228,6 +226,10 @@ document.getElementById("menu").classList.toggle("show");
 </script>
 
 
+<script src="assets/js/site-shell.js"></script>
+<script>initSiteShell("");</script>
 </body>
 
 </html>
+
+

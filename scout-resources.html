@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
 
 <head>
@@ -6,17 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-
-
 <link rel="stylesheet" href="assets/css/main.css">
 
 </head>
 
-<body>
+<body class="inner-page no-breadcrumb">
 
 <!-- HEADER -->
-<div id="header"></div>
+<div id="header-slot"></div>
 
 
 <!-- MAIN CONTENT -->
@@ -38,76 +35,64 @@
 <div class="hero-content">
   <h2 class="hero-title">參考資料</h2>
 
-  <div id="scout-resources" class="flex flex-wrap justify-center my-[16px]">
+  <div id="scout-resources" class="entry-grid">
 
     <!-- 童軍月刊 -->
-    <a href="/newsletters.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d] transition">
-        <iconify-icon icon="tabler:book"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/newsletters.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:book"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         童軍月刊
       </p>
     </a>
 
     <!-- 標準步操及禮儀 -->
-    <a href="/page-about/references/marching.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:walk"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-about/references/marching.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:walk"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         步操禮儀
       </p>
     </a>
 
     <!-- 貝登堡略傳 -->
-    <a href="/page-about/references/baden-powell.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:user"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-about/references/baden-powell.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:user"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         貝登堡
       </p>
     </a>
 
     <!-- 三指記號 -->
-    <a href="/page-about/references/signal.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:hand-stop"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-about/references/signal.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:hand-stop"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         三指記號
       </p>
     </a>
 
     <!-- 生活禮節 -->
-    <a href="/page-about/references/courtesy.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:heart"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-about/references/courtesy.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:heart"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         生活禮節
       </p>
     </a>
 
     <!-- 出版刊物 -->
-    <a href="/page-about/references/training.html" class="group my-[20px] mx-[25px] text-center">
-      <div class="bg-white size-[126px] border-[3px] border-white rounded-full flex items-center justify-center
-      group-hover:border-[#108b9d]">
-        <iconify-icon icon="tabler:books"
-        class="text-[56px] text-gray-600 group-hover:text-[#108b9d]"></iconify-icon>
+    <a href="/page-about/references/training.html" class="entry-card">
+      <div class="entry-card-icon">
+        <iconify-icon icon="tabler:books"></iconify-icon>
       </div>
-      <p class="text-[#555] max-w-[126px] group-hover:text-[#108b9d] text-[18px] mt-[10px]">
+      <p class="entry-card-label">
         出版刊物
       </p>
     </a>
@@ -127,34 +112,12 @@
 
 
 <!-- FOOTER -->
-<div id="footer"></div>
+<div id="footer-slot"></div>
 
 
 
-<!-- INCLUDE SCRIPT -->
-
-<script>
-
-function loadHTML(id,url){
-
-fetch(url)
-.then(res => res.text())
-.then(data => {
-
-document.getElementById(id).innerHTML=data;
-
-});
-
-}
-
-loadHTML("header","includes/header.html");
-loadHTML("footer","includes/footer.html");
-
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("show");
-}
-
-</script>
+<script src="assets/js/site-shell.js"></script>
+<script>initSiteShell("");</script>
 
 
 
