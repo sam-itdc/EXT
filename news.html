@@ -233,7 +233,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<!-- Data will be populated dynamically from news.md -->
+										<!-- Data will be populated dynamically from Google Sheets -->
 									</tbody>
 								</table>
 							</div>
@@ -246,6 +246,7 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
+<script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
@@ -269,8 +270,10 @@
 			};
 			
 			function formatDate(dateStr) {
+		if (!dateStr) return '';
 		const date = new Date(dateStr);
-		return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
+		if (Number.isNaN(date.getTime())) return '';
+		return `${date.getFullYear()}年${String(date.getMonth()+1).padStart(2, '0')}月${String(date.getDate()).padStart(2, '0')}日`;
 	}
 
 			// Get category badge class
@@ -285,211 +288,30 @@
 				return classMap[categoryKey] || 'general';
 			}
 			
-            async function loadApiNotices(key, categoryName, categoryKey) {
-        try {
-            const apiUrl = `https://scout.wpang.net/INT/api/javascript.php?key=${key}`;
-            const response = await fetch(apiUrl);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const scriptText = await response.text();
-            
-            // Extract HTML from document.write() calls
-            const writeMatches = scriptText.match(/document\.write\(['"](.+?)['"]\)/g);
-            if (!writeMatches) {
-                return [];
-            }
-            
-            let htmlContent = '';
-            writeMatches.forEach(match => {
-                const content = match.match(/document\.write\(['"](.+?)['"]\)/)[1];
-                htmlContent += content;
-            });
-            
-            // Unescape the HTML content (same as index.html)
-            const unescapedHtml = htmlContent
-                .replace(/\\n/g, '\n')
-                .replace(/\\t/g, '\t')
-                .replace(/\\'/g, "'")
-                .replace(/\\"/g, '"')
-                .replace(/\\\\/g, '\\');
-            
-            // Parse HTML content
-            const temp = document.createElement('div');
-            temp.innerHTML = unescapedHtml;
-            
-            // Look for news-item structure with dates
-            const newsItems = temp.querySelectorAll('.news-item');
-            const results = [];
-            
-            if (newsItems.length > 0) {
-                // New API format with dates
-                newsItems.forEach(item => {
-                    const linkElem = item.querySelector('h3 a, h5 a');
-                    const dateElem = item.querySelector('.date');
-                    
-                    if (linkElem) {
-                        // Use getAttribute to get the raw href value
-                        let link = linkElem.getAttribute('href') || '';
-                        
-                        // Remove surrounding quotes if present
-                        link = link.replace(/^['"]|['"]$/g, '');
-                        
-                        // Replace domain (same logic as index.html)
-                        if (link) {
-                            // Handle both http and https
-                            link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
-                            link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
-                            // Ensure https protocol
-                            if (link.startsWith('http://')) {
-                                link = 'https://' + link.substring(7);
-                            }
-                        }
-                        
-                        // Extract and format date
-                        let formattedDate = '';
-                        if (dateElem) {
-    const dateText = dateElem.textContent.trim();
-
-    // ✅ 國際活動專用格式
-    if (categoryKey === 'international') {
-        const m = dateText.match(/(\d{2}).*?(\d{2}).*?(\d{2}).*?(\d{2}):(\d{2})/);
-        if (m) {
-            const year = 2000 + parseInt(m[1], 10);
-            formattedDate = `${year}年${m[2]}月${m[3]}日 ${m[4]}:${m[5]}`;
-        }
-    }
-    // ✅ 原本 API 的正常格式
-    else {
-        const match = dateText.match(/(\d{2})年(\d{2})月(\d{2})日\s+(\d{2}):(\d{2})/);
-        if (match) {
-            const year = parseInt(match[1]) + 2000;
-            formattedDate = `${year}年${match[2]}月${match[3]}日 ${match[4]}:${match[5]}`;
-        }
-    }
+// Google Forms paragraph answers remain in one cell; split each HTTP(S) URL.
+function parseNoticeLinks(value) {
+    const matches = String(value || '').match(/https?:\/\/[^\s<>"|]+/gi) || [];
+    return [...new Set(matches)];
 }
 
-                        
-                        results.push({
-                            title: linkElem.textContent.trim(),
-                            category: categoryName,
-                            categoryKey: categoryKey,
-                            link: link,
-                            date: formattedDate,
-                            keywords: categoryName
-                        });
-                    }
-                });
-            } else {
-                // Old API format without dates (fallback)
-                const items = temp.querySelectorAll('a');
-                items.forEach(a => {
-                    let link = a.getAttribute('href') || '';
-                    
-                    // Remove surrounding quotes if present
-                    link = link.replace(/^['"]|['"]$/g, '');
-                    
-                    // Replace domain (same logic as index.html)
-                    if (link) {
-                        // Handle both http and https
-                        link = link.replace(/https?:\/\/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
-                        link = link.replace(/www\.scout\.org\.mo/gi, 'https://scout.wpang.net');
-                        // Ensure https protocol
-                        if (link.startsWith('http://')) {
-                            link = 'https://' + link.substring(7);
-                        }
-                    }
-                    
-                    results.push({
-                        title: a.textContent.trim(),
-                        category: categoryName,
-                        categoryKey: categoryKey,
-                        link: link,
-                        date: '',
-                        keywords: categoryName
-                    });
-                });
-            }
-            
-            return results;
-        } catch (error) {
-            console.error(`Error loading API notices for ${categoryName}:`, error);
-            return [];
-        }
+function escapeNoticeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
+}
+
+function renderNoticeTitle(title, type, row) {
+    if (type !== 'display') return title;
+    const safeTitle = escapeNoticeHtml(title);
+    const links = parseNoticeLinks(row.link);
+    if (!links.length) return '<span class="news-link">' + safeTitle + '</span>';
+    if (links.length === 1) {
+        return '<a href="' + escapeNoticeHtml(links[0]) + '" target="_blank" rel="noopener noreferrer" class="news-link">' + safeTitle + '</a>';
     }
-
-			// Function to parse news.md content
-			function parseNewsMarkdown(markdownText) {
-				const lines = markdownText.split('\n');
-				const news = [];
-				let currentNews = null;
-				
-				for (let line of lines) {
-					line = line.trim();
-					if (!line) continue;
-					
-					// Check if this is a category line
-					const categoryFound = line.startsWith('- ') && currentNews && Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(2).trim());
-					// Check if this is a news title line (starts with -)
-					if (line.startsWith('- ') && !line.includes('http') && !Object.keys(categoryMappingReverse).some(key => categoryMappingReverse[key] === line.substring(2).trim()) && !line.includes('年') && !line.includes('關鍵字')) {
-						// Save previous news if exists
-						if (currentNews) {
-							news.push(currentNews);
-						}
-						
-						// Start new news
-						currentNews = {
-							title: line.substring(2).trim(), // Remove "- " prefix
-							category: '',
-							categoryKey: '',
-							link: '',
-							date: '',
-							keywords: ''
-						};
-					}
-					else if (categoryFound) {
-						const categoryName = line.substring(2).trim();
-						currentNews.category = categoryName;
-						currentNews.categoryKey = categoryMapping[categoryName] || 'general';
-					}
-					// Check if this is a link line (contains http)
-					else if (line.includes('http') && currentNews) {
-						// Extract URL from the line
-						const urlMatch = line.match(/https?:\/\/[^\s]+/);
-						if (urlMatch) {
-							currentNews.link = urlMatch[0];
-						}
-					}
-					// Check if this is a date line (contains 年 and 日)
-					else if (line.includes('年') && line.includes('日') && currentNews) {
-						const dateMatch = line.match(/(\d{4}年\d{2}月\d{2}日\s+\d{2}:\d{2})/);
-						if (dateMatch) {
-							currentNews.date = dateMatch[1];
-						} else {
-							// Try to extract any date-like pattern
-							const simpleDateMatch = line.match(/\d{4}年\d{2}月\d{2}日\s+\d{2}:\d{2}/);
-							if (simpleDateMatch) {
-								currentNews.date = simpleDateMatch[0];
-							}
-						}
-					}
-					// Check if this is a keywords line
-					else if (line.includes('關鍵字') && currentNews) {
-						currentNews.keywords = line.substring(line.indexOf('-') + 1).trim();
-					}
-				}
-				
-				// Don't forget the last news
-				if (currentNews) {
-					news.push(currentNews);
-				}
-				
-				return news;
-			}
-			
-
+    return '<span class="news-link">' + safeTitle + '</span>' + links.map((link, index) =>
+        '<br><a href="' + escapeNoticeHtml(link) + '" target="_blank" rel="noopener noreferrer" class="news-link">連結 ' + (index + 1) + '</a>'
+    ).join('');
+}
 
 async function loadAnnouncements() {
 
@@ -497,49 +319,36 @@ async function loadAnnouncements() {
 
         const sheetAPI = "https://opensheet.elk.sh/1EYMseSkpbsv563Zl_PbD5SX0Nqe9WqSVaLnujThpj-I/newsList";
 
-        const response = await fetch(sheetAPI);
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+        let sheetData;
+        try {
+            const response = await fetch(sheetAPI, { signal: controller.signal });
 
-        if (!response.ok) {
-            throw new Error("Sheet API error");
+            if (!response.ok) throw new Error("Sheet API error");
+            sheetData = await response.json();
+        } finally {
+            clearTimeout(timeout);
         }
 
-        const sheetData = await response.json();
+        const newsData = sheetData.map(sourceRow => {
+            const row = Object.fromEntries(Object.entries(sourceRow).map(([key, value]) => [key.trim(), value]));
 
-        const newsData = sheetData.map(row => {
-
-            const categoryName = row.category || "";
+            const categoryName = String(row.category || row['分類'] || "").trim();
             const categoryKey = categoryMapping[categoryName] || "general";
 
             return {
-                title: row.title ||  "",
+                title: row.title || row['標題'] || "",
                 category: categoryName,
                 categoryKey: categoryKey,
-                link: row.link || "",
-                date: formatDate(row.date) ||  "",
-                keywords: row.keywords ||  ""
+                link: row.link || row['連結'] || "",
+                date: formatDate(row.date || row['日期']),
+                keywords: row.keywords || row['關鍵字'] || ""
             };
 
         });
 
-        // API sources
-        const hqNotices = await loadApiNotices("AEM2013Page_HQNotices", "總會通告", "general");
-        const trainingNotices = await loadApiNotices("AEM2013Page_Training", "訓練班消息", "training");
-        const activityNotices = await loadApiNotices("AEM2013Page_Activities", "活動消息", "activity");
-		const serviceNotices = await loadApiNotices("AEM2013Page_Services", "服務通告", "service");	
-	    const internationalNotices = await loadApiNotices("AEMINTL_MainPage", "國際活動", "international");	
-
-		console.log(newsData);
-
-        const combinedData = [
-            ...hqNotices,
-            ...trainingNotices,
-            ...activityNotices,
-			...serviceNotices,
-	        ...internationalNotices,
-            ...newsData
-        ];
-
-        initializeDataTable(combinedData);
+        initializeDataTable(newsData);
 
         document.getElementById('loading-message').style.display = 'none';
         document.getElementById('announcementsTable').style.display = 'table';
@@ -588,13 +397,7 @@ async function loadAnnouncements() {
 						},
 						{
 							data: 'title',
-							render: function(data, type, row) {
-								if (row.link) {
-									return '<a href="' + row.link + '" target="_blank" class="news-link">' + data + '</a>';
-								} else {
-									return '<span class="news-link">' + data + '</span>';
-								}
-							}
+							render: renderNoticeTitle
 						},
 					{
 						data: 'date',
@@ -671,7 +474,7 @@ async function loadAnnouncements() {
 			}
 			
 			// Load announcements when document is ready
-			$(document).ready(function() {
+			document.addEventListener('DOMContentLoaded', function() {
 				loadAnnouncements();
 			});
 		</script>
