@@ -5,6 +5,34 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
+<style>
+.personnel-page > h2{margin-top:2.5rem;margin-bottom:1rem;}
+.personnel-page > h2:first-child{margin-top:0;}
+.personnel-page .personnel-names{
+ display:flex;
+ flex-wrap:wrap;
+ gap:0.8rem 2rem;
+ padding:0;
+ margin:0;
+ list-style:none;
+}
+.personnel-page > p{font-size:20px;line-height:1.8;}
+.personnel-page .personnel-names li{
+ font-size:20px;
+ flex:0 0 auto;
+ padding:0;
+ margin:0;
+ min-width:3em;
+ white-space:nowrap;
+ line-height:1.8;
+}
+@media(max-width:600px){
+ .personnel-page > p,
+ .personnel-page .personnel-names li{font-size:18px;}
+ .personnel-page .personnel-names{gap:0.65rem 1.4rem;}
+ .personnel-page > h2{margin-top:2rem;}
+}
+</style>
 </head>
 <body class="is-preload no-sidebar">
 
@@ -17,65 +45,125 @@
 						<div id="content">
 
 							<!-- Content -->
-								<article>
+								<article class="personnel-page">
 	<h2 style="font-size:3rem;">會內人員</h2>
-	<br>
-	
+
 	<h2>澳門童軍總領袖</h2>
 	<p>澳門特別行政區行政長官　岑浩輝先生</p>
-	<br>
 
 	<h2>澳門童軍榮譽總領袖</h2>
-	<p>何厚鏵　崔世安</p>
-	<br>
+	<ul class="personnel-names">
+		<li>何厚鏵</li>
+		<li>崔世安</li>
+	</ul>
 
 	<h2>榮譽會長</h2>
-	<p>
-		崔世昌　劉藝良　廖澤雲　鄺達財　陳明金　呂強光　李志強　陳杰恒
-	</p>
-	<br>
+	<ul class="personnel-names">
+		<li>崔世昌</li>
+		<li>劉藝良</li>
+		<li>廖澤雲</li>
+		<li>鄺達財</li>
+		<li>陳明金</li>
+		<li>呂強光</li>
+		<li>李志強</li>
+		<li>陳杰恒</li>
+	</ul>
 
 	<h2>名譽會長</h2>
-	<p>
-		徐偉坤　崔世平　李斌生　黎鴻昇　陳永傑　都汶龍<br>
-		胡順謙　羅盛宗　潘鈫亮　李子豐　劉　滿　李柱坤
-	</p>
-	<br>
+	<ul class="personnel-names">
+		<li>徐偉坤</li>
+		<li>崔世平</li>
+		<li>李斌生</li>
+		<li>黎鴻昇</li>
+		<li>陳永傑</li>
+		<li>都汶龍</li>
+		<li>胡順謙</li>
+		<li>羅盛宗</li>
+		<li>潘鈫亮</li>
+		<li>李子豐</li>
+		<li>劉　滿</li>
+		<li>李柱坤</li>
+	</ul>
 
 	<h2>會長</h2>
-	<p>馬有恒</p>
-	<br>
+	<ul class="personnel-names">
+		<li>馬有恒</li>
+	</ul>
 
 	<h2>副會長</h2>
-	<p>
-		劉雅煌　林潤垣　張明星　沈常華　陳新濤　李俊鳴<br>
-		李俊杰　梁俊傑
-	</p>
-	<br>
+	<ul class="personnel-names">
+		<li>劉雅煌</li>
+		<li>林潤垣</li>
+		<li>張明星</li>
+		<li>沈常華</li>
+		<li>陳新濤</li>
+		<li>李俊鳴</li>
+		<li>李俊傑</li>
+		<li>梁俊傑</li>
+	</ul>
 
 	<h2>名譽顧問</h2>
-	<p>
-		高開賢　梁慶庭　容永恩　梁官漢　尤端陽　官世海<br>
-		施綺蓮　姚汝祥　黃樹森　李漢基　飛迪華　何桂玲<br>
-		畢　明　梁偉鈞　崔煜林　孔智剛　林淑華　霍志釗<br>
-		黃仁民　李寶田　周伯輝　陳志君　鄭文玲　趙德和<br>
-		王國英　張學森　潘志明　呂碩基　陳文彬　鄭洪光<br>
-		朱錦鳳　黃　彪　劉麗妹　關英傑　李良汪　釋心慧<br>
-		林少培
-	</p>
-	<br>
+	<ul class="personnel-names">
+		<li>高開賢</li>
+		<li>梁慶庭</li>
+		<li>容永恩</li>
+		<li>梁官漢</li>
+		<li>尤端陽</li>
+		<li>官世海</li>
+		<li>施綺蓮</li>
+		<li>姚汝祥</li>
+		<li>黃樹森</li>
+		<li>李漢基</li>
+		<li>飛迪華</li>
+		<li>何桂鈴</li>
+		<li>畢　明</li>
+		<li>梁偉鈞</li>
+		<li>崔煜林</li>
+		<li>孔智剛</li>
+		<li>林淑華</li>
+		<li>霍志釗</li>
+		<li>黃仁民</li>
+		<li>李寶田</li>
+		<li>周伯輝</li>
+		<li>陳志君</li>
+		<li>鄭文玲</li>
+		<li>趙德和</li>
+		<li>王國英</li>
+		<li>張學森</li>
+		<li>潘志明</li>
+		<li>呂碩基</li>
+		<li>陳文彬</li>
+		<li>鄭洪光</li>
+		<li>朱錦鳳</li>
+		<li>黃　彪</li>
+		<li>劉麗妹</li>
+		<li>關英傑</li>
+		<li>李良汪</li>
+		<li>釋心慧</li>
+		<li>林少培</li>
+	</ul>
 
 	<h2>法律顧問</h2>
-	<p>黃顯輝　邱庭彪</p>
-	<br>
+	<ul class="personnel-names">
+		<li>黃顯輝</li>
+		<li>邱庭彪</li>
+	</ul>
 
 	<h2>顧問</h2>
-	<p>
-		林偉濠　李灼輝　黎　鷹　陳耀斌　龔樹根<br>
-		阮愛武　吳聯盟　邱榮利　賴　宏　李鎮成
-	</p>
-	<br>
-</article>
+	<ul class="personnel-names">
+		<li>林偉濠</li>
+		<li>李灼輝</li>
+		<li>黎　鷹</li>
+		<li>陳耀斌</li>
+		<li>龔樹根</li>
+		<li>阮愛武</li>
+		<li>吳聯盟</li>
+		<li>邱榮利</li>
+		<li>賴　宏</li>
+		<li>李鎮成</li>
+	</ul>
+
+	</article>
 
 
 						</div>
