@@ -17,7 +17,7 @@ const SITE_SHELL_LABELS = {
   "/page-about/emblem.html": [{ label: "\u7ae5\u8ecd\u904b\u52d5\u7c21\u4ecb", href: "/scout.html" }, { label: "\u6703\u5fbd" }],
   "/page-about/references/baden-powell.html": [{ label: "\u53c3\u8003\u8cc7\u6599", href: "/scout-resources.html" }, { label: "\u8c9d\u767b\u5821\u7565\u50b3" }],
   "/page-about/references/courtesy.html": [{ label: "\u53c3\u8003\u8cc7\u6599", href: "/scout-resources.html" }, { label: "\u751f\u6d3b\u79ae\u7bc0" }],
-  "/page-about/references/marching.html": [{ label: "\u53c3\u8003\u8cc7\u6599", href: "/scout-resources.html" }, { label: "\u6a19\u6e96\u6b65\u64cd\u53ca\u79ae\u5100" }],
+  "/page-about/references/marching.html": [{ label: "\u53c3\u8003\u8cc7\u6599", href: "/scout-resources.html" }, { label: "澳門童軍總會隊列及禮儀" }],
   "/page-about/references/signal.html": [{ label: "\u53c3\u8003\u8cc7\u6599", href: "/scout-resources.html" }, { label: "\u4e09\u6307\u8a18\u865f" }],
   "/page-about/references/training.html": [{ label: "\u53c3\u8003\u8cc7\u6599", href: "/scout-resources.html" }, { label: "\u51fa\u7248\u520a\u7269" }],
   "/page-scoutinfo/apply.html": [{ label: "\u95dc\u65bc\u6211\u5011", href: "/aboutus.html" }, { label: "\u52a0\u5165\u7ae5\u8ecd" }],
