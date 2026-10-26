@@ -2139,11 +2139,11 @@ input, select, textarea {
 
 /* Footer */
 
-	#footer {
+	#footer, #site-footer {
 		margin-top: 0;
 	}
 
-		#footer a {
+		#footer a, #site-footer a {
 			color: inherit;
 		}
 
@@ -2699,7 +2699,7 @@ input, select, textarea {
 
 		/* Footer */
 
-			#footer section {
+			#footer section, #site-footer section {
 				border-bottom: solid 1px #ccc;
 				padding-bottom: 3em;
 				margin-bottom: 1em !important;
@@ -3576,3 +3576,15 @@ body:not(.homepage) {
     grid-template-columns: 1fr;
   }
 }
+
+/* Shared content-page typography */
+#content article .standard-page-title{font-size:clamp(2rem,4vw,3rem);color:#124c59;line-height:1.35;margin:0 0 28px;}
+.standard-prose-page{color:#334c54;}
+.standard-prose-panel{padding:30px;margin:0 0 28px;background:#fff;border:1px solid #e0e9ec;border-radius:24px;box-shadow:0 8px 24px rgba(17,74,87,.05);}
+.standard-prose-page h2{font-size:1.6rem;line-height:1.5;color:#124c59;margin:0 0 18px;}
+.standard-prose-page h3{font-size:1.25rem;line-height:1.5;color:#155665;}
+.standard-prose-page p,.standard-prose-page li{font-size:18px;line-height:1.9;}
+.standard-prose-page p{margin:0 0 20px;}
+.standard-prose-panel>:last-child{margin-bottom:0;}
+.standard-prose-panel img{max-width:100%;height:auto;}
+@media(max-width:700px){.standard-prose-panel{padding:22px 18px;}.standard-prose-page p,.standard-prose-page li{font-size:17px;}}

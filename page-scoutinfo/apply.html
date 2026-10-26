@@ -1,175 +1,8 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<title>加入童軍 - 澳門童軍總會</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<style>
-			/* 年齡選擇器樣式 */
-			.age-selector {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 15px;
-				margin: 20px 0;
-			}
-			
-			/* 響應式設計 - 平板端 */
-			@media (max-width: 1024px) {
-				.age-selector {
-					grid-template-columns: repeat(2, 1fr);
-				}
-			}
-			
-			/* 響應式設計 - 手機端 */
-			@media (max-width: 768px) {
-				.age-selector {
-					grid-template-columns: 1fr;
-				}
-			}
-			
-			.age-option {
-				background: #f8f9fa;
-				border: 2px solid #ddd;
-				border-radius: 10px;
-				padding: 20px;
-				text-align: center;
-				cursor: pointer;
-				transition: all 0.3s ease;
-			}
-			
-			.age-option:hover {
-				border-color: #007bff;
-				background: #e3f2fd;
-			}
-			
-			.age-option.selected {
-				border-color: #007bff;
-				background: #007bff;
-				color: white;
-			}
-			
-			.age-option h3 {
-				margin: 0 0 10px 0;
-				font-size: 1.2em;
-			}
-			
-			.age-option p {
-				margin: 0;
-				font-size: 0.9em;
-			}
-			
-			/* 信息顯示區域 */
-			.info-section {
-				display: none;
-				background: #f8f9fa;
-				border-radius: 10px;
-				padding: 30px;
-				margin: 30px 0;
-				border-left: 5px solid #007bff;
-			}
-			
-			.info-section.active {
-				display: block;
-				animation: fadeIn 0.5s ease-in;
-			}
-			
-			@keyframes fadeIn {
-				from { opacity: 0; transform: translateY(20px); }
-				to { opacity: 1; transform: translateY(0); }
-			}
-			
-			/* 旅團選擇器 */
-			.group-selector {
-				margin: 20px 0;
-			}
-			
-			.group-type {
-				margin: 15px 0;
-			}
-			
-			.group-type h4 {
-				color: #007bff;
-				margin-bottom: 10px;
-			}
-			
-			.group-list {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-				gap: 10px;
-			}
-			
-			.group-item {
-				background: white;
-				border: 1px solid #ddd;
-				border-radius: 5px;
-				padding: 15px;
-				cursor: pointer;
-				transition: all 0.3s ease;
-			}
-			
-			.group-item:hover {
-				border-color: #007bff;
-				background: #f0f8ff;
-			}
-			
-			.group-item.selected {
-				border-color: #007bff;
-				background: #e3f2fd;
-			}
-			
-			.group-item h5 {
-				margin: 0 0 5px 0;
-				color: #333;
-			}
-			
-			.group-item p {
-				margin: 0;
-				font-size: 0.85em;
-				color: #666;
-			}
-			
-			/* 申請按鈕 */
-			.apply-button {
-				background: #007bff;
-				color: white;
-				border: none;
-				padding: 15px 30px;
-				border-radius: 5px;
-				font-size: 1.1em;
-				cursor: pointer;
-				margin: 20px 0;
-				transition: background 0.3s ease;
-			}
-			
-			.apply-button:hover {
-				background: #0056b3;
-			}
-			
-			.apply-button:disabled {
-				background: #ccc;
-				cursor: not-allowed;
-			}
-		</style>
-</head>
-<body class="is-preload right-sidebar">
-
-<!-- HEADER -->
-<div id="header"></div>
-
-<!-- MAIN CONTENT -->
-<div id="main-wrapper">
-				<div class="container">
-					<div class="row gtr-200">
-						<div class="col-8 col-12-medium">
-							<div id="content">
-
-								<!-- Content -->
-								<article>
-									<h2>加入童軍大家庭</h2>
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>加入童軍 - 澳門童軍總會</title><link rel="stylesheet" href="../assets/css/main.css"><link rel="stylesheet" href="../assets/css/scout-section.css"><link rel="stylesheet" href="../assets/css/scout-apply.css"></head><body class="is-preload no-sidebar"><div id="header"></div><main id="main-wrapper"><div class="container"><div id="content"><article class="scout-section-page apply-page">
+									<h1>加入童軍大家庭</h1>
 									<p>童軍運動是一個專為青年人而設之自願、非政治性的運動。無分階段、種族和信仰，任何人士皆可參加。歡迎您選擇適合的年齡組別，了解更多信息並加入我們！</p>
 
-									<h3>請選擇您的年齡組別：</h3>
+									<section class="section-panel"><h2>請選擇您的年齡組別：</h2>
 									<div class="age-selector">
 										<div class="age-option" data-age="cub">
 											<h3>幼童軍</h3>
@@ -189,13 +22,13 @@
 										</div>
 									</div>
 
-									<!-- 幼童軍信息 -->
+									</section><!-- 幼童軍信息 -->
 									<div id="cub-info" class="info-section">
 										<h3>幼童軍（8-12歲）</h3>
 										<p><strong>目的：</strong>幼童軍支部之目的旨在促進八至十二歲的兒童身心精神的陶冶與啟發，以貫徹整個童軍運動的連續性訓練。</p>
 										<p><strong>方法：</strong>在成年人領導下，以幼童軍誓詞規律及森林規則為本，透過愉快的遊戲活動促成心靈和體格的發展，培養良好習慣以適應童軍支的訓練方法。</p>
 										<p><strong>年齡規限：</strong>幼童軍支部的年齡規限是由已屆七歲半至十二歲止。</p>
-										
+
 										<div class="group-selector">
 											<h4>選擇旅團：</h4>
 											<div class="group-type">
@@ -281,7 +114,7 @@
 											<li>運用童軍教育的方法，綜合各種知識技能，並能勵行實踐，造福人群。</li>
 										</ul>
 										<p><strong>訓練特色：</strong>童軍訓練具有進度性、誘導性、實用性與競技性。以童軍誓詞為本，透過小隊制度、榮譽制度與徽章制度，以及循序漸進的訓練方法。</p>
-										
+
 										<div class="group-selector">
 											<h4>選擇旅團：</h4>
 											<div class="group-type">
@@ -375,7 +208,7 @@
 										<p><strong>訓練階段：</strong>深資童軍訓練分為三個階段：深資童軍支部成員、「深資童軍獎章」、「深資童軍榮譽獎章」。</p>
 										<p><strong>獎章組成：</strong>各「獎章」皆由四個「段章」組成，分別為「責任」、「自立」、「活動」和「探險」。</p>
 										<p><strong>領袖培訓：</strong>年滿十九歲之深資童軍在進行「深資童軍獎章」或「深資童軍榮譽獎章」訓練的同時，亦可參加支部領袖訓練課程，為未來成為領袖作充分準備。</p>
-										
+
 																		<div class="group-selector">
 											<h4>選擇旅團：</h4>
 											<div class="group-type">
@@ -428,7 +261,7 @@
 													</div>
 												</div>
 											</div>
-										</div>			</div>
+										</div>
 									</div>
 
 									<!-- 成年領袖信息 -->
@@ -437,7 +270,7 @@
 										<p><strong>領袖角色：</strong>成年領袖是童軍運動的重要支柱，負責指導和培育青少年成員，協助他們在童軍活動中學習和成長。</p>
 										<p><strong>訓練要求：</strong>成年領袖需要完成相應的領袖訓練課程，包括基礎訓練、專業訓練和持續進修。</p>
 										<p><strong>服務範疇：</strong>可以擔任各支部的領袖職務，包括幼童軍領袖、童軍領袖、深資童軍領袖等。</p>
-										
+
 										<div class="group-selector">
 											<h4>選擇服務範疇：</h4>
 											<div class="group-type">
@@ -477,16 +310,17 @@
 									</div>
 
 									<div style="text-align: center; margin: 30px 0;">
-										<button id="apply-btn" class="apply-button" disabled>請先選擇年齡組別和旅團</button>
+										<button aria-controls="group-contact" id="apply-btn" class="apply-button" disabled>請先選擇年齡組別和旅團</button>
 									</div>
 
-									<div style="background: #e8f4fd; padding: 20px; border-radius: 10px; margin: 20px 0;">
-										<h4>📋 申請流程</h4>
+									<section id="group-contact" class="section-panel" aria-live="polite" hidden></section>
+<div class="section-panel">
+										<h4>📋 入會查詢流程</h4>
 										<ol>
 											<li>選擇適合的年齡組別</li>
 											<li>選擇合適的旅團或服務範疇</li>
-											<li>點擊申請按鈕</li>
-											<li>填寫申請表格</li>
+											<li>查看旅團聯絡方式，查詢入會安排</li>
+											<li>按旅團指示填寫入會申請表格</li>
 											<li>提交所需文件（身份證副本、相片等）</li>
 											<li>等待審核結果</li>
 										</ol>
@@ -494,59 +328,38 @@
 										地址：澳門氹仔盧伯德圓形地氹仔炮臺<br>
 										電話：+853 28780411<br>
 										傳真：+853 28780412<br>
-										電郵：scoutmac@macau.ctm.net</p>
+										電郵：info@scout.org.mo</p>
 									</div>
 
-								</article>
-
-							</div>
-						</div>
-						<div class="col-4 col-12-medium">
-							<div id="sidebar">
-
-								<!-- Sidebar -->
-								<section class="widget first">
-									<h3>童軍資訊</h3>
-									<ul class="style2">
+								<section class="section-panel">
+									<h2>童軍資訊</h2>
+									<ul class="section-references">
 										<li><a href="../promise.html">誓詞銘言</a></li>
 										<li><a href="../page-about/emblem.html">會徽</a></li>
 										<li><a href="badge.html">徽章介紹</a></li>
 										<li><a href="uniform.html">制服介紹</a></li>
 										<li><a href="ranking.html">軍職徽章</a></li>
 										<li><a href="award.html">獎勵制度</a></li>
-										<li><a href="#">訓練制度</a></li>
+										<li><a href="../page-about/references/training.html">訓練制度</a></li>
 									</ul>
 								</section>
-
-								<section class="widget">
-									<h3>相關連結</h3>
-									<ul class="style2">
+<section class="section-panel">
+									<h2>相關連結</h2>
+									<ul class="section-references">
 										<li><a href="cub.html">幼童軍詳情</a></li>
 										<li><a href="scout.html">童軍詳情</a></li>
 										<li><a href="venture.html">深資童軍詳情</a></li>
 										<li><a href="apply-adult.html">成年領袖詳情</a></li>
 									</ul>
 								</section>
-
-								<section class="widget">
-									<h3>下載表格</h3>
-									<ul class="style2">
-										<li><a href="../page-about/forms/application">A010 入會申請表</a></li>
-										<li><a href="../page-about/forms/renewal">會員證更新表</a></li>
+<section class="section-panel">
+									<h2>下載表格</h2>
+									<ul class="section-references">
+										<li><a href="../page-about/forms.html#membership">A010 入會申請表</a></li>
+										<li><a href="../page-about/forms.html#renewal">會員證更新表</a></li>
 										<li><a href="../page-about/forms.html">表格</a></li>
 									</ul>
-								</section>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-<!-- FOOTER -->
-<div id="footer"></div>
-
-<script>
+								</section></article></div></div></main><div id="footer"></div><script>
 			// 年齡選擇功能
 			let selectedAge = null;
 			let selectedGroup = null;
@@ -558,17 +371,17 @@
 					document.querySelectorAll('.age-option').forEach(opt => opt.classList.remove('selected'));
 					// 添加當前選項的選中狀態
 					this.classList.add('selected');
-					
+
 					// 隱藏所有信息區域
 					document.querySelectorAll('.info-section').forEach(section => section.classList.remove('active'));
-					
+
 					// 顯示對應的信息區域
 					selectedAge = this.dataset.age;
 					const infoSection = document.getElementById(selectedAge + '-info');
 					if (infoSection) {
 						infoSection.classList.add('active');
 					}
-					
+
 					// 重置旅團選擇
 					selectedGroup = null;
 					updateApplyButton();
@@ -580,40 +393,78 @@
 				if (e.target.closest('.group-item')) {
 					const groupItem = e.target.closest('.group-item');
 					const parentSection = groupItem.closest('.info-section');
-					
+
 					// 移除同一區域內其他選項的選中狀態
 					parentSection.querySelectorAll('.group-item').forEach(item => item.classList.remove('selected'));
-					
+
 					// 添加當前選項的選中狀態
 					groupItem.classList.add('selected');
 					selectedGroup = groupItem.dataset.group;
-					
+
 					updateApplyButton();
 				}
 			});
 
-			// 更新申請按鈕狀態
-			function updateApplyButton() {
-				const applyBtn = document.getElementById('apply-btn');
-				if (selectedAge && selectedGroup) {
-					applyBtn.disabled = false;
-					applyBtn.textContent = '立即申請加入';
-					applyBtn.onclick = function() {
-						alert('申請功能即將開放！\n\n您選擇的是：' + getSelectionText() + '\n\n請聯絡我們獲取更多信息：\n電話：+853 28780411\n電郵：scoutmac@macau.ctm.net');
-					};
-				} else {
-					applyBtn.disabled = true;
-					applyBtn.textContent = '請先選擇年齡組別和旅團';
-					applyBtn.onclick = null;
-				}
-			}
+			// 更換選擇時清除舊聯絡資料，避免誤認為新旅團。
+function updateApplyButton() {
+ const button = document.getElementById('apply-btn');
+ document.getElementById('group-contact').hidden = true;
+ const ready = Boolean(selectedAge && selectedGroup);
+ button.disabled = !ready;
+ button.textContent = ready ? '查看旅團聯絡方式' : '請先選擇年齡組別和旅團';
+ button.onclick = ready ? showGroupContact : null;
+}
+let groupDirectory;
+async function showGroupContact() {
+ const selection = selectedGroup;
+ const item = document.querySelector('.info-section.active .group-item.selected');
+ if (!item) return;
+ const panel = document.getElementById('group-contact');
+ panel.replaceChildren();
+ panel.hidden = false;
+ const add = (tag, text) => { const node = document.createElement(tag); node.textContent = text; panel.appendChild(node); return node; };
+ add('h2', item.querySelector('h5').textContent + '聯絡資料');
+ add('p', item.querySelector('p').textContent);
+ add('p', '正在讀取旅部資料…');
+ try {
+  if (!groupDirectory) {
+   const response = await fetch('../page-about/groups.html');
+   if (!response.ok) throw new Error('無法讀取旅部資料');
+   groupDirectory = new DOMParser().parseFromString(await response.text(), 'text/html');
+  }
+  if (selection !== selectedGroup) return;
+  panel.lastElementChild.remove();
+  const number = selection.split('-').pop().padStart(2, '0');
+  const group = groupDirectory.getElementById('group-' + number);
+  if (group) {
+   panel.children[1].remove();
+   group.querySelectorAll('.info-item').forEach(row => {
+    const label = row.querySelector('.info-label')?.textContent || '';
+    const value = row.querySelector('.info-value');
+    if (!value || !/旅長|性質|集會地點|電話|電郵|網址|社交媒體/.test(label)) return;
+    const paragraph = add('p', label);
+    const link = value.querySelector('a');
+    if (link && /^https?:\/\//i.test(link.getAttribute('href'))) {
+     const anchor = document.createElement('a'); anchor.textContent = link.textContent;
+     anchor.href = link.getAttribute('href'); anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; paragraph.appendChild(anchor);
+    } else paragraph.appendChild(document.createTextNode(value.textContent));
+   });
+   const details = document.createElement('a'); details.href = '../page-about/groups.html#group-' + number; details.textContent = '查看旅部簡介'; panel.appendChild(details);
+  }
+ } catch (error) {
+  if (selection !== selectedGroup) return;
+  panel.lastElementChild.textContent = '暫時未能讀取旅部資料，請向總會查詢。';
+ }
+ if (selection !== selectedGroup) return;
+ if (selection.includes('-school-')) add('p', '學校旅一般只接受所屬學校學生，請先向學校查詢入會安排。');
+ add('h3', '總會入會查詢');
+ add('p', '如未列出旅團電話或電郵，可聯絡總會協助轉介。');
+ const phone = document.createElement('a'); phone.href = 'tel:+85328780411'; phone.textContent = '+853 28780411'; panel.appendChild(phone);
+ const email = add('p', '電郵：'); const mail = document.createElement('a'); mail.href = 'mailto:info@scout.org.mo'; mail.textContent = 'info@scout.org.mo'; email.appendChild(mail);
+ const form = document.createElement('a'); form.href = '../page-about/forms.html#membership'; form.textContent = '查看入會申請表格'; panel.appendChild(form);
+ panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-			// 獲取選擇文本
-			function getSelectionText() {
-				const ageText = document.querySelector('.age-option.selected')?.textContent.trim();
-				const groupText = document.querySelector('.group-item.selected')?.textContent.trim();
-				return ageText + ' - ' + groupText;
-			}
 		</script>
 
 <script src="../assets/js/site-shell.js"></script>

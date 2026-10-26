@@ -1,4 +1,5 @@
 const SITE_SHELL_LABELS = {
+  "/page-scoutinfo/apply-adult.html": [{label:"支部簡介", href:"/scout-sections.html"},{label:"成年領袖招募"}],
   "/aboutus.html": [{ label: "\u95dc\u65bc\u6211\u5011" }],
   "/contact.html": [{ label: "\u806f\u7d61\u6211\u5011" }],
   "/news.html": [{ label: "\u901a\u544a" }],
@@ -67,19 +68,25 @@ function withSiteRoot(path, siteRoot) {
 
 function loadHTML(id, url, callback) {
   fetch(url)
-    .then((res) => res.text())
+    .then((res) => {
+      if (!res.ok) throw new Error("載入頁面元件失敗：" + res.status);
+      return res.text();
+    })
     .then((data) => {
       const target = document.getElementById(id);
       if (!target) return;
       target.innerHTML = data;
       if (typeof callback === "function") callback(target);
-    });
+    })
+    .catch((error) => { console.error(url, error); });
 }
 
 function toggleMenu() {
   const menu = document.getElementById("menu");
   if (menu) {
-    menu.classList.toggle("show");
+    const expanded = menu.classList.toggle("show");
+    const toggle = document.querySelector(".menu-toggle");
+    if (toggle) toggle.setAttribute("aria-expanded", String(expanded));
   }
 }
 
