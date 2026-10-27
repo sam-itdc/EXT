@@ -1,4 +1,5 @@
 const SITE_SHELL_LABELS = {
+  "/page-activities/scoutshop.html": [{label:"參考資料",href:"/scout-resources.html"},{label:"物品供應社"}],
   "/page-scoutinfo/apply-adult.html": [{label:"支部簡介", href:"/scout-sections.html"},{label:"成年領袖招募"}],
   "/aboutus.html": [{ label: "\u95dc\u65bc\u6211\u5011" }],
   "/contact.html": [{ label: "\u806f\u7d61\u6211\u5011" }],
@@ -155,6 +156,10 @@ function initSiteShell(prefix) {
     });
   });
 
-  loadHTML(footerTarget, prefix + "includes/footer.html");
+  loadHTML(footerTarget, prefix + "includes/footer.html", (target) => {
+    target.querySelectorAll('a[href^="/"]').forEach((link) => {
+      link.setAttribute("href", withSiteRoot(link.getAttribute("href"), siteRoot));
+    });
+  });
   insertBreadcrumb();
 }
